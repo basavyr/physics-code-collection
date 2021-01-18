@@ -1,0 +1,25 @@
+- The nucleus of an atom has:
+    - a positive net charge
+    - a nuclear spin
+    - an effective magnetic dipole moment of the nucleus due to its **spinning protons**.
+    - The spin is an __intrinsic__ property of the protons inside the nucleus.
+- The magnetic dipole moment of any nucleus is randomly oriented in space.
+- When the nucleus is placed inside an **external magnetic field**,  the nucleus will experience a **torque** due to the **interaction of the magnetic dipole moment with the external magnetic field**.
+    - This will result in two possible orientations of the nuclear magnetic dipole
+        - Spin up
+        - Spin down
+- In NMR, a very strong magnetic field is used to create such an orientation.
+    - A radio wave signal is used to induce __spin flips__ between the up and down situations.
+    - The energy difference between the two orientations is given from the expression for the energy of a magnetic dipole in a field:
+        - $$U=-\vec{\mu}\cdot\vec{B}$$
+    - The difference between the spin up and down nucleus has an energy 
+        - $$\Delta U=2\mu_B B$$.
+    - The induced radio signal must match this energy difference to be absorbed (resonance condition).
+    - The component of $$\vec{\mu}$$ along the magnetic field $$B$$ is constant, but the local magnetic field at the site of the nucleus may depend on its local environment, since the other atoms nearby may produce small B themselves due to their circulating currents.
+- Useful Sources
+    - [Larmor Precession](http://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/larmor.html#c1)
+    - [Larmor Frequency](http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/larmor.html)
+    - [Nuclear Magnetic Resonance](http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/nmr.html#c1)
+    - [Nuclear Spin Polarization](http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/spinpol.html#c1)
+    - [Electric Quadrupole Moments of Nuclei](http://hyperphysics.phy-astr.gsu.edu/hbase/Nuclear/elequad.html#c1)
+    - 

@@ -13,3 +13,7 @@ Each implementation represents a certain physics topic (e.g., nuclear physics, p
 ## Content 🗃
 
 A table with all the implementations that were developed throughout this project can be seen [here](content.md).
+
+**Example:** For the sub-project regarding the *Torque on a current loop*, there is the `code/` folder where all codebase is written, while `resources` directory contains some useful resources regarding the actual topic. Also, additional diagrams (that were developed based on some resource notes) are created. Example can be seen below, where a diagram for the *Torque* subject is depicted.
+
+![](Code-Collection/Torque-Current-Loop/resources/torque_current_loop.png)
