@@ -20,6 +20,8 @@
 
 import numpy as np
 
+from numpy import random as rd
+
 # The gyromagnetic ratio
 g = 2.0
 
