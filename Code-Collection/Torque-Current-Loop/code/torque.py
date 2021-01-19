@@ -1,6 +1,8 @@
 #!/Users/robertpoenaru/.pyenv/shims/python
 
 import numpy as np
+import matplotlib.pyplot as plt
+from numpy import random as rd
 
 N_COILS = 3  # INTEGER NUMBER
 RADIUS = 3  # CENTIMETERS
@@ -56,6 +58,36 @@ def R(MASS, CHARGE, SPEED, B_FIELD):
 
 PARAM_SET = [N_COILS, RADIUS, CURRENT, B_FIELD, THETA]
 
-print(MU(PARAM_SET))
-print(T(PARAM_SET))
-print(R(1, 1, 1, 1))
+# print(MU(PARAM_SET))
+# print(T(PARAM_SET))
+# print(R(1, 1, 1, 1))
+
+
+interval = np.arange(-120, 120, 2.5)
+
+alphas = list(map(lambda x: x * np.pi / 180.0, interval))
+
+sines = np.sin(alphas)
+
+currents = rd.uniform(1, 5, len(interval))
+# areas = list(map(lambda x: 0.30 * x, currents))
+
+AREA = 3.44
+dipoles = list(map(lambda I: round(I * AREA, 3), currents))
+
+B_Field = 2.5
+
+torques = [-x * sines[30] * B_Field for x in dipoles]
+print(torques)
+
+plt.plot(dipoles, torques, '-r', label='torques')
+plt.savefig('torques.pdf', dpi=500, bbox_inches='tight')
+plt.close()
+
+
+angled_torques = [-B_Field * dipoles[0] * sine for sine in sines]
+print(angled_torques)
+
+plt.plot(sines, angled_torques, '-r', label='angled-torques')
+plt.savefig('angled_torques.pdf', dpi=500, bbox_inches='tight')
+plt.close()
