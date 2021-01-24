@@ -41,6 +41,8 @@ e2 = energies(2)
 e3 = energies(3)
 e4 = energies(4)
 
+plt.rcParams.update({'font.size': 15})
+
 plt.plot(spins, e0, '-sr', label=r'$n_w=0$')
 plt.plot(spins, e1, '-^k', label=r'$n_w=1$')
 plt.plot(spins, e2, '-vb', label=r'$n_w=2$')
