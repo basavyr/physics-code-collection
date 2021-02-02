@@ -3,24 +3,30 @@
 import numpy as np
 from numpy import random as rd
 import matplotlib.pyplot as plt
-from matplotlib import rc 
+from matplotlib import rc
 # units are in keV
 SD_BAND2 = [8577.7, 7781.2, 7016.0, 6283.3, 5583.4, 4917.2, 4285.1,
             3687.9, 3126.3, 2601.1, 2113.0, 1662.7, 1250.9, 878.2, 545.1, 252.4, 0]
 SD_BAND3 = [8793.2, 7992.6, 7221.3, 6481.3, 5772.8, 5096.7, 4454.0,
             3844.5, 3269.5, 2729.8, 2225.9, 1758.8, 1329.1, 937.6, 585.1, 272.0, 0]
+SD_BAND4 = [7659.9, 6870.9, 6114.9, 5391.7, 4704.1, 4053.3,
+            3439.0, 2864.0, 2328.6, 1834.5, 1381.9, 971.6, 604.5, 280.9, 0]
 
 # sort and transform to MeV
 SD_BAND2 = [x / 1 for x in SD_BAND2]
 SD_BAND2 = sorted(SD_BAND2)
 SD_BAND3 = [x / 1 for x in SD_BAND3]
 SD_BAND3 = sorted(SD_BAND3)
+SD_BAND4 = [x / 1 for x in SD_BAND4]
+SD_BAND4 = sorted(SD_BAND4)
 
 B2_SPIN_0 = 21.0 / 2.0
 B3_SPIN_0 = 23.0 / 2.0
+B4_SPIN_0 = 25.0 / 2.0
 
 SPINS_BAND2 = [B2_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND2))]
 SPINS_BAND3 = [B3_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND3))]
+SPINS_BAND4 = [B4_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND4))]
 
 
 def Gamma_Transitions(band):
@@ -33,6 +39,7 @@ def Gamma_Transitions(band):
 
 BAND2 = list(zip(SPINS_BAND2, SD_BAND2))
 BAND3 = list(zip(SPINS_BAND3, SD_BAND3))
+BAND4 = list(zip(SPINS_BAND4, SD_BAND4))
 
 
 # gives the difference in energy between the I-state and (I-2)-state
@@ -96,13 +103,12 @@ plt.savefig('staggering.pdf', dpi=600, bbox_inches='tight')
 plt.close()
 
 
-def Stagger(band2, band3, spin):
+def Stagger(band_1, band_2, spin):
     I = spin
-    IM2 = I - 2
-    IM1 = I - 1
-    e_gamma_plus = E_gamma(band2, I)
-    e_gamma_minus = E_gamma(band2, IM2)
-    e_gamma_partner = E_gamma(band3, IM1)
+    IP1 = I + 1
+    e_gamma_plus = E_gamma(band_1, I + 2)
+    e_gamma_minus = E_gamma(band_1, I)
+    e_gamma_partner = E_gamma(band_2, IP1)
     if(e_gamma_partner == 6969 or e_gamma_minus == 6969 or e_gamma_plus == 6969):
         return 6969
     stagger = 0.5 * (e_gamma_plus + e_gamma_minus) - e_gamma_partner
@@ -110,15 +116,26 @@ def Stagger(band2, band3, spin):
     # print(e_gamma_plus, e_gamma_minus,e_gamma_partner)
 
 
-# x = []
-# y = []
-# for spin in SPINS_BAND2:
-#     s = Stagger(BAND2, BAND3, spin)
-#     if(s != 6969):
-#         x.append(spin)
-#         y.append(s)
-#         print(spin, s)
+x_2 = []
+y_2 = []
+for spin in SPINS_BAND2:
+    s = Stagger(BAND2, BAND3, spin)
+    if(s != 6969):
+        x_2.append(spin)
+        y_2.append(s)
+        # print(spin, s)
 
-# plt.plot(x, y, '-r', label='stagger parameter')
-# plt.savefig('staggering.pdf', dpi=600, bbox_inches='tight')
-# plt.close()
+x_3 = []
+y_3 = []
+for spin in SPINS_BAND3:
+    s = Stagger(BAND3, BAND4, spin)
+    if(s != 6969):
+        x_3.append(spin)
+        y_3.append(s)
+        # print(spin, s)
+
+plt.plot(x_2, y_2, 'o-r', label='favored-b2')
+plt.plot(x_3, y_3, 's-k', label='unfavored-b3')
+plt.legend(loc='best')
+plt.savefig('Delta_staggering.pdf', dpi=600, bbox_inches='tight')
+plt.close()
