@@ -4,6 +4,7 @@ import numpy as np
 from numpy import random as rd
 import matplotlib.pyplot as plt
 from matplotlib import rc
+
 # units are in keV
 SD_BAND2 = [8577.7, 7781.2, 7016.0, 6283.3, 5583.4, 4917.2, 4285.1,
             3687.9, 3126.3, 2601.1, 2113.0, 1662.7, 1250.9, 878.2, 545.1, 252.4, 0]
@@ -20,15 +21,32 @@ SD_BAND3 = sorted(SD_BAND3)
 SD_BAND4 = [x / 1 for x in SD_BAND4]
 SD_BAND4 = sorted(SD_BAND4)
 
-B2_SPIN_0 = 21.0 / 2.0
-B3_SPIN_0 = 23.0 / 2.0
-B4_SPIN_0 = 25.0 / 2.0
+SPIN_0_B2 = 21.0 / 2.0
+SPIN_0_B3 = 23.0 / 2.0
+SPIN_0_B4 = 25.0 / 2.0
 
-SPINS_BAND2 = [B2_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND2))]
-SPINS_BAND3 = [B3_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND3))]
-SPINS_BAND4 = [B4_SPIN_0 + 2 * N for N in np.arange(0, len(SD_BAND4))]
+# the spin sequences for each superdeformed band
+SPINS_2 = [SPIN_0_B2 + 2 * N for N in np.arange(0, len(SD_BAND2))]
+SPINS_3 = [SPIN_0_B3 + 2 * N for N in np.arange(0, len(SD_BAND3))]
+SPINS_4 = [SPIN_0_B4 + 2 * N for N in np.arange(0, len(SD_BAND4))]
 
 
+# print(
+#     f'Max spin-states from each band are: IM_2={int(2*SPINS_2[len(SPINS_2)-1])}/2 | IM_3={int(2*SPINS_3[len(SPINS_3)-1])}/2 | IM_2={int(2*SPINS_3[len(SPINS_3)-1])}/2')
+
+# print(f'B2: {int(2*SPINS_2[0])}/2 --->{int(2*SPINS_2[len(SPINS_2)-1])}/2')
+# print(f'B3: {int(2*SPINS_3[0])}/2 --->{int(2*SPINS_3[len(SPINS_3)-1])}/2')
+# print(f'B4: {int(2*SPINS_4[0])}/2 --->{int(2*SPINS_4[len(SPINS_4)-1])}/2')
+
+# the energy corresponding to each spin state from the superdeformed bands
+BAND2 = list(zip(SPINS_2, SD_BAND2))
+BAND3 = list(zip(SPINS_3, SD_BAND3))
+BAND4 = list(zip(SPINS_4, SD_BAND4))
+
+
+# calculates the (in-band) transition between two states within a given band
+# the transition energy is given by the difference E(I1)-E(I2), where I2=I1-2
+# any in-band transition is given by the quadrupole e.m. decay I->I-2
 def Gamma_Transitions(band):
     gammas = []
     for id in range(len(band) - 1):
@@ -37,105 +55,147 @@ def Gamma_Transitions(band):
     return gammas
 
 
-BAND2 = list(zip(SPINS_BAND2, SD_BAND2))
-BAND3 = list(zip(SPINS_BAND3, SD_BAND3))
-BAND4 = list(zip(SPINS_BAND4, SD_BAND4))
-
-
 # gives the difference in energy between the I-state and (I-2)-state
-def E_gamma(band, spin):
+def E_gamma(band, spin, type):
+    # unpack the band tuple list in order to generate an array with spins and one with energies
+    # both arrays will be used for calculating the energy difference of a certain spin-state
     S, E = zip(*band)
-    # print(S)
+    I = spin
+    IM2 = I - 2
+    print(f'searching for the transition {I} -> {IM2} in the {type} band...')
+    first_index = '0'
+    second_index = '0'
     try:
-        I = S.index(spin)
-        IM2 = S.index(spin - 2)
+        id_I = S.index(I)
     except ValueError:
-        # print(F'Cannot perform calculation due to: {err}')
-        return 6969
+        first_index = '0'
     else:
-        print(f'searching for the transition {S[I]} -> {S[IM2]}')
-        E_gamma = round(E[I] - E[IM2], 3)
+        first_index = '1'
+
+    try:
+        id_IM2 = S.index(IM2)
+    except ValueError:
+        second_index = '0'
+    else:
+        second_index = '1'
+
+    if(first_index == '1' and second_index == '1'):
+        print('OK')
+        E_gamma = round(E[id_I] - E[id_IM2], 3)
         return E_gamma
 
+    print(f'There is no transition {I}->{IM2} in the {type} band:')
 
-S, E = zip(*BAND2)
+    if(first_index == '0'):
+        print(f'State {I} does not belong to the {type} band!')
+        return 6969
 
-x_2 = []
-x_3 = []
-y_2 = []
-y_3 = []
+    if(second_index == '0'):
+        print(f'State {IM2} does not belong to the {type} band!')
+        return 6969
 
-# update the first band
-for spin in S:
-    if(E_gamma(BAND2, spin) == 6969):
-        pass
-    else:
-        E = E_gamma(BAND2, spin) - 9.6 * (2.0 * spin - 1)
-        y_2.append(E)
-        x_2.append(spin)
-
-S, E = zip(*BAND3)
-
-# update the second band
-for spin in S:
-    if(E_gamma(BAND3, spin) == 6969):
-        pass
-    else:
-        E = E_gamma(BAND3, spin) - 9.6 * (2.0 * spin - 1)
-        y_3.append(E)
-        x_3.append(spin)
+    return 6969
 
 
-plt.rcParams.update({'font.size': 15})
-
-fig, ax = plt.subplots()
-
-
-plt.plot(x_2, y_2, 'o-r', label='band2')
-plt.plot(x_3, y_3, 'o-k', label='band3')
-ax.legend(loc='best')
-ax.set_xlabel(r'$I\ [\hbar]$')
-ax.set_ylabel(r'$E_\gamma(relative)$')
-plt.text(0.5, 0.5, r'$^{191}Hg$', horizontalalignment='center',
-         verticalalignment='center', transform=ax.transAxes)
-plt.savefig('staggering.pdf', dpi=600, bbox_inches='tight')
-
-plt.close()
-
-
+# calculate the staggering parameter $\Delta E_gamma2$
+# formula taken from the "staggering_formula.png" file
+# any e_gamma will be evaluated from I -> I-2 transition scheme
+# E.g., if the state is I+2, then the Stagger method will calculate the transitions (I+2)+2->I+2, I+2->I, and (I+2)+1->(I+2)-1
 def Stagger(band_1, band_2, spin):
     I = spin
     IP1 = I + 1
-    e_gamma_plus = E_gamma(band_1, I + 2)
-    e_gamma_minus = E_gamma(band_1, I)
-    e_gamma_partner = E_gamma(band_2, IP1)
+    IP2 = I + 2
+    print(f'I={I}')
+    # print(
+    #     f'Staggering will look for the transitions: {I+2}->{I} | {I}->{I-2} | {I+1}->{I-1}')
+    print('E_gamma | I+2->I')
+    e_gamma_plus = E_gamma(band_1, IP2, 'favored')
+    print('E_gamma | I->I-2')
+    e_gamma_minus = E_gamma(band_1, I, 'favored')
+    print('E_gamma | I+1->I-1')
+    e_gamma_partner = E_gamma(band_2, IP1, 'un-favored')
     if(e_gamma_partner == 6969 or e_gamma_minus == 6969 or e_gamma_plus == 6969):
         return 6969
     stagger = 0.5 * (e_gamma_plus + e_gamma_minus) - e_gamma_partner
     return stagger
-    # print(e_gamma_plus, e_gamma_minus,e_gamma_partner)
 
 
-x_2 = []
-y_2 = []
-for spin in SPINS_BAND2:
-    s = Stagger(BAND2, BAND3, spin)
-    if(s != 6969):
-        x_2.append(spin)
-        y_2.append(s)
-        # print(spin, s)
+# based on the value of a single stagger parameter associated to a spin-state I
+# generate an array of staggering parameters, for all I's from a given band
+# the stagger parameter for an I-state belonging on band_1 needs information with regards to a transition from band_2
+def GenerateStaggerBands(band_1, band_2):
+    for spin, energy in band_1:
+        if(Stagger(band_1, band_2, spin) == 6969):
+            print(spin, 'invalid spin-state')
 
-x_3 = []
-y_3 = []
-for spin in SPINS_BAND3:
-    s = Stagger(BAND3, BAND4, spin)
-    if(s != 6969):
-        x_3.append(spin)
-        y_3.append(s)
-        # print(spin, s)
 
-plt.plot(x_2, y_2, 'o-r', label='favored-b2')
-plt.plot(x_3, y_3, 's-k', label='unfavored-b3')
-plt.legend(loc='best')
-plt.savefig('Delta_staggering.pdf', dpi=600, bbox_inches='tight')
-plt.close()
+GenerateStaggerBands(BAND2, BAND3)
+# GenerateStaggerBands(BAND3, BAND4)
+
+
+# S, E = zip(*BAND2)
+
+# x_2 = []
+# x_3 = []
+# y_2 = []
+# y_3 = []
+
+# # update the first band
+# for spin in S:
+#     if(E_gamma(BAND2, spin) == 6969):
+#         pass
+#     else:
+#         E = E_gamma(BAND2, spin) - 9.6 * (2.0 * spin - 1)
+#         y_2.append(E)
+#         x_2.append(spin)
+
+# S, E = zip(*BAND3)
+
+# # update the second band
+# for spin in S:
+#     if(E_gamma(BAND3, spin) == 6969):
+#         pass
+#     else:
+#         E = E_gamma(BAND3, spin) - 9.6 * (2.0 * spin - 1)
+#         y_3.append(E)
+#         x_3.append(spin)
+
+
+# plt.rcParams.update({'font.size': 15})
+
+# fig, ax = plt.subplots()
+
+# plt.plot(x_2, y_2, 'o-r', label='band2')
+# plt.plot(x_3, y_3, 'o-k', label='band3')
+# ax.legend(loc='best')
+# ax.set_xlabel(r'$I\ [\hbar]$')
+# ax.set_ylabel(r'$E_\gamma(relative)$')
+# plt.text(0.5, 0.5, r'$^{191}Hg$', horizontalalignment='center',
+#          verticalalignment='center', transform=ax.transAxes)
+# plt.savefig('staggering.pdf', dpi=600, bbox_inches='tight')
+# plt.close()
+
+
+# x_2 = []
+# y_2 = []
+# for spin in SPINS_BAND2:
+#     s = Stagger(BAND2, BAND3, spin)
+#     if(s != 6969):
+#         x_2.append(spin)
+#         y_2.append(s)
+#         # print(spin, s)
+
+# x_3 = []
+# y_3 = []
+# for spin in SPINS_BAND3:
+#     s = Stagger(BAND3, BAND4, spin)
+#     if(s != 6969):
+#         x_3.append(spin)
+#         y_3.append(s)
+#         # print(spin, s)
+
+# plt.plot(x_2, y_2, 'o-r', label='favored-b2')
+# plt.plot(x_3, y_3, 's-k', label='unfavored-b3')
+# plt.legend(loc='best')
+# plt.savefig('Delta_staggering.pdf', dpi=600, bbox_inches='tight')
+# plt.close()
