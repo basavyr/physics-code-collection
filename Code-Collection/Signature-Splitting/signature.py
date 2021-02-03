@@ -5,6 +5,9 @@ from numpy import random as rd
 import matplotlib.pyplot as plt
 from matplotlib import rc
 
+# choose the path for the file that will contain any debug information during code execution
+DEBUG_PATH = 'DEBUG_INFO.DAT'
+
 # units are in keV
 SD_BAND2 = [8577.7, 7781.2, 7016.0, 6283.3, 5583.4, 4917.2, 4285.1,
             3687.9, 3126.3, 2601.1, 2113.0, 1662.7, 1250.9, 878.2, 545.1, 252.4, 0]
@@ -44,6 +47,9 @@ BAND3 = list(zip(SPINS_3, SD_BAND3))
 BAND4 = list(zip(SPINS_4, SD_BAND4))
 
 
+debug_file = open(DEBUG_PATH, 'w')
+
+
 # calculates the (in-band) transition between two states within a given band
 # the transition energy is given by the difference E(I1)-E(I2), where I2=I1-2
 # any in-band transition is given by the quadrupole e.m. decay I->I-2
@@ -62,7 +68,9 @@ def E_gamma(band, spin, type):
     S, E = zip(*band)
     I = spin
     IM2 = I - 2
-    print(f'searching for the transition {I} -> {IM2} in the {type} band...')
+    # print(f'searching for the transition {I} -> {IM2} in the {type} band...')
+    debug_file.writelines(
+        f'searching for the transition {I} -> {IM2} in the {type} band...\n')
     first_index = '0'
     second_index = '0'
     try:
@@ -80,18 +88,24 @@ def E_gamma(band, spin, type):
         second_index = '1'
 
     if(first_index == '1' and second_index == '1'):
-        print('OK')
+        # print('OK')
+        debug_file.writelines('Transition found. Computing the E_gamma energy is successful...\n')
         E_gamma = round(E[id_I] - E[id_IM2], 3)
         return E_gamma
 
-    print(f'There is no transition {I}->{IM2} in the {type} band:')
+    # print(f'There is no transition {I}->{IM2} in the {type} band:')
+    debug_file.writelines(
+        f'There is no transition {I}->{IM2} in the {type} band:\n')
 
     if(first_index == '0'):
-        print(f'State {I} does not belong to the {type} band!')
+        # print(f'State {I} does not belong to the {type} band!')
+        debug_file.writelines(
+            f'State {I} does not belong to the {type} band!\n')
         return 6969
 
     if(second_index == '0'):
-        print(f'State {IM2} does not belong to the {type} band!')
+        debug_file.writelines(
+            f'State {IM2} does not belong to the {type} band!\n')
         return 6969
 
     return 6969
@@ -105,18 +119,27 @@ def Stagger(band_1, band_2, spin):
     I = spin
     IP1 = I + 1
     IP2 = I + 2
-    print(f'I={I}')
+    # print(f'I={I}')
+    debug_file.writelines(f'**********\n')
+    debug_file.writelines(
+        f'Evaluating the staggering parameter for state I={I}\n')
     # print(
     #     f'Staggering will look for the transitions: {I+2}->{I} | {I}->{I-2} | {I+1}->{I-1}')
-    print('E_gamma | I+2->I')
+    debug_file.writelines(
+        f'Staggering will look for the transitions: {I+2}->{I} | {I}->{I-2} | {I+1}->{I-1}\n')
+    # print('E_gamma | I+2->I')
+    debug_file.writelines('E_gamma | I+2->I\n')
     e_gamma_plus = E_gamma(band_1, IP2, 'favored')
-    print('E_gamma | I->I-2')
+    # print('E_gamma | I->I-2')
+    debug_file.writelines('E_gamma | I->I-2\n')
     e_gamma_minus = E_gamma(band_1, I, 'favored')
-    print('E_gamma | I+1->I-1')
+    # print('E_gamma | I+1->I-1')
+    debug_file.writelines('E_gamma | I+1->I-1\n')
     e_gamma_partner = E_gamma(band_2, IP1, 'un-favored')
     if(e_gamma_partner == 6969 or e_gamma_minus == 6969 or e_gamma_plus == 6969):
         return 6969
     stagger = 0.5 * (e_gamma_plus + e_gamma_minus) - e_gamma_partner
+    debug_file.writelines(f'\n')
     return stagger
 
 
@@ -126,7 +149,8 @@ def Stagger(band_1, band_2, spin):
 def GenerateStaggerBands(band_1, band_2):
     for spin, energy in band_1:
         if(Stagger(band_1, band_2, spin) == 6969):
-            print(spin, 'invalid spin-state')
+            print(
+                spin, f'cannot evaluate a staggering parameter for the state I={spin}')
 
 
 GenerateStaggerBands(BAND2, BAND3)
