@@ -15,6 +15,8 @@ def PlotData(data, FILE, xlabel, ylabel, extra_text):
         plt.plot(x, y, plot_style, label=plot_label)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    plt.text(0.15, 0.15, extra_text, horizontalalignment='center',
+             verticalalignment='center', transform=ax.transAxes)
     ax.legend(loc='best')
     plt.savefig(FILE, dpi=MAX_DPI, bbox_inches=BBOX)
     plt.close()

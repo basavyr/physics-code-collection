@@ -4,7 +4,7 @@ import numpy as np
 from numpy import random as rd
 
 import plotter as plt
-
+import joiner as join
 # choose the path for the file that will contain any debug information during code execution
 DEBUG_PATH = 'DEBUG_INFO.DAT'
 
@@ -145,7 +145,7 @@ def Stagger(band_1, band_2, spin):
 
 
 def Relative_Gamma(E, I):
-    RELATIVE_FACTOR = 9.8 * (2.0 * I - 1.0)
+    RELATIVE_FACTOR = 9.6 * (2.0 * I - 1.0)
     return E - RELATIVE_FACTOR
 
 
@@ -170,20 +170,30 @@ def GenerateRelativeGammas(band):
     for count in range(1, len(spins)):
         E_gamma = E[count] - E[count - 1]
         gammas_spins.append(spins[count])
-        gammas.append(Relative_Gamma(E_gamma, spins[count]))
+        gammas.append(round(Relative_Gamma(E_gamma, spins[count]), 5))
     return gammas_spins, gammas
 
 
-print(GenerateRelativeGammas(BAND2))
-print(GenerateRelativeGammas(BAND3))
+HG_NUCLEUS = r'$^{191}$Hg'
+
+
+GRG2 = GenerateRelativeGammas(BAND2)
+GRG3 = GenerateRelativeGammas(BAND3)
+
+relative_data = [[GRG2[0], GRG2[1], '^k', 'band2'],
+                 [GRG3[0], GRG3[1], 'ok', 'band3'], [sorted(GRG2[0] + GRG3[0]), join.Join(GRG2[1], GRG3[1]), '-k', '']]
+
 
 band2_spins, band2_staggers = GenerateStaggerBands(BAND2, BAND3)
 band3_spins, band3_staggers = GenerateStaggerBands(BAND3, BAND2)
 
-plot_data = [[band2_spins, band2_staggers, '^-r', 'band2'],
-             [band3_spins, band3_staggers, 'o-k', 'band3']]
+plot_data = [[band2_spins, band2_staggers, '^k', 'band2'],
+             [band3_spins, band3_staggers, 'ok', 'band3']]
 
-plt.PlotData(plot_data, 'staggering.png', 'x', 'y', 'extra')
+plt.PlotData(relative_data, 'relative_gammas.png',
+             r'I [$\hbar$]', r'$E_\gamma(I\to I-2)-9.6(2I-1)$ [keV]', HG_NUCLEUS)
+
+plt.PlotData(plot_data, 'staggering.png', 'x', 'y', HG_NUCLEUS)
 
 
 # generate the joined staggering paramaters
@@ -214,10 +224,12 @@ def JoinData(staggers1, staggers2):
 
 
 joined_spins = sorted(band2_spins + band3_spins)
-joined_staggers = JoinData(band2_staggers, band3_staggers)
-joined_data = [[joined_spins, joined_staggers, 'o-k', 'staggering']]
+joined_staggers = join.Join(band2_staggers, band3_staggers)
+joined_data = [[band2_spins, band2_staggers, '^k', 'band2'],
+               [band3_spins, band3_staggers, 'ok', 'band3'], [joined_spins, joined_staggers, '-k', '']]
 
-plt.PlotData(joined_data, 'joined_staggering.png', 'x', 'y', 'extra')
+plt.PlotData(joined_data, 'joined_staggering.png',
+             r'I [$\hbar$]', r'$\Delta^2 E_\gamma(I)$ [keV]', HG_NUCLEUS)
 
 # plt.rcParams.update({'font.size': 15})
 
