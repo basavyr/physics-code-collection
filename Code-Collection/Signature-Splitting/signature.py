@@ -2,8 +2,8 @@
 
 import numpy as np
 from numpy import random as rd
-import matplotlib.pyplot as plt
-from matplotlib import rc
+
+import plotter as plt
 
 # choose the path for the file that will contain any debug information during code execution
 DEBUG_PATH = 'DEBUG_INFO.DAT'
@@ -89,7 +89,8 @@ def E_gamma(band, spin, type):
 
     if(first_index == '1' and second_index == '1'):
         # print('OK')
-        debug_file.writelines('Transition found. Computing the E_gamma energy is successful...\n')
+        debug_file.writelines(
+            'Transition found. Computing the E_gamma energy is successful...\n')
         E_gamma = round(E[id_I] - E[id_IM2], 3)
         return E_gamma
 
@@ -147,43 +148,23 @@ def Stagger(band_1, band_2, spin):
 # generate an array of staggering parameters, for all I's from a given band
 # the stagger parameter for an I-state belonging on band_1 needs information with regards to a transition from band_2
 def GenerateStaggerBands(band_1, band_2):
-    for spin, energy in band_1:
-        if(Stagger(band_1, band_2, spin) == 6969):
-            print(
-                spin, f'cannot evaluate a staggering parameter for the state I={spin}')
+    ret_spins = []
+    ret_staggers = []
+    for I, E_I in band_1:
+        S_I = Stagger(band_1, band_2, I)
+        if(S_I != 6969):
+            ret_spins.append(I)
+            ret_staggers.append(round(S_I, 4))
+    return [ret_spins, ret_staggers]
 
 
-GenerateStaggerBands(BAND2, BAND3)
-# GenerateStaggerBands(BAND3, BAND4)
+band2_spins, band2_staggers = GenerateStaggerBands(BAND2, BAND3)
+band3_spins, band3_staggers = GenerateStaggerBands(BAND3, BAND4)
 
+plot_data = [[band2_spins, band2_staggers, '^-r', 'band2'],
+             [band3_spins, band3_staggers, 'o-k', 'band3']]
 
-# S, E = zip(*BAND2)
-
-# x_2 = []
-# x_3 = []
-# y_2 = []
-# y_3 = []
-
-# # update the first band
-# for spin in S:
-#     if(E_gamma(BAND2, spin) == 6969):
-#         pass
-#     else:
-#         E = E_gamma(BAND2, spin) - 9.6 * (2.0 * spin - 1)
-#         y_2.append(E)
-#         x_2.append(spin)
-
-# S, E = zip(*BAND3)
-
-# # update the second band
-# for spin in S:
-#     if(E_gamma(BAND3, spin) == 6969):
-#         pass
-#     else:
-#         E = E_gamma(BAND3, spin) - 9.6 * (2.0 * spin - 1)
-#         y_3.append(E)
-#         x_3.append(spin)
-
+plt.PlotData(plot_data, 'staggering.png', 'x', 'y', 'extra')
 
 # plt.rcParams.update({'font.size': 15})
 
