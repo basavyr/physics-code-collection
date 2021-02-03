@@ -232,8 +232,7 @@ There is no transition 11.5->9.5 in the favored band:
 State 9.5 does not belong to the favored band!
 E_gamma | I+1->I-1
 searching for the transition 12.5 -> 10.5 in the un-favored band...
-There is no transition 12.5->10.5 in the un-favored band:
-State 10.5 does not belong to the un-favored band!
+Transition found. Computing the E_gamma energy is successful...
 **********
 Evaluating the staggering parameter for state I=13.5
 Staggering will look for the transitions: 15.5->13.5 | 13.5->11.5 | 14.5->12.5
@@ -427,8 +426,8 @@ searching for the transition 41.5 -> 39.5 in the favored band...
 Transition found. Computing the E_gamma energy is successful...
 E_gamma | I+1->I-1
 searching for the transition 42.5 -> 40.5 in the un-favored band...
-There is no transition 42.5->40.5 in the un-favored band:
-State 42.5 does not belong to the un-favored band!
+Transition found. Computing the E_gamma energy is successful...
+
 **********
 Evaluating the staggering parameter for state I=43.5
 Staggering will look for the transitions: 45.5->43.5 | 43.5->41.5 | 44.5->42.5

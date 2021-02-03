@@ -144,6 +144,11 @@ def Stagger(band_1, band_2, spin):
     return stagger
 
 
+def Relative_Gamma(E, I):
+    RELATIVE_FACTOR = 9.8 * (2.0 * I - 1.0)
+    return E - RELATIVE_FACTOR
+
+
 # based on the value of a single stagger parameter associated to a spin-state I
 # generate an array of staggering parameters, for all I's from a given band
 # the stagger parameter for an I-state belonging on band_1 needs information with regards to a transition from band_2
@@ -158,13 +163,61 @@ def GenerateStaggerBands(band_1, band_2):
     return [ret_spins, ret_staggers]
 
 
+def GenerateRelativeGammas(band):
+    spins, E = zip(*band)
+    gammas_spins = []
+    gammas = []
+    for count in range(1, len(spins)):
+        E_gamma = E[count] - E[count - 1]
+        gammas_spins.append(spins[count])
+        gammas.append(Relative_Gamma(E_gamma, spins[count]))
+    return gammas_spins, gammas
+
+
+print(GenerateRelativeGammas(BAND2))
+print(GenerateRelativeGammas(BAND3))
+
 band2_spins, band2_staggers = GenerateStaggerBands(BAND2, BAND3)
-band3_spins, band3_staggers = GenerateStaggerBands(BAND3, BAND4)
+band3_spins, band3_staggers = GenerateStaggerBands(BAND3, BAND2)
 
 plot_data = [[band2_spins, band2_staggers, '^-r', 'band2'],
              [band3_spins, band3_staggers, 'o-k', 'band3']]
 
 plt.PlotData(plot_data, 'staggering.png', 'x', 'y', 'extra')
+
+
+# generate the joined staggering paramaters
+def JoinData(staggers1, staggers2):
+    l1 = len(staggers1)
+    l2 = len(staggers2)
+    joined_staggers = []
+    count = 0
+    if(l1 >= l2):
+        for stg in staggers1:
+            joined_staggers.append(stg)
+            try:
+                joined_staggers.append(staggers2[count])
+            except IndexError:
+                pass
+            count = count + 1
+        return joined_staggers
+    else:
+        for stg in staggers2:
+            joined_staggers.append(stg)
+            try:
+                joined_staggers.append(staggers1[count])
+            except IndexError:
+                pass
+            count = count + 1
+        return joined_staggers
+    return 'NAN'
+
+
+joined_spins = sorted(band2_spins + band3_spins)
+joined_staggers = JoinData(band2_staggers, band3_staggers)
+joined_data = [[joined_spins, joined_staggers, 'o-k', 'staggering']]
+
+plt.PlotData(joined_data, 'joined_staggering.png', 'x', 'y', 'extra')
 
 # plt.rcParams.update({'font.size': 15})
 
