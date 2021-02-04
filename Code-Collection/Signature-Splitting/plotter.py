@@ -20,3 +20,7 @@ def PlotData(data, FILE, xlabel, ylabel, extra_text):
     ax.legend(loc='best')
     plt.savefig(FILE, dpi=MAX_DPI, bbox_inches=BBOX)
     plt.close()
+
+
+def LinePlot():
+    return 'creating a line plot'
