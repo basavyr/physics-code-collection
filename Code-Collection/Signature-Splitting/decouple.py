@@ -2,6 +2,9 @@
 
 import numpy as np
 
+import plotter as plt
+import randoms as rd
+
 spins_f = np.arange(10.5, 34.5, 2)
 spins_u = np.arange(11.5, 35.5, 2)
 
@@ -69,8 +72,10 @@ I = Generate_Delta1_SpinBand(I0, 15)
 
 print(f'The initial spin sequence:\nI: {I}\n')
 
+DECOUPLING = -1.2
+
 # the energy spectrum
-E = EnergySpectrum(I, -1.244)
+E = EnergySpectrum(I, DECOUPLING)
 
 print(f'The energy spectrum:\nE_I: {E}\n')
 
@@ -78,8 +83,15 @@ print(f'The energy spectrum:\nE_I: {E}\n')
 I_f = Split(I)[0]
 I_u = Split(I)[1]
 
+E_f = EnergySpectrum(I_f, DECOUPLING)
+E_u = EnergySpectrum(I_u, DECOUPLING)
 
 print(
     f'{I_f} -> {Determine_BandSignature(I_f)} (alpha={Determine_SpinSignature(I_f[0])})\n')
 print(
     f'{I_u} -> {Determine_BandSignature(I_u)} (alpha={Determine_SpinSignature(I_u[0])})')
+
+plot_file = 'decoupled-energies.png'
+
+plt.LinePlot([E_f, E_u], [I_f, I_u], ['-k', '-r'], ['E_f', 'E_u'],
+             plot_file, r'$a_i=$' + f'{DECOUPLING}')
