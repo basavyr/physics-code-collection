@@ -30,36 +30,32 @@ class Charge_Distribution:
 
     # create the Fermi-function which describes the nuclear charge distribution within the nucleus
     @staticmethod
-    def Fermi_Distribution(x0, x, a):
+    def Fermi_Distribution(x, x0, a):
         T = 1.0 + np.exp(x / a)
         return x0 / T
 
     @staticmethod
-    def rho_charge(A, Z, e, a):
-        # rho0=0.08
+    def rho_charge(A, Z, e, a, r):
+        # evaluate the function under the integrand for the RMS radius of the charge distribution
         RHO0 = Charge_Distribution.rho_0(A, Z, e)
         R_HALF = Charge_Distribution.R_half(A)
+
         # declare the diffuseness parameter a
         # a_diffuse = 0.524
-        a_diffuse = 1.69
-        exp_f = 1.0 + np.exp((r - R_HALF) / a_diffuse)
-        rho = RHO0 / exp_f
+        # a_diffuse = 2.4
+        rho = Charge_Distribution.Fermi_Distribution(r - R_HALF, RHO0, a)
         return rho
 
+    @staticmethod
+    def RMS_ConstantDensity(A):
+        # evaluate the rms function with the constant term proportional to the square of nuclear radius
+        # radius is given as a function of nuclear mass number A
+        r_const = Charge_Distribution.R(A)
+        rms = 3.0 / 5.0 * np.power(r_const, 2)
+        return rms
 
-# evaluate the function under the integrand for the RMS radius of the charge distribution
-def RMS_Radius(A, Z, r):
-    C = 4.0 * np.pi
-    r2 = np.power(r, 2)
-    r2 = np.power(r, 2)
-    rho_ch = Fermi_Distribution(A, Z, r)
-    rms = r2 * rho_ch * C * r2
-    return rms
-
-
-# evaluate the rms function with the constant term proportional to the square of nuclear radius
-# radius is given as a function of nuclear mass number A
-def RMS_ConstantR(A):
-    r_const = R(A)
-    rms = 3.0 / 5.0 * np.power(r_const, 2)
-    return rms
+    @staticmethod
+    def RMS_Deformed(A, beta):
+        r_sph = Charge_Distribution.RMS_ConstantDensity(A)
+        r_def = r_sph * (1.0 + 5.0 / (4.0 * np.pi) * np.power(beta, 2))
+        return r_def

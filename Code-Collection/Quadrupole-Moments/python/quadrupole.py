@@ -104,12 +104,6 @@ class Quadrupole:
         return q_s
 
 
-I3_proton = 0.5
-I3_neutron = -0.5
-nucleus = Quadrupole(1, 163, 72, 25.5, 0.4, 0.54, I3_neutron)
-
-nucleus.Show_Data()
-
 # QUADRUPOLE_CONST = 'quadrupole_j.png'
 
 # js = np.arange(0.5, 10.5, 1)
