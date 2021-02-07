@@ -5,8 +5,19 @@ import matplotlib.pyplot as plt
 
 
 class Quadrupole:
-    def __init__(self, rms):
+    def __init__(self, rms, A, Z, I, beta, diffuseness, isospin):
+        self.a = diffuseness
+        self.A = A
+        self.Z = Z
+        self.beta = beta
+        self.I = I
         self.rms = rms
+        self.I3 = isospin
+
+    def Show_Data(self):
+        print(f'Q_0= {self.Q_0(self.A, self.Z, self.beta)}')
+        print(
+            f'Q_0_diffused= {Quadrupole.Q_0_deformed(self.A,self.Z,self.a,self.beta,self.I3)}')
 
     # the effective charges of the nucleons factored in terms of the electric charge e
     e = 1.0
@@ -21,6 +32,9 @@ class Quadrupole:
 
     R = lambda A: Quadrupole.R0 * np.power(A, 1.0 / 3.0)
 
+    # normalize the quadrupole moments
+    Q_NORM = 100.0
+
     def Nucleus(self, A, Z, beta, diffuseness):
         return f'The root mean square of the charge distribution is: {self.rms}'
 
@@ -33,7 +47,7 @@ class Quadrupole:
             e_j = Quadrupole.e_eff_proton
             c_j = (2.0 * j - 1) / (2.0 * j + 2)
             Q_SP = -e_j * c_j * rms
-            return Q_SP
+            return Q_SP / Quadrupole.Q_NORM
         return -1
 
     @staticmethod
@@ -57,7 +71,7 @@ class Quadrupole:
 
         # finally calculates the expression of the (intrinsic) quadrupole moment
         Q_0 = C * r2 * g_beta
-        return Q_0
+        return Q_0 / Quadrupole.Q_NORM
 
     @staticmethod
     def Q_0(A, Z, beta):
@@ -71,7 +85,7 @@ class Quadrupole:
 
         # finally calculates the expression of the (intrinsic) quadrupole moment
         q_0 = c * r2 * f_beta
-        return q_0
+        return q_0 / Quadrupole.Q_NORM
 
     @staticmethod
     def Q_S(A, Z, beta, I, K):
@@ -89,6 +103,12 @@ class Quadrupole:
         q_s = C * Q_O
         return q_s
 
+
+I3_proton = 0.5
+I3_neutron = -0.5
+nucleus = Quadrupole(1, 163, 72, 25.5, 0.4, 0.54, I3_neutron)
+
+nucleus.Show_Data()
 
 # QUADRUPOLE_CONST = 'quadrupole_j.png'
 
