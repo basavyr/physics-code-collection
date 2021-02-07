@@ -1,9 +1,7 @@
 #!/Users/robertpoenaru/.pyenv/shims/python
 
-
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy import random as rd
 
 
 class Quadrupole:
@@ -23,7 +21,7 @@ class Quadrupole:
 
     R = lambda A: Quadrupole.R0 * np.power(A, 1.0 / 3.0)
 
-    def Nucleus(self):
+    def Nucleus(self, A, Z, beta, diffuseness):
         return f'The root mean square of the charge distribution is: {self.rms}'
 
     @staticmethod
@@ -39,57 +37,58 @@ class Quadrupole:
         return -1
 
     @staticmethod
-    def Q_deformed(A, Z, diffusion, beta):
-        return 2
+    def Q_0_deformed(A, Z, diffuseness, beta, I3):
+        # the quadrupole moment as a function of the quadrupole deformation parameter ß and also parametrized by a correction due to the surface thickness
+        # the thickness parameter is called diffuseness constant (denoted by a)
+
+        if(I3 == -0.5):
+            e_eff = Quadrupole.e_eff_neutron
+        else:
+            e_eff = Quadrupole.e_eff_proton
+
+        a = diffuseness
+        r = Quadrupole.R(A)
+        r2 = np.power(r, 2)
+        C = 3.0 / np.sqrt(5.0 * np.pi) * e_eff * Z
+
+        T1 = np.power(np.pi, 2) * np.power(a / r, 2)
+        T2 = (2.0 / 7.0) * np.sqrt(5 / np.pi) * beta
+        g_beta = beta * (1.0 + T1 + T2)
+
+        # finally calculates the expression of the (intrinsic) quadrupole moment
+        Q_0 = C * r2 * g_beta
+        return Q_0
 
     @staticmethod
     def Q_0(A, Z, beta):
         # the intrinsic quadrupole moment induced by a non-spherical charge distribution of the protons inside the nucleus
         # the Q_0 intrinsic quadrupole moment depends on the quadrupole deformation parameter ß
-        c = 3.0 / (np.sqrt(5.0 * np.pi))
+        c = 3.0 / (np.sqrt(5.0 * np.pi)) * Z
         r = Quadrupole.R(A)
-        r2 = np.power(r)
+        r2 = np.power(r, 2)
+
         f_beta = beta * (1.0 + Quadrupole.C_BETA * beta)
 
         # finally calculates the expression of the (intrinsic) quadrupole moment
-        q_0 = c * Z * r2 * f_beta
+        q_0 = c * r2 * f_beta
         return q_0
 
     @staticmethod
     def Q_S(A, Z, beta, I, K):
         # the spectroscopic (measured) quadrupole moment of a deformed nucleus parametrized by the quadrupole deformation paramater beta ß
-
-        Projection = lambda X: (3 * np.power(X, 2) - I * (I + 1.0)) / \
-            ((I + 1.0) * (2.0 * I + 3.0))
+        # The nucleus' angular momentum is assumed to have a projection onto the symmetry axis that is maximal (namely, K=K_max=I)
+        Projection = lambda X, Y: (3 * np.power(X, 2) - Y * (Y + 1.0)) / \
+            ((Y + 1.0) * (2.0 * Y + 3.0))
 
         # firstly evaluated the intrinsic quadrupole moment Q_0
         Q_O = Quadrupole.Q_0(A, Z, beta)
 
-        C = Projection(K)
+        C = Projection(K, I)
 
         # evaluates the spectroscopic quadrupole moment
         q_s = C * Q_O
         return q_s
 
-
-# # the quadrupole moment for a single nucleon in an orbit j=J
-# # the quadrupole term contains the rms distribution as a constant function of R
-# def Q_j_constR(A, Z, j, particle):
-#     e = CHARGE_E
-#     e_eff_proton = 1.5 * e
-#     e_eff_neutron = 0.95 * e
-#     C_j = (2.0 * j - 1) / (2.0 * j + 2.0)
-#     rms = RMS_ConstantR(A)
-#     if(particle == 'p'):
-#         Q_eff = e_eff_proton / e
-#     else:
-#         Q_eff = e_eff_neutron / e
-#     ret_Q_j = -1.0 * C_j * Q_eff * rms
-#     return ret_Q_j
-
-
-# Z = 72
-# A = 163
 
 # QUADRUPOLE_CONST = 'quadrupole_j.png'
 
