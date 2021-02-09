@@ -12,15 +12,20 @@ import charge_distribution as ch
 A = 163
 Z = 72
 beta = 0.38
-a = 0.54
+gamma = 21.0 * np.pi / 180.0
+a = 2.20
 j = 6.5
-I3_proton = 0.5
-I3_neutron = -0.5
-I = 25.0 / 2.0
+
+# the isospin projection t_z of the two nucleons
+I3_proton = -0.5
+I3_neutron = +0.5
+
+# total angular momentum of the rotational state
+I = 1.0 / 2.0
 
 rms = ch.Charge_Distribution.RMS_Deformed(A, beta)
 
-nucleus = Q.Quadrupole(rms, A, Z, I, beta, a, I3_proton)
+nucleus = Q.Quadrupole(rms, A, Z, I, beta, gamma, a, I3_proton)
 
 nucleus.Show_Data()
 
@@ -65,4 +70,29 @@ for ro in rhos:
     plt.plot(r, ro, '-k', label=r'$\rho_{ch}(r)$')
 plt.legend(loc='best')
 plt.savefig('FermiQ_dist.png', dpi=600, bbox_inches='tight')
+plt.close()
+
+
+# generate the two components Q2 and Q0 of the quadrupole operator, using the expressions from Yoshida's calculations [Yoshida 1972]
+# vary the rms - the second radial moment
+def_rms = np.arange(0, 1.55, 0.11)
+q0_yoshida = [Q.Quadrupole.Q0_Y(Z, rms, beta, gamma) for rms in def_rms]
+q2_yoshida = [Q.Quadrupole.Q2_Y(Z, rms, beta, gamma) for rms in def_rms]
+
+# plot the two components Q2 and Q0 of the quadrupole operator, using the expressions from Yoshida's calculations [Yoshida 1972]
+# preamble set
+plt.rcParams.update({'font.size': 15})
+
+fig, ax = plt.subplots()
+
+ax.set_xlabel(r'$\langle r^2 \rangle$')
+ax.set_ylabel(r'$Q_Y$')
+
+
+plt.plot(def_rms, q0_yoshida, '^-r', label=r'$Q_0$')
+plt.plot(def_rms, q2_yoshida, 'v-k', label=r'$Q_2$')
+plt.text(0.2, 0.6, r'$\beta=$' + f'{beta}\n' + r'$\gamma=$' + f'{int(gamma*180/np.pi)}' + r'$^o$', horizontalalignment='center',
+         verticalalignment='center', transform=ax.transAxes)
+ax.legend(loc='best')
+plt.savefig('yoshida_moments.png', dpi=600, bbox_inches='tight')
 plt.close()

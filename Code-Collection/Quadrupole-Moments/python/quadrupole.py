@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 
 
 class Quadrupole:
-    def __init__(self, rms, A, Z, I, beta, diffuseness, isospin):
+    def __init__(self, rms, A, Z, I, beta, gamma, diffuseness, isospin):
         self.a = diffuseness
         self.A = A
         self.Z = Z
         self.beta = beta
+        self.gamma = gamma
         self.I = I
         self.rms = rms
         self.I3 = isospin
@@ -102,6 +103,30 @@ class Quadrupole:
         # evaluates the spectroscopic quadrupole moment
         q_s = C * Q_O
         return q_s
+
+    # define the quadrupole moment (µ=0,µ=2 components) according to Yoshida's calculations [Yoshida 1972]
+
+    @staticmethod
+    def Q0_Y(Z, rms, beta, gamma):
+        c = np.sqrt(5.0 / np.pi) * Z
+
+        f_beta = beta * (np.cos(gamma) + 4.0 / 7.0 *
+                         np.sqrt(5.0 / (4.0 * np.pi)) * beta * np.cos(2.0 * gamma))
+
+        Q0 = c * rms * f_beta
+
+        return Q0
+
+    @staticmethod
+    def Q2_Y(Z, rms, beta, gamma):
+        c = np.sqrt(5.0 / np.pi) * Z * (1.0 / np.sqrt(2.0))
+
+        g_beta = beta * np.sin(gamma) * (1 - 8.0 / 7.0 *
+                                         np.sqrt(5.0 / (4.0 * np.pi)) * np.cos(gamma))
+
+        Q2 = c * rms * g_beta
+
+        return Q2
 
 
 # QUADRUPOLE_CONST = 'quadrupole_j.png'
