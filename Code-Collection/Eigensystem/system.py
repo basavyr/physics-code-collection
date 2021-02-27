@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 def makeMatrix(param):
-    M = np.array(([0, 1, 0], [1, 0, 1], [0, 1, 0]))
+    M = np.array(([0, 2, 0], [1, 0, 1], [0, 1, 0]))
     return M * param
 
 
@@ -26,13 +26,22 @@ def LambdaEvolution(lambda_id, a_left, a_right):
         else:
             values.append(val_0)
 
+    n_values=[]
+
+    for val in values:
+        if(val==abs(val)):
+            n_values.append(val)            
+        else:
+            n_values.append(-val)
+    n_values=[-1*val for val in values]
+
     if(len(values) == len(params)):
-        return [params, values, np.abs(values)]
+        return [params, values, n_values]
     return [[6969], [6969], [6969]]
 
 
 def PlotLambdaEvolution(ID, plotname):
-    params, vminus, vplus = LambdaEvolution(ID, 0.69, 2.69)
+    params, vminus, vplus = LambdaEvolution(ID, 0.69, 3.0)
 
     plt.plot(params, vminus, 'o-r', label=r'$\lambda$_')
     plt.plot(params, vplus, 'o-b', label=r'$\lambda_+$')
@@ -40,7 +49,7 @@ def PlotLambdaEvolution(ID, plotname):
     plt.xlabel(f'a')
 
     plt.ylabel(r'$\lambda$' + f'{ID}')
-    plt.savefig(f'{plotname}.png', dpi=1200, bbox_inches='tight')
+    plt.savefig(f'{plotname}.png', dpi=300, bbox_inches='tight')
     plt.close()
 
 
