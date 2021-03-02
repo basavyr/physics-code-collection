@@ -23,17 +23,27 @@ def QuantumNumber(x):
     if(HalfInteger(x)):
         X = f'{int(2*x)}/2'
     else:
-        X = x
+        X = int(x)
     return X
 
 
 # shows all the angular momentum states |J,M> which result from coupling the two angular momenta j1 and j2
 def ShowJM_States(j1, j2):
+    if(not HalfInteger(j1)):
+        j1 = int(j1)
+    if(not HalfInteger(j2)):
+        j2 = int(j2)
+
     j_vals = np.arange(abs(j1 - j2), j1 + j2 + 1, 1)
+    # print(f'j={j_vals}')
     JM_printer = []
     JM = []
     for j in j_vals:
-        m_vals = np.arange(-j, j + 1, 1)
+        if(j == 0):
+            m_vals = np.arange(0, 1, 1)
+        else:
+            m_vals = np.arange(-j, j + 1, 1)
+        # print(f'm={m_vals}')
         for m in m_vals:
             pair = (j, m)
             pair_printer = (QuantumNumber(j), QuantumNumber(m))
@@ -44,15 +54,18 @@ def ShowJM_States(j1, j2):
     return JM
 
 
-# print(ShowJM_States(1, 1 / 2))
-
-
 # shows all the states that form the basis {s=|j1,j2;m1,m2>=s1+s2}
 # where s1,s2 are the two subspaces which correspond to each of the two angular momenta
 # i.e., s1=|j1,m1> and s2=|j2,m2>
 def ShowJ1J2M1M2_States(j1, j2):
+    if(not HalfInteger(j1)):
+        j1 = int(j1)
+    if(not HalfInteger(j2)):
+        j1 = int(j2)
     m1_vals = np.arange(-j1, j1 + 1, 1)
     m2_vals = np.arange(-j2, j2 + 1, 1)
+    # print(f'm1={m1_vals}')
+    # print(f'm2={m2_vals}')
     J12M12_printer = []
     J12M12 = []
     for m1 in m1_vals:
@@ -70,14 +83,21 @@ def ShowJ1J2M1M2_States(j1, j2):
 def GenerateSpinStates(j1, j2):
     JM = ShowJM_States(j1, j2)
     J12M12 = ShowJ1J2M1M2_States(j1, j2)
-    for jm_state in JM:
-        stringg = [
-            f'<{j12m12_state[0]},{j12m12_state[1]},{j12m12_state[2]},{j12m12_state[3]}|{jm_state[0]},{jm_state[1]}>' for j12m12_state in J12M12]
-        print(
-            f'|{jm_state[0]},{jm_state[1]}>={stringg}')
+    clebsch_matrix = [[1, 2], [1, 2]]
+    # clebsch_matrix = np.ndarray(
+    #     shape=(1, len(JM)), dtype=float,buffer=np.array(1))
+    # for jm_state in JM:
+    #     line = [j12m12_state for j12m12_state in J12M12]
+    #     clebsch_matrix.append(line)
+    print(np.array(J12M12[0]))
+    # for jm_state in JM:
+    #     stringg = [
+    #         f'<{j12m12_state[0]},{j12m12_state[1]},{j12m12_state[2]},{j12m12_state[3]}|{jm_state[0]},{jm_state[1]}>' for j12m12_state in J12M12]
+    #     print(
+    #         f'|{jm_state[0]},{jm_state[1]}>={stringg}')
 
 
-GenerateSpinStates(1/2,1/2)
+GenerateSpinStates(1, 1)
 
 
 def GenerateQuantumNumbers(j1, j2):
