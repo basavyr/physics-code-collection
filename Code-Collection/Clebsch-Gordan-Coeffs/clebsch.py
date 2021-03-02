@@ -6,6 +6,9 @@ from sympy import S
 from sympy import *
 
 
+# calculates the Clebsch-Gordan coefficient for a given set of parameters j1,j2,m1,m2,j,m=m1+m2
+
+
 # Checks wether a spin-quantum-number is half-integer or not
 def HalfInteger(x):
     half = 1 / 2
@@ -27,14 +30,17 @@ def QuantumNumber(x):
 # shows all the angular momentum states |J,M> which result from coupling the two angular momenta j1 and j2
 def ShowJM_States(j1, j2):
     j_vals = np.arange(abs(j1 - j2), j1 + j2 + 1, 1)
+    JM_printer = []
     JM = []
     for j in j_vals:
         m_vals = np.arange(-j, j + 1, 1)
         for m in m_vals:
-            pair = (QuantumNumber(j), QuantumNumber(m))
+            pair = (j, m)
+            pair_printer = (QuantumNumber(j), QuantumNumber(m))
             JM.append(pair)
-    for state in JM:
-        print(f'|j,m> = |{state[0]},{state[1]}>')
+            JM_printer.append(pair_printer)
+    # for state in JM:
+    #     print(f'|j,m> = |{state[0]},{state[1]}>')
     return JM
 
 
@@ -47,18 +53,31 @@ def ShowJM_States(j1, j2):
 def ShowJ1J2M1M2_States(j1, j2):
     m1_vals = np.arange(-j1, j1 + 1, 1)
     m2_vals = np.arange(-j2, j2 + 1, 1)
+    J12M12_printer = []
     J12M12 = []
     for m1 in m1_vals:
         for m2 in m2_vals:
-            state = (QuantumNumber(j1), QuantumNumber(j2),
-                     QuantumNumber(m1), QuantumNumber(m2))
+            state = (j1, j2, m1, m2)
+            state_printer = (QuantumNumber(j1), QuantumNumber(j2),
+                             QuantumNumber(m1), QuantumNumber(m2))
             J12M12.append(state)
-    for state in J12M12:
-        print(f'j1,j2;m1,m2> = |{state[0]},{state[1]};{state[2]},{state[3]}>')
+            J12M12_printer.append(state_printer)
+    return J12M12
+    # for state in J12M12:
+    #     print(f'j1,j2;m1,m2> = |{state[0]},{state[1]};{state[2]},{state[3]}>')
 
 
-ShowJM_States(1, 1 / 2)
-ShowJ1J2M1M2_States(1, 1 / 2)
+def GenerateSpinStates(j1, j2):
+    JM = ShowJM_States(j1, j2)
+    J12M12 = ShowJ1J2M1M2_States(j1, j2)
+    for jm_state in JM:
+        stringg = [
+            f'<{j12m12_state[0]},{j12m12_state[1]},{j12m12_state[2]},{j12m12_state[3]}|{jm_state[0]},{jm_state[1]}>' for j12m12_state in J12M12]
+        print(
+            f'|{jm_state[0]},{jm_state[1]}>={stringg}')
+
+
+GenerateSpinStates(1/2,1/2)
 
 
 def GenerateQuantumNumbers(j1, j2):
@@ -109,24 +128,3 @@ def GenerateQuantumNumbers(j1, j2):
 
 
 qn = GenerateQuantumNumbers
-
-j1 = 1
-j2 = 1 / 2
-
-# qn(j1, j2)
-
-j1 = 0.5
-j2 = 0.5
-m = 1
-m2 = 1.0 / 2.0
-m1 = m - m2
-j = j1 + j2
-
-
-def CG(j1, m1, j2, m2, j, m):
-    if(m1 + m2 != m):
-        return -1
-    else:
-        cg = clebsch(j1, m1, j2, m2, j, m)
-        return N(cg.doit())
-    return -1
