@@ -15,6 +15,15 @@ def HalfInteger(x):
     return 0
 
 
+# show a quantum number j or m in proper format
+def QuantumNumber(x):
+    if(HalfInteger(x)):
+        X = f'{int(2*x)}/2'
+    else:
+        X = x
+    return X
+
+
 # shows all the angular momentum states |J,M> which result from coupling the two angular momenta j1 and j2
 def ShowJM_States(j1, j2):
     j_vals = np.arange(abs(j1 - j2), j1 + j2 + 1, 1)
@@ -22,19 +31,34 @@ def ShowJM_States(j1, j2):
     for j in j_vals:
         m_vals = np.arange(-j, j + 1, 1)
         for m in m_vals:
-            JM.append((j, m))
+            pair = (QuantumNumber(j), QuantumNumber(m))
+            JM.append(pair)
+    for state in JM:
+        print(f'|j,m> = |{state[0]},{state[1]}>')
     return JM
 
 
-print(ShowJM_States(1, 1 / 2))
+# print(ShowJM_States(1, 1 / 2))
+
 
 # shows all the states that form the basis {s=|j1,j2;m1,m2>=s1+s2}
 # where s1,s2 are the two subspaces which correspond to each of the two angular momenta
 # i.e., s1=|j1,m1> and s2=|j2,m2>
-
-
 def ShowJ1J2M1M2_States(j1, j2):
-    return 0
+    m1_vals = np.arange(-j1, j1 + 1, 1)
+    m2_vals = np.arange(-j2, j2 + 1, 1)
+    J12M12 = []
+    for m1 in m1_vals:
+        for m2 in m2_vals:
+            state = (QuantumNumber(j1), QuantumNumber(j2),
+                     QuantumNumber(m1), QuantumNumber(m2))
+            J12M12.append(state)
+    for state in J12M12:
+        print(f'j1,j2;m1,m2> = |{state[0]},{state[1]};{state[2]},{state[3]}>')
+
+
+ShowJM_States(1, 1 / 2)
+ShowJ1J2M1M2_States(1, 1 / 2)
 
 
 def GenerateQuantumNumbers(j1, j2):
