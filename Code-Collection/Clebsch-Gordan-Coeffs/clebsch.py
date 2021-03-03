@@ -83,13 +83,13 @@ def ShowJ1J2M1M2_States(j1, j2):
 def GenerateSpinStates(j1, j2):
     JM = ShowJM_States(j1, j2)
     J12M12 = ShowJ1J2M1M2_States(j1, j2)
-    clebsch_matrix = [[1, 2], [1, 2]]
-    # clebsch_matrix = np.ndarray(
-    #     shape=(1, len(JM)), dtype=float,buffer=np.array(1))
-    # for jm_state in JM:
-    #     line = [j12m12_state for j12m12_state in J12M12]
-    #     clebsch_matrix.append(line)
-    print(np.array(J12M12[0]))
+    clebsch_matrix = []
+    for state in J12M12:
+        line = np.array(state)
+        clebsch_matrix.append(line)
+    clebsch_matrix = np.array(clebsch_matrix)
+    for line in clebsch_matrix:
+        print(line)
     # for jm_state in JM:
     #     stringg = [
     #         f'<{j12m12_state[0]},{j12m12_state[1]},{j12m12_state[2]},{j12m12_state[3]}|{jm_state[0]},{jm_state[1]}>' for j12m12_state in J12M12]
@@ -104,47 +104,47 @@ def GenerateQuantumNumbers(j1, j2):
     if(j1 < 0 or j2 < 0):
         return -1
     if(HalfInteger(j1)):
-        J1 = f'{int(2*j1)}/2'
+        J1=f'{int(2*j1)}/2'
     else:
-        J1 = j1
+        J1=j1
     if(HalfInteger(j2)):
-        J2 = f'{int(2*j2)}/2'
+        J2=f'{int(2*j2)}/2'
     else:
-        J2 = j2
-    m1 = np.arange(-j1, j1 + 1, 1)
-    m2 = np.arange(-j2, j2 + 1, 1)
-    j12 = np.arange(abs(j1 - j2), j1 + j2 + 1, 1)
-    count_j = 1
-    JM = []
-    J1J2_M1M1 = []
+        J2=j2
+    m1=np.arange(-j1, j1 + 1, 1)
+    m2=np.arange(-j2, j2 + 1, 1)
+    j12=np.arange(abs(j1 - j2), j1 + j2 + 1, 1)
+    count_j=1
+    JM=[]
+    J1J2_M1M1=[]
     for m11 in m1:
         if(HalfInteger(m11)):
-            M1 = f'{int(2*m11)}/2'
+            M1=f'{int(2*m11)}/2'
         else:
-            M1 = m11
+            M1=m11
         for m21 in m2:
             if(HalfInteger(m21)):
-                M2 = f'{int(m21*2)}/2'
+                M2=f'{int(m21*2)}/2'
             else:
-                M2 = m21
+                M2=m21
             print(f'|j1,j2;m1,m2> = |{J1},{J2},{M1},{M2}>')
     for j in j12:
-        m12 = np.arange(-j, j + 1, 1)
+        m12=np.arange(-j, j + 1, 1)
         # print(f'j_{count_j}={j}')
         if(HalfInteger(j)):
-            J = f'{int(j*2)}/2'
+            J=f'{int(j*2)}/2'
         else:
-            J = j
+            J=j
         for m in m12:
             if(HalfInteger(m)):
-                M = f'{int(2*m)}/2'
+                M=f'{int(2*m)}/2'
             else:
-                M = m
+                M=m
             # print(f'|j,m> = |{J},{M}>')
             JM.append((j, m))
-        count_j = count_j + 1
+        count_j=count_j + 1
     print(f'The |J,M> states')
     print(JM)
 
 
-qn = GenerateQuantumNumbers
+qn=GenerateQuantumNumbers
