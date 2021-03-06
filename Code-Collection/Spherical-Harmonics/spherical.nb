@@ -1,0 +1,580 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20110,        570]
+NotebookOptionsPosition[     18703,        537]
+NotebookOutlinePosition[     19042,        552]
+CellTagsIndexPosition[     18999,        549]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Calculate the Generalized Legendre Polynomials", "Section",
+ CellChangeTimes->{{3.8239941512365437`*^9, 
+  3.823994171260498*^9}},ExpressionUUID->"59281533-cfc0-4d5f-8e49-\
+e4004fb118c4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"legys", "[", "n_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", 
+       RowBox[{"LegendreP", "[", 
+        RowBox[{"n", ",", "m", ",", 
+         RowBox[{"Cos", "[", "\[Theta]", "]"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"m", ",", 
+       RowBox[{"-", "n"}], ",", "n"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nn", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{"legys", "[", "nn", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.823992931472199*^9, 3.823992970140028*^9}, {
+  3.823993014241785*^9, 3.8239930192075872`*^9}, {3.823993085538309*^9, 
+  3.823993100567585*^9}, {3.823993270506577*^9, 3.823993277187715*^9}},
+ CellLabel->
+  "In[133]:=",ExpressionUUID->"3d94c06b-2578-445a-9091-f8977c9741be"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\!\(\*SubscriptBox[\(m\), \(``\)]\)= ``\>\"", "]"}], "[", 
+        RowBox[{"i", ",", 
+         RowBox[{
+          RowBox[{"t", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", "Red", ",", "Bold", 
+       ",", "18", ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}], ",", 
+     "\"\< \>\"", ",", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\!\(\*SubsuperscriptBox[\(P\), \(``\), \
+\(``\)]\)(cos\[Theta])=\>\"", "]"}], "[", 
+        RowBox[{"nn", ",", 
+         RowBox[{
+          RowBox[{"t", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", "Blue", ",", "Bold", 
+       ",", "19", ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}], ",", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"t", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}], ",", "Blue", ",", "Bold", ",", "19", 
+       ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "t", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.823992977562626*^9, 3.823992990442279*^9}, {
+  3.823993031627149*^9, 3.8239930791349277`*^9}, {3.8239931106151333`*^9, 
+  3.823993364061021*^9}, {3.823994008186006*^9, 3.823994045071261*^9}},
+ CellLabel->
+  "In[139]:=",ExpressionUUID->"942de739-90aa-4bf9-843b-0e85e642a242"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(1\\)]\\)= -1\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(P\\), \\(1\\), \
+\\(-1\\)]\\)(cos\[Theta])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     SqrtBox[
+      RowBox[{"1", "-", 
+       SuperscriptBox[
+        RowBox[{"Cos", "[", "\[Theta]", "]"}], "2"]}]]}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(1\)]\)= -1", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(P\), \(1\), \(-1\)]\)(cos\[Theta])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[Rational[1, 2] (1 - Cos[$CellContext`\[Theta]]^2)^Rational[1, 2], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+  3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+  3.823994045481263*^9}},
+ CellLabel->
+  "During evaluation of \
+In[139]:=",ExpressionUUID->"18081caf-b671-4a39-a6bd-fe93aae6857c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(2\\)]\\)= 0\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(P\\), \\(1\\), \\(0\\)]\\)(cos\
+\[Theta])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{"Cos", "[", "\[Theta]", "]"}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(2\)]\)= 0", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(P\), \(1\), \(0\)]\)(cos\[Theta])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[
+    Cos[$CellContext`\[Theta]], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+  3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+  3.82399404548403*^9}},
+ CellLabel->
+  "During evaluation of \
+In[139]:=",ExpressionUUID->"38c1cca7-4b8d-47fe-9524-0a1c78faf0bd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(3\\)]\\)= 1\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(P\\), \\(1\\), \\(1\\)]\\)(cos\
+\[Theta])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{"-", 
+     SqrtBox[
+      RowBox[{"1", "-", 
+       SuperscriptBox[
+        RowBox[{"Cos", "[", "\[Theta]", "]"}], "2"]}]]}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(3\)]\)= 1", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(P\), \(1\), \(1\)]\)(cos\[Theta])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[-(1 - Cos[$CellContext`\[Theta]]^2)^Rational[1, 2], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+  3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+  3.823994045486043*^9}},
+ CellLabel->
+  "During evaluation of \
+In[139]:=",ExpressionUUID->"05c31508-565e-413a-8eaa-c2f8610f4d85"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"harmonics", "[", "n_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", 
+       RowBox[{"SphericalHarmonicY", "[", 
+        RowBox[{"n", ",", "m", ",", "\[Theta]", ",", "\[CurlyPhi]"}], "]"}]}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"m", ",", 
+       RowBox[{"-", "n"}], ",", "n"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tt", "=", 
+   RowBox[{"harmonics", "[", "nn", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.823992931472199*^9, 3.823992970140028*^9}, {
+  3.823993014241785*^9, 3.8239930192075872`*^9}, {3.823993085538309*^9, 
+  3.823993100567585*^9}, {3.823993270506577*^9, 3.823993277187715*^9}, {
+  3.823994184730397*^9, 3.823994229302661*^9}},
+ CellLabel->
+  "In[140]:=",ExpressionUUID->"fce8f99d-0a57-4c19-be9e-3384bd47fa2b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\!\(\*SubscriptBox[\(m\), \(``\)]\)= ``\>\"", "]"}], "[", 
+        RowBox[{"i", ",", 
+         RowBox[{
+          RowBox[{"tt", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", "Red", ",", "Bold", 
+       ",", "18", ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}], ",", 
+     "\"\< \>\"", ",", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\!\(\*SubsuperscriptBox[\(Y\), \(``\), \(``\)]\)(\[Theta],\
+\[CurlyPhi])=\>\"", "]"}], "[", 
+        RowBox[{"nn", ",", 
+         RowBox[{
+          RowBox[{"tt", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", "Blue", ",", "Bold", 
+       ",", "19", ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}], ",", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"tt", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}], ",", "Blue", ",", "Bold", ",", "19", 
+       ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "]"}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "t", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.823992977562626*^9, 3.823992990442279*^9}, {
+  3.823993031627149*^9, 3.8239930791349277`*^9}, {3.8239931106151333`*^9, 
+  3.823993364061021*^9}, {3.823994008186006*^9, 3.823994045071261*^9}, {
+  3.823994236019623*^9, 3.8239942539145327`*^9}},
+ CellLabel->
+  "In[142]:=",ExpressionUUID->"fc28395f-b839-4441-bd65-4f3f67f17877"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(1\\)]\\)= -1\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(1\\), \\(-1\\)]\\)(\
+\[Theta],\[CurlyPhi])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", "\[ImaginaryI]"}], " ", "\[CurlyPhi]"}]], " ", 
+     SqrtBox[
+      FractionBox["3", 
+       RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+     RowBox[{"Sin", "[", "\[Theta]", "]"}]}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(1\)]\)= -1", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(1\), \
+\(-1\)]\)(\[Theta],\[CurlyPhi])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[Rational[1, 2] 
+    E^(Complex[0, -1] $CellContext`\[CurlyPhi]) (Rational[3, 2]/Pi)^
+     Rational[1, 2] Sin[$CellContext`\[Theta]], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+   3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+   3.823994045481263*^9}, 3.82399425463862*^9},
+ CellLabel->
+  "During evaluation of \
+In[142]:=",ExpressionUUID->"69c626f0-f8a1-4ea7-adf3-6dd3caac40d6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(2\\)]\\)= 0\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(1\\), \\(0\\)]\\)(\
+\[Theta],\[CurlyPhi])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     SqrtBox[
+      FractionBox["3", "\[Pi]"]], " ", 
+     RowBox[{"Cos", "[", "\[Theta]", "]"}]}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(2\)]\)= 0", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(1\), \
+\(0\)]\)(\[Theta],\[CurlyPhi])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[Rational[1, 2] (3/Pi)^Rational[1, 2] Cos[$CellContext`\[Theta]], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+   3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+   3.823994045481263*^9}, 3.82399425464114*^9},
+ CellLabel->
+  "During evaluation of \
+In[142]:=",ExpressionUUID->"ddfe3e17-c05f-481d-bd9c-0d44902afd9b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(3\\)]\\)= 1\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->18,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", 
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(1\\), \\(1\\)]\\)(\
+\[Theta],\[CurlyPhi])=\"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "2"]}], " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+     SqrtBox[
+      FractionBox["3", 
+       RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+     RowBox[{"Sin", "[", "\[Theta]", "]"}]}],
+    StripOnInput->False,
+    LineColor->RGBColor[0, 0, 1],
+    FrontFaceColor->RGBColor[0, 0, 1],
+    BackFaceColor->RGBColor[0, 0, 1],
+    GraphicsColor->RGBColor[0, 0, 1],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[0, 0, 1]]}],
+  SequenceForm[
+   Style["\!\(\*SubscriptBox[\(m\), \(3\)]\)= 1", 
+    RGBColor[1, 0, 0], Bold, 18, FontFamily -> "Times"], " ", 
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(1\), \
+\(1\)]\)(\[Theta],\[CurlyPhi])=", 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"], 
+   Style[Rational[-1, 2] 
+    E^(Complex[0, 1] $CellContext`\[CurlyPhi]) (Rational[3, 2]/Pi)^
+     Rational[1, 2] Sin[$CellContext`\[Theta]], 
+    RGBColor[0, 0, 1], Bold, 19, FontFamily -> "Times"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.823993128781074*^9, 3.823993245034748*^9}, {
+   3.823993321898974*^9, 3.823993364362811*^9}, {3.8239940194322042`*^9, 
+   3.823994045481263*^9}, 3.8239942546431417`*^9},
+ CellLabel->
+  "During evaluation of \
+In[142]:=",ExpressionUUID->"8052f445-6232-4256-91c4-254dc5f0eff7"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 457}, {161, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 193, 3, 67, "Section",ExpressionUUID->"59281533-cfc0-4d5f-8e49-e4004fb118c4"],
+Cell[776, 27, 894, 24, 73, "Input",ExpressionUUID->"3d94c06b-2578-445a-9091-f8977c9741be"],
+Cell[CellGroupData[{
+Cell[1695, 55, 1819, 49, 123, "Input",ExpressionUUID->"942de739-90aa-4bf9-843b-0e85e642a242"],
+Cell[CellGroupData[{
+Cell[3539, 108, 1997, 54, 56, "Print",ExpressionUUID->"18081caf-b671-4a39-a6bd-fe93aae6857c"],
+Cell[5539, 164, 1835, 50, 34, "Print",ExpressionUUID->"38c1cca7-4b8d-47fe-9524-0a1c78faf0bd"],
+Cell[7377, 216, 1950, 53, 45, "Print",ExpressionUUID->"05c31508-565e-413a-8eaa-c2f8610f4d85"]
+}, Open  ]]
+}, Open  ]],
+Cell[9354, 273, 882, 23, 52, "Input",ExpressionUUID->"fce8f99d-0a57-4c19-be9e-3384bd47fa2b"],
+Cell[CellGroupData[{
+Cell[10261, 300, 1882, 50, 123, "Input",ExpressionUUID->"fc28395f-b839-4441-bd65-4f3f67f17877"],
+Cell[CellGroupData[{
+Cell[12168, 354, 2238, 60, 68, "Print",ExpressionUUID->"69c626f0-f8a1-4ea7-adf3-6dd3caac40d6"],
+Cell[14409, 416, 2015, 54, 68, "Print",ExpressionUUID->"ddfe3e17-c05f-481d-bd9c-0d44902afd9b"],
+Cell[16427, 472, 2236, 60, 68, "Print",ExpressionUUID->"8052f445-6232-4256-91c4-254dc5f0eff7"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
