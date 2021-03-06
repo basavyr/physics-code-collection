@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     61054,       1217]
-NotebookOptionsPosition[     59456,       1182]
-NotebookOutlinePosition[     59795,       1197]
-CellTagsIndexPosition[     59752,       1194]
+NotebookDataLength[     72828,       1554]
+NotebookOptionsPosition[     70771,       1511]
+NotebookOutlinePosition[     71110,       1526]
+CellTagsIndexPosition[     71067,       1523]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1176,7 +1176,336 @@ Cell[BoxData[{
   3.8229227676999493`*^9, 3.822922924754138*^9}, {3.8240239363695374`*^9, 
   3.824023936536903*^9}, {3.824026698980125*^9, 3.824026998356591*^9}, {
   3.8240270346639957`*^9, 3.8240270767965727`*^9}},
- CellLabel->"In[73]:=",ExpressionUUID->"7cb94e19-a226-495f-9798-52c573921de0"]
+ CellLabel->"In[73]:=",ExpressionUUID->"7cb94e19-a226-495f-9798-52c573921de0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\!\(\*SubsuperscriptBox[\(Y\), \(l``\), \(Real\)]\) = \>\"", 
+         "]"}], "[", "k", "]"}], ",", "Black"}], "]"}], ",", 
+     RowBox[{"style", "[", 
+      RowBox[{
+       RowBox[{"RealYLM", "[", 
+        RowBox[{"2", ",", "k"}], "]"}], ",", "Black"}], "]"}], ",", 
+     RowBox[{"style", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "StringTemplate", "[", 
+         "\"\<\\n  \!\(\*SubsuperscriptBox[\(Y\), \(l``\), \(Im\)]\) = \>\"", 
+         "]"}], "[", "k", "]"}], ",", "Red"}], "]"}], ",", 
+     RowBox[{"style", "[", 
+      RowBox[{
+       RowBox[{"ComplexYLM", "[", 
+        RowBox[{"2", ",", "k"}], "]"}], ",", "Red"}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8240272061286983`*^9, 3.824027546771101*^9}},
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"b3c2e9f2-d045-457a-871c-246f153aea7b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l-2\\), \
+\\(Real\\)]\\) = \"\>",
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "4"], " ", 
+     SqrtBox[
+      FractionBox["15", "\[Pi]"]], " ", 
+     RowBox[{"Im", "[", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}], "]"}]}],
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\n  \\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l-2\\), \
+\\(Im\\)]\\) = \"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", 
+   StyleBox[
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "4"]}], " ", "\[ImaginaryI]", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"-", "2"}], " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SqrtBox[
+        FractionBox["15", 
+         RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}], "+", 
+      RowBox[{
+       FractionBox["1", "4"], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SqrtBox[
+        FractionBox["15", 
+         RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}]}], 
+     SqrtBox["2"]],
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(l-2\), \(Real\)]\) = ", 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style[Rational[1, 4] (15/Pi)^Rational[1, 2] 
+    Im[E^(Complex[0, 2] $CellContext`\[CurlyPhi]) 
+      Sin[$CellContext`\[Theta]]^2], 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style["\n  \!\(\*SubsuperscriptBox[\(Y\), \(l-2\), \(Im\)]\) = ", 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold], 
+   Style[2^Rational[-1, 2] (Complex[0, 
+        Rational[-1, 4]] 
+      E^(Complex[0, -2] $CellContext`\[CurlyPhi]) (Rational[15, 2]/Pi)^
+       Rational[1, 2] Sin[$CellContext`\[Theta]]^2 + 
+     Rational[1, 4] 
+      E^(Complex[0, 2] $CellContext`\[CurlyPhi]) (Rational[15, 2]/Pi)^
+       Rational[1, 2] Sin[$CellContext`\[Theta]]^2), 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.8240272635620127`*^9, 3.8240272712927322`*^9}, {
+  3.8240273030504704`*^9, 3.824027423401252*^9}, {3.824027461415107*^9, 
+  3.824027547013135*^9}},
+ CellLabel->
+  "During evaluation of \
+In[115]:=",ExpressionUUID->"135c4ea5-36b4-4095-bf74-4370c13e1ddc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l0\\), \\(Real\\)]\\) \
+= \"\>",
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "4"], " ", 
+     SqrtBox[
+      FractionBox["5", "\[Pi]"]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"3", " ", 
+        SuperscriptBox[
+         RowBox[{"Cos", "[", "\[Theta]", "]"}], "2"]}]}], ")"}]}],
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\n  \\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l0\\), \\(Im\\)]\
+\\) = \"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "4"], " ", 
+     SqrtBox[
+      FractionBox["5", "\[Pi]"]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"3", " ", 
+        SuperscriptBox[
+         RowBox[{"Cos", "[", "\[Theta]", "]"}], "2"]}]}], ")"}]}],
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(l0\), \(Real\)]\) = ", 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style[Rational[1, 4] (5/Pi)^Rational[1, 2] (-1 + 
+     3 Cos[$CellContext`\[Theta]]^2), 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style["\n  \!\(\*SubsuperscriptBox[\(Y\), \(l0\), \(Im\)]\) = ", 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold], 
+   Style[Rational[1, 4] (5/Pi)^Rational[1, 2] (-1 + 
+     3 Cos[$CellContext`\[Theta]]^2), 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.8240272635620127`*^9, 3.8240272712927322`*^9}, {
+  3.8240273030504704`*^9, 3.824027423401252*^9}, {3.824027461415107*^9, 
+  3.8240275470160313`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[115]:=",ExpressionUUID->"aa3a4a10-e0fc-4f90-82ec-e84c8aa68f89"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"\\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l2\\), \\(Real\\)]\\) \
+= \"\>",
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox[
+    RowBox[{
+     FractionBox["1", "4"], " ", 
+     SqrtBox[
+      FractionBox["15", "\[Pi]"]], " ", 
+     RowBox[{"Re", "[", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}], "]"}]}],
+    StripOnInput->False,
+    LineColor->GrayLevel[0],
+    FrontFaceColor->GrayLevel[0],
+    BackFaceColor->GrayLevel[0],
+    GraphicsColor->GrayLevel[0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->GrayLevel[0]], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\n  \\!\\(\\*SubsuperscriptBox[\\(Y\\), \\(l2\\), \\(Im\\)]\
+\\) = \"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", 
+   StyleBox[
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       FractionBox["1", "4"], " ", "\[ImaginaryI]", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"-", "2"}], " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SqrtBox[
+        FractionBox["15", 
+         RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}], "+", 
+      RowBox[{
+       FractionBox["1", "4"], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CurlyPhi]"}]], " ", 
+       SqrtBox[
+        FractionBox["15", 
+         RowBox[{"2", " ", "\[Pi]"}]]], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}]}], 
+     SqrtBox["2"]],
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontFamily->"Times",
+    FontSize->19,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["\!\(\*SubsuperscriptBox[\(Y\), \(l2\), \(Real\)]\) = ", 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style[Rational[1, 4] (15/Pi)^Rational[1, 2] 
+    Re[E^(Complex[0, 2] $CellContext`\[CurlyPhi]) 
+      Sin[$CellContext`\[Theta]]^2], 
+    GrayLevel[0], 19, FontFamily -> "Times", Bold], 
+   Style["\n  \!\(\*SubsuperscriptBox[\(Y\), \(l2\), \(Im\)]\) = ", 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold], 
+   Style[2^Rational[-1, 2] (Complex[0, 
+        Rational[1, 4]] 
+      E^(Complex[0, -2] $CellContext`\[CurlyPhi]) (Rational[15, 2]/Pi)^
+       Rational[1, 2] Sin[$CellContext`\[Theta]]^2 + 
+     Rational[1, 4] 
+      E^(Complex[0, 2] $CellContext`\[CurlyPhi]) (Rational[15, 2]/Pi)^
+       Rational[1, 2] Sin[$CellContext`\[Theta]]^2), 
+    RGBColor[1, 0, 0], 19, FontFamily -> "Times", Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.8240272635620127`*^9, 3.8240272712927322`*^9}, {
+  3.8240273030504704`*^9, 3.824027423401252*^9}, {3.824027461415107*^9, 
+  3.824027547018614*^9}},
+ CellLabel->
+  "During evaluation of \
+In[115]:=",ExpressionUUID->"a407993c-159d-45de-be51-7ae7f7e29c39"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
@@ -1216,7 +1545,15 @@ Cell[8645, 259, 1708, 46, 68, "Print",ExpressionUUID->"8d2c0ce2-711f-4e1b-8653-4
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[10414, 312, 45270, 750, 399, "Subsection",ExpressionUUID->"5df834fb-320a-41a3-b22f-ca9c8527f13c"],
-Cell[55687, 1064, 3741, 114, 228, "Input",ExpressionUUID->"7cb94e19-a226-495f-9798-52c573921de0"]
+Cell[55687, 1064, 3741, 114, 228, "Input",ExpressionUUID->"7cb94e19-a226-495f-9798-52c573921de0"],
+Cell[CellGroupData[{
+Cell[59453, 1182, 1139, 32, 80, "Input",ExpressionUUID->"b3c2e9f2-d045-457a-871c-246f153aea7b"],
+Cell[CellGroupData[{
+Cell[60617, 1218, 3662, 101, 180, "Print",ExpressionUUID->"135c4ea5-36b4-4095-bf74-4370c13e1ddc"],
+Cell[64282, 1321, 2801, 82, 139, "Print",ExpressionUUID->"aa3a4a10-e0fc-4f90-82ec-e84c8aa68f89"],
+Cell[67086, 1405, 3633, 100, 180, "Print",ExpressionUUID->"a407993c-159d-45de-be51-7ae7f7e29c39"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
