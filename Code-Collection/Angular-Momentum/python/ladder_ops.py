@@ -36,6 +36,18 @@ def JMinus_MatEl(j, m1, m2):
     return c_minus
 
 
+def Jx_MatEl(j, m1, m2):
+    Jx_matrix = 0.5 * (JPlus_MatEl(j, m1, m2) + JMinus_MatEl(j, m1, m2))
+    return Jx_matrix
+
+
+def Jy_MatEl(j, m1, m2):
+    # c_plus = np.sqrt((j - m1) * (j + m1 + 1))
+    # c_minus = np.sqrt((j + m1) * (j - m1 + 1))
+    Jy_matrix = 0.5 * (JPlus_MatEl(j, m1, m2) - JMinus_MatEl(j, m1, m2))
+    return Jy_matrix
+
+
 # for a given angular momentum j, generate the matrix associated with the possible states that this |jm> representation can have
 def JM_Matrix(j, angular_operator):
     matrix = []
@@ -56,3 +68,5 @@ JM_Matrix(1, J2_MatEl)
 JM_Matrix(1, Jz_MatEl)
 JM_Matrix(1, JPlus_MatEl)
 JM_Matrix(1, JMinus_MatEl)
+JM_Matrix(1, Jx_MatEl)
+JM_Matrix(1, Jy_MatEl)
