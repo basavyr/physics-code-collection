@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23848,        728]
-NotebookOptionsPosition[     21986,        687]
-NotebookOutlinePosition[     22325,        702]
-CellTagsIndexPosition[     22282,        699]
+NotebookDataLength[     32586,        973]
+NotebookOptionsPosition[     30404,        927]
+NotebookOutlinePosition[     30743,        942]
+CellTagsIndexPosition[     30700,        939]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -48,7 +48,7 @@ Cell[BoxData[
  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
  CellChangeTimes->{{3.825639684975217*^9, 3.8256396930884123`*^9}},
  CellLabel->
-  "In[108]:=",ExpressionUUID->"4249bd9b-cb07-41d3-94df-ccc833b8ee81"],
+  "In[130]:=",ExpressionUUID->"4249bd9b-cb07-41d3-94df-ccc833b8ee81"],
 
 Cell[CellGroupData[{
 
@@ -57,12 +57,14 @@ Cell["Constants", "Subsection",
   3.825639651226948*^9}},ExpressionUUID->"b32d0316-34f3-4364-9cb4-\
 55209f42f1f7"],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
-  RowBox[{"\[HBar]", "=", "1"}], ";"}]], "Input",
- CellChangeTimes->{{3.825639282874319*^9, 3.82563928535254*^9}},
+  RowBox[{"\[HBar]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "\[HBar]", "]"}]}], "Input",
+ CellChangeTimes->{{3.825639282874319*^9, 3.82563928535254*^9}, {
+  3.82564328974361*^9, 3.8256432948504963`*^9}},
  CellLabel->
-  "In[109]:=",ExpressionUUID->"914caf7a-5fcc-41f8-ad61-13e8970fcfc0"]
+  "In[131]:=",ExpressionUUID->"914caf7a-5fcc-41f8-ad61-13e8970fcfc0"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -132,7 +134,7 @@ Cell[BoxData[{
   3.825639356814027*^9, 3.825639370875856*^9}, {3.825639404738847*^9, 
   3.825639419272954*^9}, {3.82563946143883*^9, 3.825639643485717*^9}},
  CellLabel->
-  "In[110]:=",ExpressionUUID->"93ba9738-efcc-4aa8-b9c1-865108db567c"]
+  "In[133]:=",ExpressionUUID->"93ba9738-efcc-4aa8-b9c1-865108db567c"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -223,7 +225,7 @@ Cell[BoxData[{
   3.825640325847789*^9, 3.825640326026655*^9}, {3.825640784806404*^9, 
   3.825640795296735*^9}},
  CellLabel->
-  "In[114]:=",ExpressionUUID->"56ed2a6b-c609-4507-b28f-ef9195891104"]
+  "In[137]:=",ExpressionUUID->"56ed2a6b-c609-4507-b28f-ef9195891104"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -292,7 +294,7 @@ Cell[BoxData[{
   3.825641111092517*^9, 3.825641111203121*^9}, {3.8256413842545137`*^9, 
   3.8256414512153263`*^9}},
  CellLabel->
-  "In[119]:=",ExpressionUUID->"3e132701-c971-4c03-8ec0-c514923a180f"],
+  "In[142]:=",ExpressionUUID->"3e132701-c971-4c03-8ec0-c514923a180f"],
 
 Cell[CellGroupData[{
 
@@ -315,7 +317,7 @@ Cell[BoxData[{
   3.82564146009147*^9, 3.825641470352469*^9}, {3.825641569520265*^9, 
   3.825641637841563*^9}},
  CellLabel->
-  "In[121]:=",ExpressionUUID->"e0002af0-10a5-4f4e-9f9b-908a030c0bd1"],
+  "In[144]:=",ExpressionUUID->"e0002af0-10a5-4f4e-9f9b-908a030c0bd1"],
 
 Cell[BoxData[
  TagBox[
@@ -323,111 +325,179 @@ Cell[BoxData[
      {
       RowBox[{"1", "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "2"], "4"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "2"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], "4"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "4"], "48"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "4"], " ", 
+         SuperscriptBox["\[HBar]", "4"]}], "48"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "6"], "1440"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "6"], " ", 
+         SuperscriptBox["\[HBar]", "6"]}], "1440"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "8"], "80640"]}], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "8"], " ", 
+         SuperscriptBox["\[HBar]", "8"]}], "80640"]}], 
       RowBox[{"1", "-", 
-       FractionBox["\[Beta]", 
+       FractionBox[
+        RowBox[{"\[Beta]", " ", "\[HBar]"}], 
         SqrtBox["2"]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "3"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "3"], " ", 
+         SuperscriptBox["\[HBar]", "3"]}], 
         RowBox[{"6", " ", 
          SqrtBox["2"]}]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "5"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "5"], " ", 
+         SuperscriptBox["\[HBar]", "5"]}], 
         RowBox[{"120", " ", 
          SqrtBox["2"]}]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "7"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "7"], " ", 
+         SuperscriptBox["\[HBar]", "7"]}], 
         RowBox[{"5040", " ", 
          SqrtBox["2"]}]]}], 
       RowBox[{"1", "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "2"], "4"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "2"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], "4"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "4"], "48"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "4"], " ", 
+         SuperscriptBox["\[HBar]", "4"]}], "48"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "6"], "1440"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "6"], " ", 
+         SuperscriptBox["\[HBar]", "6"]}], "1440"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "8"], "80640"]}]},
+        RowBox[{
+         SuperscriptBox["\[Beta]", "8"], " ", 
+         SuperscriptBox["\[HBar]", "8"]}], "80640"]}]},
      {
       RowBox[{"1", "+", 
-       FractionBox["\[Beta]", 
+       FractionBox[
+        RowBox[{"\[Beta]", " ", "\[HBar]"}], 
         SqrtBox["2"]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "3"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "3"], " ", 
+         SuperscriptBox["\[HBar]", "3"]}], 
         RowBox[{"6", " ", 
          SqrtBox["2"]}]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "5"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "5"], " ", 
+         SuperscriptBox["\[HBar]", "5"]}], 
         RowBox[{"120", " ", 
          SqrtBox["2"]}]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "7"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "7"], " ", 
+         SuperscriptBox["\[HBar]", "7"]}], 
         RowBox[{"5040", " ", 
          SqrtBox["2"]}]]}], 
       RowBox[{"1", "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "2"], "2"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "2"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], "2"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "4"], "24"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "4"], " ", 
+         SuperscriptBox["\[HBar]", "4"]}], "24"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "6"], "720"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "6"], " ", 
+         SuperscriptBox["\[HBar]", "6"]}], "720"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "8"], "40320"]}], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "8"], " ", 
+         SuperscriptBox["\[HBar]", "8"]}], "40320"]}], 
       RowBox[{"1", "-", 
-       FractionBox["\[Beta]", 
+       FractionBox[
+        RowBox[{"\[Beta]", " ", "\[HBar]"}], 
         SqrtBox["2"]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "3"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "3"], " ", 
+         SuperscriptBox["\[HBar]", "3"]}], 
         RowBox[{"6", " ", 
          SqrtBox["2"]}]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "5"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "5"], " ", 
+         SuperscriptBox["\[HBar]", "5"]}], 
         RowBox[{"120", " ", 
          SqrtBox["2"]}]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "7"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "7"], " ", 
+         SuperscriptBox["\[HBar]", "7"]}], 
         RowBox[{"5040", " ", 
          SqrtBox["2"]}]]}]},
      {
       RowBox[{"1", "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "2"], "4"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "2"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], "4"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "4"], "48"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "4"], " ", 
+         SuperscriptBox["\[HBar]", "4"]}], "48"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "6"], "1440"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "6"], " ", 
+         SuperscriptBox["\[HBar]", "6"]}], "1440"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "8"], "80640"]}], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "8"], " ", 
+         SuperscriptBox["\[HBar]", "8"]}], "80640"]}], 
       RowBox[{"1", "+", 
-       FractionBox["\[Beta]", 
+       FractionBox[
+        RowBox[{"\[Beta]", " ", "\[HBar]"}], 
         SqrtBox["2"]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "3"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "3"], " ", 
+         SuperscriptBox["\[HBar]", "3"]}], 
         RowBox[{"6", " ", 
          SqrtBox["2"]}]], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "5"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "5"], " ", 
+         SuperscriptBox["\[HBar]", "5"]}], 
         RowBox[{"120", " ", 
          SqrtBox["2"]}]], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "7"], 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "7"], " ", 
+         SuperscriptBox["\[HBar]", "7"]}], 
         RowBox[{"5040", " ", 
          SqrtBox["2"]}]]}], 
       RowBox[{"1", "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "2"], "4"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "2"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], "4"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "4"], "48"], "-", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "4"], " ", 
+         SuperscriptBox["\[HBar]", "4"]}], "48"], "-", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "6"], "1440"], "+", 
+        RowBox[{
+         SuperscriptBox["\[Beta]", "6"], " ", 
+         SuperscriptBox["\[HBar]", "6"]}], "1440"], "+", 
        FractionBox[
-        SuperscriptBox["\[Beta]", "8"], "80640"]}]}
+        RowBox[{
+         SuperscriptBox["\[Beta]", "8"], " ", 
+         SuperscriptBox["\[HBar]", "8"]}], "80640"]}]}
     },
     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
     GridBoxSpacings->{"Columns" -> {
@@ -440,10 +510,10 @@ Cell[BoxData[
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
  CellChangeTimes->{{3.8256416289673777`*^9, 3.825641638096396*^9}, 
-   3.825641994418028*^9},
+   3.825641994418028*^9, 3.825643297463368*^9},
  CellLabel->
-  "Out[122]//MatrixForm=",ExpressionUUID->"9baf7252-d2ff-4f83-aeb5-\
-7490221233c3"]
+  "Out[145]//MatrixForm=",ExpressionUUID->"69ec4063-1716-43ba-9181-\
+be9d629483e9"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -486,7 +556,7 @@ Cell[BoxData[{
   3.825641554534881*^9}, {3.825641643164177*^9, 3.8256417834939957`*^9}, {
   3.8256419837056637`*^9, 3.825641989642852*^9}},
  CellLabel->
-  "In[123]:=",ExpressionUUID->"30b99561-811c-47ef-bb92-8b79e26aeaa3"],
+  "In[146]:=",ExpressionUUID->"30b99561-811c-47ef-bb92-8b79e26aeaa3"],
 
 Cell[BoxData[
  TagBox[
@@ -495,31 +565,41 @@ Cell[BoxData[
       InterpretationBox[
        RowBox[{"1", "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "2"], "4"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "2"]}], "4"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "4"], "48"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "4"]}], "48"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "6"], "1440"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "6"]}], "1440"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "8"], "80640"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "8"]}], "80640"], "+", 
         InterpretationBox[
          SuperscriptBox[
           RowBox[{"O", "[", "\[Beta]", "]"}], "9"],
          SeriesData[$CellContext`\[Beta], 0, {}, 0, 9, 1],
          Editable->False]}],
-       SeriesData[$CellContext`\[Beta], 0, {1, 0, 
-         Rational[-1, 4], 0, 
-         Rational[1, 48], 0, 
-         Rational[-1, 1440], 0, 
-         Rational[1, 80640]}, 0, 9, 1],
+       SeriesData[$CellContext`\[Beta], 0, {
+        1, 0, Rational[-1, 4] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 48] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 1440] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 80640] $CellContext`\[HBar]^2}, 0, 9, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{
         RowBox[{"-", 
-         FractionBox["\[Beta]", 
+         FractionBox[
+          RowBox[{"\[HBar]", " ", "\[Beta]"}], 
           SqrtBox["2"]]}], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "3"], 
+         RowBox[{"\[HBar]", " ", 
+          SuperscriptBox["\[Beta]", "3"]}], 
          RowBox[{"6", " ", 
           SqrtBox["2"]}]], "+", 
         InterpretationBox[
@@ -528,36 +608,47 @@ Cell[BoxData[
          SeriesData[$CellContext`\[Beta], 0, {}, 1, 4, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 
-        0, {-2^Rational[-1, 2], 0, Rational[1, 6] 2^Rational[-1, 2]}, 1, 4, 1],
+        0, {-2^Rational[-1, 2] $CellContext`\[HBar], 0, Rational[1, 6] 
+         2^Rational[-1, 2] $CellContext`\[HBar]}, 1, 4, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{
         FractionBox[
-         SuperscriptBox["\[Beta]", "2"], "4"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "2"]}], "4"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "4"], "48"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "4"]}], "48"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "6"], "1440"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "6"]}], "1440"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "8"], "80640"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "8"]}], "80640"], "+", 
         InterpretationBox[
          SuperscriptBox[
           RowBox[{"O", "[", "\[Beta]", "]"}], "9"],
          SeriesData[$CellContext`\[Beta], 0, {}, 2, 9, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 0, {
-         Rational[1, 4], 0, 
-         Rational[-1, 48], 0, 
-         Rational[1, 1440], 0, 
-         Rational[-1, 80640]}, 2, 9, 1],
+        Rational[1, 4] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 48] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 1440] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 80640] $CellContext`\[HBar]^2}, 2, 9, 1],
        Editable->False]},
      {
       InterpretationBox[
        RowBox[{
-        FractionBox["\[Beta]", 
+        FractionBox[
+         RowBox[{"\[HBar]", " ", "\[Beta]"}], 
          SqrtBox["2"]], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "3"], 
+         RowBox[{"\[HBar]", " ", 
+          SuperscriptBox["\[Beta]", "3"]}], 
          RowBox[{"6", " ", 
           SqrtBox["2"]}]], "+", 
         InterpretationBox[
@@ -566,36 +657,47 @@ Cell[BoxData[
          SeriesData[$CellContext`\[Beta], 0, {}, 1, 4, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 0, {
-        2^Rational[-1, 2], 0, Rational[-1, 6] 2^Rational[-1, 2]}, 1, 4, 1],
+        2^Rational[-1, 2] $CellContext`\[HBar], 0, Rational[-1, 6] 
+         2^Rational[-1, 2] $CellContext`\[HBar]}, 1, 4, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{"1", "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "2"], "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "2"]}], "2"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "4"], "24"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "4"]}], "24"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "6"], "720"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "6"]}], "720"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "8"], "40320"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "8"]}], "40320"], "+", 
         InterpretationBox[
          SuperscriptBox[
           RowBox[{"O", "[", "\[Beta]", "]"}], "9"],
          SeriesData[$CellContext`\[Beta], 0, {}, 0, 9, 1],
          Editable->False]}],
-       SeriesData[$CellContext`\[Beta], 0, {1, 0, 
-         Rational[-1, 2], 0, 
-         Rational[1, 24], 0, 
-         Rational[-1, 720], 0, 
-         Rational[1, 40320]}, 0, 9, 1],
+       SeriesData[$CellContext`\[Beta], 0, {
+        1, 0, Rational[-1, 2] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 24] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 720] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 40320] $CellContext`\[HBar]^2}, 0, 9, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{
         RowBox[{"-", 
-         FractionBox["\[Beta]", 
+         FractionBox[
+          RowBox[{"\[HBar]", " ", "\[Beta]"}], 
           SqrtBox["2"]]}], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "3"], 
+         RowBox[{"\[HBar]", " ", 
+          SuperscriptBox["\[Beta]", "3"]}], 
          RowBox[{"6", " ", 
           SqrtBox["2"]}]], "+", 
         InterpretationBox[
@@ -604,36 +706,47 @@ Cell[BoxData[
          SeriesData[$CellContext`\[Beta], 0, {}, 1, 4, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 
-        0, {-2^Rational[-1, 2], 0, Rational[1, 6] 2^Rational[-1, 2]}, 1, 4, 1],
+        0, {-2^Rational[-1, 2] $CellContext`\[HBar], 0, Rational[1, 6] 
+         2^Rational[-1, 2] $CellContext`\[HBar]}, 1, 4, 1],
        Editable->False]},
      {
       InterpretationBox[
        RowBox[{
         FractionBox[
-         SuperscriptBox["\[Beta]", "2"], "4"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "2"]}], "4"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "4"], "48"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "4"]}], "48"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "6"], "1440"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "6"]}], "1440"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "8"], "80640"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "8"]}], "80640"], "+", 
         InterpretationBox[
          SuperscriptBox[
           RowBox[{"O", "[", "\[Beta]", "]"}], "9"],
          SeriesData[$CellContext`\[Beta], 0, {}, 2, 9, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 0, {
-         Rational[1, 4], 0, 
-         Rational[-1, 48], 0, 
-         Rational[1, 1440], 0, 
-         Rational[-1, 80640]}, 2, 9, 1],
+        Rational[1, 4] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 48] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 1440] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 80640] $CellContext`\[HBar]^2}, 2, 9, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{
-        FractionBox["\[Beta]", 
+        FractionBox[
+         RowBox[{"\[HBar]", " ", "\[Beta]"}], 
          SqrtBox["2"]], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "3"], 
+         RowBox[{"\[HBar]", " ", 
+          SuperscriptBox["\[Beta]", "3"]}], 
          RowBox[{"6", " ", 
           SqrtBox["2"]}]], "+", 
         InterpretationBox[
@@ -642,28 +755,37 @@ Cell[BoxData[
          SeriesData[$CellContext`\[Beta], 0, {}, 1, 4, 1],
          Editable->False]}],
        SeriesData[$CellContext`\[Beta], 0, {
-        2^Rational[-1, 2], 0, Rational[-1, 6] 2^Rational[-1, 2]}, 1, 4, 1],
+        2^Rational[-1, 2] $CellContext`\[HBar], 0, Rational[-1, 6] 
+         2^Rational[-1, 2] $CellContext`\[HBar]}, 1, 4, 1],
        Editable->False], 
       InterpretationBox[
        RowBox[{"1", "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "2"], "4"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "2"]}], "4"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "4"], "48"], "-", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "4"]}], "48"], "-", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "6"], "1440"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "6"]}], "1440"], "+", 
         FractionBox[
-         SuperscriptBox["\[Beta]", "8"], "80640"], "+", 
+         RowBox[{
+          SuperscriptBox["\[HBar]", "2"], " ", 
+          SuperscriptBox["\[Beta]", "8"]}], "80640"], "+", 
         InterpretationBox[
          SuperscriptBox[
           RowBox[{"O", "[", "\[Beta]", "]"}], "9"],
          SeriesData[$CellContext`\[Beta], 0, {}, 0, 9, 1],
          Editable->False]}],
-       SeriesData[$CellContext`\[Beta], 0, {1, 0, 
-         Rational[-1, 4], 0, 
-         Rational[1, 48], 0, 
-         Rational[-1, 1440], 0, 
-         Rational[1, 80640]}, 0, 9, 1],
+       SeriesData[$CellContext`\[Beta], 0, {
+        1, 0, Rational[-1, 4] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 48] $CellContext`\[HBar]^2, 0, 
+         Rational[-1, 1440] $CellContext`\[HBar]^2, 0, 
+         Rational[1, 80640] $CellContext`\[HBar]^2}, 0, 9, 1],
        Editable->False]}
     },
     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
@@ -677,10 +799,128 @@ Cell[BoxData[
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
  CellChangeTimes->{{3.8256417661271152`*^9, 3.825641783661831*^9}, {
-  3.8256419899473267`*^9, 3.825641994463491*^9}},
+   3.8256419899473267`*^9, 3.825641994463491*^9}, 3.825643297503818*^9},
  CellLabel->
-  "Out[124]//MatrixForm=",ExpressionUUID->"2c625914-e846-4ca2-8861-\
-cd6874c31c6a"]
+  "Out[147]//MatrixForm=",ExpressionUUID->"4f4c8523-6bac-4472-9ede-\
+2be2d4c3a403"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"rotation", "[", 
+    RowBox[{"j_", ",", "\[Beta]_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"IdentityMatrix", "[", 
+     RowBox[{
+      RowBox[{"2", "j"}], "+", "1"}], "]"}], "+", 
+    RowBox[{
+     RowBox[{"Sin", "[", "\[Beta]", "]"}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "I"}], "*", 
+       RowBox[{"JY", "[", "j", "]"}]}], ")"}]}], "+", 
+    RowBox[{
+     RowBox[{"JYn", "[", 
+      RowBox[{"j", ",", "2"}], "]"}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Cos", "[", "\[Beta]", "]"}], "-", "1"}], ")"}]}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.825642952644594*^9, 3.8256430563796797`*^9}},
+ CellLabel->
+  "In[148]:=",ExpressionUUID->"abe41a96-aeaf-49a9-83ef-49559c0f48ca"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rotation", "[", 
+   RowBox[{"1", ",", "\[Beta]"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.825643062761648*^9, 3.82564310532969*^9}, {
+  3.825643135783989*^9, 3.82564313759373*^9}},
+ CellLabel->
+  "In[149]:=",ExpressionUUID->"67539445-9b88-4266-aa36-5467f2abf3f6"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"1", "+", 
+       RowBox[{
+        FractionBox["1", "2"], " ", 
+        SuperscriptBox["\[HBar]", "2"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          RowBox[{"Cos", "[", "\[Beta]", "]"}]}], ")"}]}]}], 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"\[HBar]", " ", 
+         RowBox[{"Sin", "[", "\[Beta]", "]"}]}], 
+        SqrtBox["2"]]}], 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "2"]}], " ", 
+       SuperscriptBox["\[HBar]", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"Cos", "[", "\[Beta]", "]"}]}], ")"}]}]},
+     {
+      FractionBox[
+       RowBox[{"\[HBar]", " ", 
+        RowBox[{"Sin", "[", "\[Beta]", "]"}]}], 
+       SqrtBox["2"]], 
+      RowBox[{"1", "+", 
+       RowBox[{
+        SuperscriptBox["\[HBar]", "2"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          RowBox[{"Cos", "[", "\[Beta]", "]"}]}], ")"}]}]}], 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"\[HBar]", " ", 
+         RowBox[{"Sin", "[", "\[Beta]", "]"}]}], 
+        SqrtBox["2"]]}]},
+     {
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox["1", "2"]}], " ", 
+       SuperscriptBox["\[HBar]", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"Cos", "[", "\[Beta]", "]"}]}], ")"}]}], 
+      FractionBox[
+       RowBox[{"\[HBar]", " ", 
+        RowBox[{"Sin", "[", "\[Beta]", "]"}]}], 
+       SqrtBox["2"]], 
+      RowBox[{"1", "+", 
+       RowBox[{
+        FractionBox["1", "2"], " ", 
+        SuperscriptBox["\[HBar]", "2"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          RowBox[{"Cos", "[", "\[Beta]", "]"}]}], ")"}]}]}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.825643066894436*^9, 3.8256430707167253`*^9}, 
+   3.8256431057335787`*^9, 3.825643138011949*^9, 3.825643297550252*^9},
+ CellLabel->
+  "Out[149]//MatrixForm=",ExpressionUUID->"9a1b12fe-695c-4cca-9698-\
+f698a6e86e1a"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -706,27 +946,32 @@ Cell[580, 22, 728, 22, 120, "Chapter",ExpressionUUID->"2904dfbd-94f2-49c8-95bd-c
 Cell[1311, 46, 227, 4, 30, "Input",ExpressionUUID->"4249bd9b-cb07-41d3-94df-ccc833b8ee81"],
 Cell[CellGroupData[{
 Cell[1563, 54, 157, 3, 54, "Subsection",ExpressionUUID->"b32d0316-34f3-4364-9cb4-55209f42f1f7"],
-Cell[1723, 59, 221, 5, 30, "Input",ExpressionUUID->"914caf7a-5fcc-41f8-ad61-13e8970fcfc0"]
+Cell[1723, 59, 338, 7, 52, "Input",ExpressionUUID->"914caf7a-5fcc-41f8-ad61-13e8970fcfc0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1981, 69, 471, 14, 54, "Subsection",ExpressionUUID->"f4e88599-2dfa-492d-a800-ca553b5b8327"],
-Cell[2455, 85, 1630, 49, 94, "Input",ExpressionUUID->"93ba9738-efcc-4aa8-b9c1-865108db567c"]
+Cell[2098, 71, 471, 14, 54, "Subsection",ExpressionUUID->"f4e88599-2dfa-492d-a800-ca553b5b8327"],
+Cell[2572, 87, 1630, 49, 94, "Input",ExpressionUUID->"93ba9738-efcc-4aa8-b9c1-865108db567c"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4122, 139, 377, 10, 57, "Subsection",ExpressionUUID->"27e72225-2b00-4bd9-bbae-995adecc1b0b"],
-Cell[4502, 151, 263, 7, 32, "Item",ExpressionUUID->"182025b3-c4ec-428f-8311-b02fab093645"],
-Cell[4768, 160, 2136, 65, 150, "Input",ExpressionUUID->"56ed2a6b-c609-4507-b28f-ef9195891104"]
+Cell[4239, 141, 377, 10, 57, "Subsection",ExpressionUUID->"27e72225-2b00-4bd9-bbae-995adecc1b0b"],
+Cell[4619, 153, 263, 7, 32, "Item",ExpressionUUID->"182025b3-c4ec-428f-8311-b02fab093645"],
+Cell[4885, 162, 2136, 65, 150, "Input",ExpressionUUID->"56ed2a6b-c609-4507-b28f-ef9195891104"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6941, 230, 369, 10, 68, "Section",ExpressionUUID->"4f0d8472-1b34-4b15-94f9-4dc7f1ec5128"],
-Cell[7313, 242, 1657, 52, 97, "Input",ExpressionUUID->"3e132701-c971-4c03-8ec0-c514923a180f"],
+Cell[7058, 232, 369, 10, 68, "Section",ExpressionUUID->"4f0d8472-1b34-4b15-94f9-4dc7f1ec5128"],
+Cell[7430, 244, 1657, 52, 97, "Input",ExpressionUUID->"3e132701-c971-4c03-8ec0-c514923a180f"],
 Cell[CellGroupData[{
-Cell[8995, 298, 715, 19, 52, "Input",ExpressionUUID->"e0002af0-10a5-4f4e-9f9b-908a030c0bd1"],
-Cell[9713, 319, 4037, 126, 122, "Output",ExpressionUUID->"9baf7252-d2ff-4f83-aeb5-7490221233c3"]
+Cell[9112, 300, 715, 19, 52, "Input",ExpressionUUID->"e0002af0-10a5-4f4e-9f9b-908a030c0bd1"],
+Cell[9830, 321, 6343, 194, 122, "Output",ExpressionUUID->"69ec4063-1716-43ba-9181-be9d629483e9"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13787, 450, 1404, 38, 73, "Input",ExpressionUUID->"30b99561-811c-47ef-bb92-8b79e26aeaa3"],
-Cell[15194, 490, 6752, 192, 122, "Output",ExpressionUUID->"2c625914-e846-4ca2-8861-cd6874c31c6a"]
+Cell[16210, 520, 1404, 38, 73, "Input",ExpressionUUID->"30b99561-811c-47ef-bb92-8b79e26aeaa3"],
+Cell[17617, 560, 9112, 244, 122, "Output",ExpressionUUID->"4f4c8523-6bac-4472-9ede-2be2d4c3a403"]
+}, Open  ]],
+Cell[26744, 807, 769, 24, 30, "Input",ExpressionUUID->"abe41a96-aeaf-49a9-83ef-49559c0f48ca"],
+Cell[CellGroupData[{
+Cell[27538, 835, 320, 7, 30, "Input",ExpressionUUID->"67539445-9b88-4266-aa36-5467f2abf3f6"],
+Cell[27861, 844, 2503, 78, 170, "Output",ExpressionUUID->"9a1b12fe-695c-4cca-9698-f698a6e86e1a"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
