@@ -1,0 +1,157 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4918,        149]
+NotebookOptionsPosition[      4224,        130]
+NotebookOutlinePosition[      4563,        145]
+CellTagsIndexPosition[      4520,        142]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Wigner-d matrix for a system with total angular momentum j=1", "Section",
+ CellChangeTimes->{{3.825736239025888*^9, 
+  3.825736250704329*^9}},ExpressionUUID->"eeb8005f-a8ff-460b-a77e-\
+20b5f640be2b"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global*`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.825809848348796*^9, 3.825809857174657*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"168ca95e-23cd-4647-8601-d771ecd5be2a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[HBar]", "=", "1"}], ";"}]], "Input",
+ CellChangeTimes->{{3.825808779792677*^9, 3.8258087813814*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"edc33161-366d-4c72-8398-5cea71b74fe4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"d12", "[", "\[Beta]_", "]"}], ":=", 
+   RowBox[{"RotationMatrix", "[", 
+    FractionBox["\[Beta]", "2"], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8257362843953876`*^9, 3.825736308379438*^9}, {
+   3.825736339902587*^9, 3.825736392032117*^9}, 3.8257366775361223`*^9, {
+   3.8258099672019444`*^9, 3.825809968232272*^9}},
+ CellLabel->"In[32]:=",ExpressionUUID->"b7acbae1-6c9e-4a74-9946-2eb3eb53f6ec"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"cPlus", "[", "m_", "]"}], ":=", 
+   RowBox[{"\[HBar]", "*", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox["1", "2"], "-", "m"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox["1", "2"], "+", "m", "+", "1"}], ")"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cMinus", "[", "m_", "]"}], ":=", 
+   RowBox[{"\[HBar]", "*", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox["1", "2"], "+", "m"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox["1", "2"], "-", "m", "+", "1"}], ")"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dhalf", "[", 
+    RowBox[{"\[Beta]_", ",", "m1_", ",", "m2_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cos", "[", 
+      FractionBox["\[Beta]", "2"], "]"}], "*", 
+     RowBox[{"KroneckerDelta", "[", 
+      RowBox[{"m1", ",", "m2"}], "]"}]}], "-", 
+    RowBox[{
+     FractionBox["1", "\[HBar]"], 
+     RowBox[{"Sin", "[", 
+      FractionBox["\[Beta]", "2"], "]"}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"cPlus", "[", "m2", "]"}], "*", 
+        RowBox[{"KroneckerDelta", "[", 
+         RowBox[{"m1", ",", 
+          RowBox[{"m2", "+", "1"}]}], "]"}]}], "-", 
+       RowBox[{
+        RowBox[{"cMinus", "[", "m2", "]"}], "*", 
+        RowBox[{"KroneckerDelta", "[", 
+         RowBox[{"m1", ",", 
+          RowBox[{"m2", "-", "1"}]}], "]"}]}]}], ")"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"d12Mat", "[", "\[Beta]_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"dhalf", "[", 
+        RowBox[{"\[Beta]", ",", "m1", ",", "m2"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m2", ",", 
+         RowBox[{"1", "/", "2"}], ",", 
+         RowBox[{
+          RowBox[{"-", "1"}], "/", "2"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"m1", ",", 
+       RowBox[{"1", "/", "2"}], ",", 
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "2"}], ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.825809712725808*^9, 3.8258097642776527`*^9}, {
+  3.825809795990662*^9, 3.825809838777132*^9}, {3.825809879309807*^9, 
+  3.825809938625695*^9}},
+ CellLabel->"In[33]:=",ExpressionUUID->"e20ba448-b648-4f13-bd32-9db045051cb2"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 69}, {-271, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 205, 3, 67, "Section",ExpressionUUID->"eeb8005f-a8ff-460b-a77e-20b5f640be2b"],
+Cell[788, 27, 221, 3, 30, "Input",ExpressionUUID->"168ca95e-23cd-4647-8601-d771ecd5be2a"],
+Cell[1012, 32, 216, 4, 30, "Input",ExpressionUUID->"edc33161-366d-4c72-8398-5cea71b74fe4"],
+Cell[1231, 38, 450, 9, 47, "Input",ExpressionUUID->"b7acbae1-6c9e-4a74-9946-2eb3eb53f6ec"],
+Cell[1684, 49, 2524, 78, 207, "Input",ExpressionUUID->"e20ba448-b648-4f13-bd32-9db045051cb2"]
+}, Open  ]]
+}
+]
+*)
+
