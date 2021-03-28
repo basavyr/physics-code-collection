@@ -29,14 +29,15 @@ def reducedSeries(j1, j2):
                 # filer.write('new m2`\n')
                 for m1 in m1Values:
                     for m2 in m2Values:
-                        c1 = f'm1`={m1P} m1={m1}'
-                        c2 = f'm2`={m2P} m2={m2}'
-                        CG1 = cg_half(m1P, m2P)
-                        CG2 = cg_half(m1, m2)
-                        if(CG1 * CG2 != 0):
-                            c3 = c1 + " " + str(CG1)
-                            c4 = c2 + " " + str(CG2)
-                            filer.write(str(c3) + '\n' + str(c4) + '\n')
+                        m_index = f'm1`={m1P} m1={m1} ' + f'm2`={m2P} m2={m2}'
+                        CG01 = cg_half(m1P, m2P)
+                        CG02 = cg_half(m1, m2)
+                        CG = CG01 * CG02
+                        coeff_list = str(CG01) + ' ' + \
+                            str(CG02) + ' ' + str(CG)
+                        if(CG != 0):
+                            filer.writelines(m_index + '\n')
+                            filer.writelines(coeff_list + '\n')
 
 
 reducedSeries(j1, j2)
