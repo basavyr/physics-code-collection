@@ -59,16 +59,26 @@ def Delta(a, b):
 
 def Wigner_d(j, beta, m1, m2):
     t0 = np.cos(beta / 2.0) * Delta(m1, m2)
+    print(f't0 ---> {t0}')
     t1 = cPlus(j, m2) * Delta(m1, m2 + 1)
+    print(f't1 ---> {t1}')
     t2 = cMinus(j, m2) * Delta(m1, m2 - 1)
+    print(f't2 ---> {t2}')
     t3 = np.sin(beta / 2.0) * (t1 - t2)
+    print(f't3 ---> {t3}')
     t = t0 - t3
+    print(f't ---> {t}')
     return t
 
 
-wd = lambda m1, m2: Wigner_d(1 / 2, 25.0 * np.pi / 180.0, m1, m2)
+wd = lambda m1, m2: Wigner_d(0.5, 25.0 * np.pi / 180.0, m1, m2)
 
-print(wd(0.5, 0.5))
-print(wd(0.5, -0.5))
-print(wd(-0.5, 0.5))
-print(wd(-0.5, -0.5))
+# wd(0.5, 0.5)
+wd(0.5, -0.5)
+# wd(-0.5, 0.5)
+# wd(-0.5, -0.5)
+
+# print(wd(0.5, 0.5))
+# print(wd(0.5, -0.5))
+# print(wd(-0.5, 0.5))
+# print(wd(-0.5, -0.5))
