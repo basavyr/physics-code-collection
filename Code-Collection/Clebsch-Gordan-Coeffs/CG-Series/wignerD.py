@@ -58,6 +58,7 @@ def Delta(a, b):
 
 
 def Wigner_d(j, beta, m1, m2):
+    print(f'm1 -> {m1} | m2 -> {m2}')
     t0 = np.cos(beta / 2.0) * Delta(m1, m2)
     print(f't0 ---> {t0}')
     t1 = cPlus(j, m2) * Delta(m1, m2 + 1)
@@ -73,10 +74,10 @@ def Wigner_d(j, beta, m1, m2):
 
 wd = lambda m1, m2: Wigner_d(0.5, 25.0 * np.pi / 180.0, m1, m2)
 
-# wd(0.5, 0.5)
+wd(0.5, 0.5)
 wd(0.5, -0.5)
-# wd(-0.5, 0.5)
-# wd(-0.5, -0.5)
+wd(-0.5, 0.5)
+wd(-0.5, -0.5)
 
 # print(wd(0.5, 0.5))
 # print(wd(0.5, -0.5))
