@@ -64,3 +64,11 @@ def Wigner_d(j, beta, m1, m2):
     t3 = np.sin(beta / 2.0) * (t1 - t2)
     t = t0 - t3
     return t
+
+
+wd = lambda m1, m2: Wigner_d(1 / 2, 25.0 * np.pi / 180.0, m1, m2)
+
+print(wd(0.5, 0.5))
+print(wd(0.5, -0.5))
+print(wd(-0.5, 0.5))
+print(wd(-0.5, -0.5))

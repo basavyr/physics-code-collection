@@ -45,7 +45,7 @@ def reducedSeries(j1, j2):
                             filer.writelines(m_index + '\n')
                             filer.writelines('Non-Physical solutions' + '\n')
                             return -1
-                        results = [m1P, m2P, m1, m2, CG, WD_12, CG * WD_12]
+                        results = [m1P, m2P, m1, m2, CG01, CG02, wd1, wd2]
                         if(CG != 0):
                             filer.writelines(m_index + '\n')
                             filer.writelines(str(results) + '\n')
