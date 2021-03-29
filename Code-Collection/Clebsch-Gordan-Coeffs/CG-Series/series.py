@@ -2,13 +2,15 @@
 
 import gordan as CGC
 import numpy as np
+import wignerD as WD
+
 
 j1 = 1.0 / 2.0
 j2 = 1.0 / 2.0
 
 
 def makeM(j):
-    return np.arange(-j, j + 1.0, 1.0)
+    return np.arange(j, -(j + 1.0), -1.0)
 
 
 coeffs = 'coeffs.dat'
@@ -22,6 +24,7 @@ def cg_half(m1, m2):
 def reducedSeries(j1, j2):
     m1Values = makeM(j1)
     m2Values = makeM(j2)
+    beta = 25 * np.pi / 180.0
     with open(coeffs, 'w+') as filer:
         for m1P in m1Values:
             # filer.write('new m1`\n')
@@ -33,11 +36,19 @@ def reducedSeries(j1, j2):
                         CG01 = cg_half(m1P, m2P)
                         CG02 = cg_half(m1, m2)
                         CG = CG01 * CG02
-                        coeff_list = str(CG01) + ' ' + \
-                            str(CG02) + ' ' + str(CG)
+                        wd1 = WD.Wigner_d(j1, beta, m1P, m1)
+                        wd2 = WD.Wigner_d(j2, beta, m2P, m2)
+                        WD_12 = wd1 * wd2
+                        coeff_list = str(CG01) + ' ' + str(CG02) + \
+                            ' ' + str(CG) + ' ' + str(WD_12)
+                        if(np.isnan(WD_12)):
+                            filer.writelines(m_index + '\n')
+                            filer.writelines('Non-Physical solutions' + '\n')
+                            return -1
+                        results = [m1P, m2P, m1, m2, CG, WD_12, CG * WD_12]
                         if(CG != 0):
                             filer.writelines(m_index + '\n')
-                            filer.writelines(coeff_list + '\n')
+                            filer.writelines(str(results) + '\n')
 
 
 reducedSeries(j1, j2)
