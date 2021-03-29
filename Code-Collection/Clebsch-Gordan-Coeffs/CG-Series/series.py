@@ -55,7 +55,7 @@ def reducedSeries(j1, j2):
                             OK_Status = 0
                             return -1
 
-                        results = [m1P, m1, m2P, m2, CG_12 * Wd_12]
+                        # results = [m1P, m1, m2P, m2, CG_12 * Wd_12]
                         CGC_products.append(CG_12)
                         Wd_products.append(Wd_12)
     if(OK_Status):
@@ -66,3 +66,9 @@ def reducedSeries(j1, j2):
 
 
 CG_Series = reducedSeries(j1, j2)
+
+
+reduced_sum = 0
+for tuple_item in zip(CG_Series[0], CG_Series[1]):
+    reduced_sum += tuple_item[0] * tuple_item[1]
+print(reduced_sum)
