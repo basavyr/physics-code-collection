@@ -21,21 +21,21 @@ def Import_Data(FILE):
             count = count + 1
             # print(x, count)
             if (len(x) == 2):
-                print('IN STACK-BUILD')
-                print(x, count)
+                # print('IN STACK-BUILD')
+                # print(x, count)
                 spin = float(x[0])
                 energy = float(x[1])
                 data_tuple = [spin, energy]
                 sub_data.append(data_tuple)
             if (count == eol_check and len(x) == 2):
-                print('IN EOL CHECK')
+                # print('IN EOL CHECK')
                 # print(sub_data)
                 # print(DATA)
                 DATA.append(sub_data)
                 # print(DATA)
                 sub_data = []
             elif (len(x) == 1):
-                print('IN MULTI-BAND')
+                # print('IN MULTI-BAND')
                 # print(sub_data)
                 DATA.append(sub_data)
                 # print(DATA)
