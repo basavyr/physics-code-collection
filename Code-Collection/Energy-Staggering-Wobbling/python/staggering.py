@@ -46,4 +46,9 @@ def Import_Data(FILE):
         return DATA
 
 
-print(Import_Data(DATA_STACK_1))
+def Stagger(I, E1, E2):
+    return (E2 - E1) / 2.0 * I
+
+
+for stack in Import_Data(DATA_STACK_1):
+    print(stack)
