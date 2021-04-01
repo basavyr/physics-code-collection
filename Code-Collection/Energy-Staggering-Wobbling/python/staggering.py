@@ -7,8 +7,14 @@ data_file = 'data.dat'
 
 with open(data_file, 'r+') as data:
     lines = data.readlines()
-    lines.pop(len(lines)-1)
-    numbers=[]
+    data = []
     for line in lines:
-        x=line.strip('\n')
-        print(x.split(' '))
+        x = line.strip('\n')
+        x = x.split(' ')
+        if(len(x) == 2):
+            spin = float(x[0])
+            energy = float(x[1])
+            # print(spin, energy)
+            data_tuple = [spin, energy]
+            data.append(data_tuple)
+    print(data)
