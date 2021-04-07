@@ -3,11 +3,11 @@
 import numpy as np
 import numpy.random as rd
 
-data_odd = [[x, rd.randint(1, 5)] for x in range(1, 15, 2)]
-data_even = [[x, rd.randint(2, 6)] for x in range(2, 16, 2)]
+# data_odd = [[x, rd.randint(1, 5)] for x in range(1, 15, 2)]
+# data_even = [[x, rd.randint(2, 6)] for x in range(2, 16, 2)]
 
-print(data_even)
-print(data_odd)
+# print(data_even)
+# print(data_odd)
 
 
 # Function that searches within a list of data-points of the form [(SPIN,ENERGY)] and returns the index of the found item
@@ -52,32 +52,40 @@ def Random_Odd(range):
             return even_test
 
 
+def Band_Head_Check(spin, data):
+    return 1 if spin == min([data[i][0] for i in range(len(data))]) else 0
+
+
 def Search_Partner(even_data, odd_data, spin):
     OK = 0
     if(spin % 2 == 0):
         band = even_data
         partner = odd_data
         index = Search_Spin(band, spin)
-        if(index == -1):
-            # print(
-            #     f'Even-Spin state ({band[index][0]},{band[index][1]}) not found within the data')
+        # condition for a band-head
+        if(Band_Head_Check(spin, band)):
+            print(
+                f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
             return -1
-        if(index == 0):
-            # print(
-            #     f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head')
+        # rest of conditional set
+        if(index == -1):
+            print(
+                f'Even-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
     else:
         band = odd_data
         partner = even_data
         index = Search_Spin(band, spin)
-        if(index == -1):
-            # print(
-            #     f'Odd-Spin state ({band[index][0]},{band[index][1]}) not found within the data')
+        # condition for a band-head
+        if(Band_Head_Check(spin, band)):
+            print(
+                f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
             return -1
-        if(index == 0):
-            # print(
-            #     f'Odd-Spin state ({band[index][0]},{band[index][1]}) is the band-head')
+        # rest of conditional set
+        if(index == -1):
+            print(
+                f'Odd-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
 
@@ -91,12 +99,12 @@ def Search_Partner(even_data, odd_data, spin):
 
     # print(I_band, E_band)
     # print(I_partner, E_partner)
-    return [I_partner, E_partner]
+    return [E_band, E_partner]
     # return [[I_band, E_band], [I_partner, E_partner]]
 
 
-[print(f'I_band={x} -> partner: {Search_Partner(data_even, data_odd, x)}')
- for x in range(1, 10, 1)]
+# [print(f'I_band={x} -> partner: {Search_Partner(data_even, data_odd, x)}')
+#  for x in range(1, 10, 1)]
 
 # T = Search_Spin(data_even, Random_Even([0, 20]))
 # if(T == -1):

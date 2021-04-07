@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import finder
 
 RU_108_FILE = '108Ru.dat'
 RU_110_FILE = '110Ru.dat'
@@ -71,5 +71,19 @@ RU_112_DATA = Import_Data(RU_112_FILE)
 #     print(stack)
 
 
-stack1=RU_112_DATA[0]
-stack2=RU_112_DATA[1]
+odd_stack = RU_112_DATA[0]
+even_stack = RU_112_DATA[1]
+
+print(even_stack)
+print(odd_stack)
+
+
+print('EVEN-SPINS -> TEST')
+
+[print(f'I={spin} -> {finder.Search_Partner(even_stack, odd_stack, spin)}')
+ for spin in range(0, 20, 2)]
+
+print('ODD-SPINS -> TEST')
+
+[print(f'I={spin} -> {finder.Search_Partner(even_stack, odd_stack, spin)}')
+ for spin in range(1, 19, 2)]
