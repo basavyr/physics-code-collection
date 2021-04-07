@@ -2,12 +2,10 @@
 
 import numpy as np
 import numpy.random as rd
+from operator import itemgetter
 
-# data_odd = [[x, rd.randint(1, 5)] for x in range(1, 15, 2)]
-# data_even = [[x, rd.randint(2, 6)] for x in range(2, 16, 2)]
-
-# print(data_even)
-# print(data_odd)
+band = [[x, rd.randint(1, 5)] for x in range(1, 17, 2)]
+partner = [[x, rd.randint(2, 6)] for x in range(2, 16, 2)]
 
 
 # Function that searches within a list of data-points of the form [(SPIN,ENERGY)] and returns the index of the found item
@@ -52,25 +50,119 @@ def Random_Odd(range):
             return even_test
 
 
+# check if the spin-state is a band-head for that particular data set
 def Band_Head_Check(spin, data):
     return 1 if spin == min([data[i][0] for i in range(len(data))]) else 0
 
 
-def Search_Partner(even_data, odd_data, spin):
-    OK = 0
+# check if the spin-state is a band-terminus for that particular data set
+def Band_Terminus_Check(spin, data):
+    return 1 if spin == max([data[i][0] for i in range(len(data))]) else 0
+
+
+# search for the energy state corresponding to I+1, I-1 and I-2 for a band and its signature partner
+# function assumes that the spin->band->partner are properly introduced
+# no determination of the actual spin-state is made
+def Search_Energies(band, partner, spin):
+    DEBUG_MODE = False
+
+    if(DEBUG_MODE):
+        print(f'Band = {band}')
+        print(f'Partner = {partner}')
+
+    I = spin
+
+    index_I = Search_Spin(band, I)
+    if(index_I == -1):
+        if(DEBUG_MODE):
+            print(f'The state I={spin} does not exist within the band')
+        E_b_I = False
+        return
+    else:
+        E_b_I = band[index_I][1]
+
+    if(Band_Head_Check(spin, band)):
+        if(DEBUG_MODE):
+            print(f'I={spin} is band-head -> can`t compute I-2')
+        return
+
+    max_partner_spin = max(partner, key=itemgetter(0))
+    if(Band_Terminus_Check(spin, band) and spin > max_partner_spin[0]):
+        if(DEBUG_MODE):
+            print(
+                f'The state I={spin} is a band terminus and it has no I+1 state in its partner band')
+        return
+
+    IM1 = I - 1
+    IP1 = I + 1
+    IM2 = I - 2
+
+    E_b_IM2 = False
+    E_p_IP1 = False
+    E_p_IM1 = False
+
+    print(
+        f'I={band[index_I][0]} | E_b[{spin}]={E_b_I}')
+
+    index_IM2 = Search_Spin(band, IM2)
+    E_b_IM2 = band[index_IM2][1]
+    print(
+        f'I-2={band[index_IM2][0]} | E_b[{IM2}]={E_b_IM2}')
+
+    index_IP1 = Search_Spin(partner, IP1)
+    if(index_IP1 == -1):
+        if(DEBUG_MODE):
+            print(
+                f'I={spin} is a band-terminus and it has no I+1 state in its partner band')
+        return
+    else:
+        E_p_IP1 = partner[index_IP1][1]
+        print(
+            f'I+1={partner[index_IP1][0]} | E_p[{IP1}]={E_p_IP1}')
+
+    index_IM1 = Search_Spin(partner, IM1)
+    if(index_IM1 == -1):
+        if(DEBUG_MODE):
+            print(f'I={spin} does not have an I-1 spin state in its partner band')
+        return
+    else:
+        E_p_IM1 = partner[index_IM1][1]
+        print(
+            f'I-1={partner[index_IM1][0]} | E_p[{IM1}]={E_p_IM1}')
+
+    E_TUPLE = [E_b_I, E_b_IM2, E_p_IP1, E_p_IM1]
+    if(all(E_TUPLE)):
+        # print(f'E={E_b_I}', f'EM2={E_b_IM2}', f'EP1={E_p_IP1}', f'EM1={E_p_IM1}')
+        print(f'Found all the energies for the spin-state I={spin}')
+        return E_TUPLE
+    else:
+        print(f'Failed to obtain all the energies for the spin-state I={spin}')
+        return
+    return
+
+
+# print(Search_Energies(band, partner, 13))
+# print(Search_Energies(partner, band, 14))
+
+
+# search for the energy corresponding to I within that band, and the energy of its I-1 state from the partner band
+def Search_Partner_EvenOdd(even_data, odd_data, spin):
+    DEBUG_MODE = 0
     if(spin % 2 == 0):
         band = even_data
         partner = odd_data
         index = Search_Spin(band, spin)
         # condition for a band-head
         if(Band_Head_Check(spin, band)):
-            print(
-                f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
+            if(DEBUG_MODE):
+                print(
+                    f'🤦‍♂️ Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
             return -1
         # rest of conditional set
         if(index == -1):
-            print(
-                f'Even-Spin state I={int(spin)} not found within the data 🙈')
+            if(DEBUG_MODE):
+                print(
+                    f'🤷‍♂️ Even-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
     else:
@@ -79,13 +171,15 @@ def Search_Partner(even_data, odd_data, spin):
         index = Search_Spin(band, spin)
         # condition for a band-head
         if(Band_Head_Check(spin, band)):
-            print(
-                f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
+            if(DEBUG_MODE):
+                print(
+                    f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
             return -1
         # rest of conditional set
         if(index == -1):
-            print(
-                f'Odd-Spin state I={int(spin)} not found within the data 🙈')
+            if(DEBUG_MODE):
+                print(
+                    f'Odd-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
 
