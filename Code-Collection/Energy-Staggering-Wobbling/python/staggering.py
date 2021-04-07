@@ -25,7 +25,7 @@ def Stagger_Parameter(I, E):
 
 # Definition of the staggering parameter in signature partner bands
 # As defined by Uma et al (2015)
-def Stagger_SPB(I, band, partner):
+def Stagger_SPB(band, partner, I):
     E_I = finder.Search_Energies(band, partner, I)
     if(E_I != -1):
         E_g_IP1 = E_gamma(E_I[2], E_I[0])
@@ -43,7 +43,7 @@ RU_112_DATA = importer.Import_Data(RU_112_FILE)
 odd_stack = RU_112_DATA[0]
 even_stack = RU_112_DATA[1]
 
-print(Stagger_SPB(odd_stack[1][0], odd_stack, even_stack))
+print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
 
 # print(even_stack)
 # print(odd_stack)
