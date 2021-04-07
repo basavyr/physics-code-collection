@@ -70,5 +70,6 @@ RU_112_DATA = Import_Data(RU_112_FILE)
 # for stack in RU_110_DATA:
 #     print(stack)
 
-for stack in RU_112_DATA:
-    print(stack)
+
+stack1=RU_112_DATA[0]
+stack2=RU_112_DATA[1]
