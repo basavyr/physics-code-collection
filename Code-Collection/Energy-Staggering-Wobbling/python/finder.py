@@ -77,21 +77,21 @@ def Search_Energies(band, partner, spin):
         if(DEBUG_MODE):
             print(f'The state I={spin} does not exist within the band')
         E_b_I = False
-        return
+        return -1
     else:
         E_b_I = band[index_I][1]
 
     if(Band_Head_Check(spin, band)):
         if(DEBUG_MODE):
             print(f'I={spin} is band-head -> can`t compute I-2')
-        return
+        return -1
 
     max_partner_spin = max(partner, key=itemgetter(0))
     if(Band_Terminus_Check(spin, band) and spin > max_partner_spin[0]):
         if(DEBUG_MODE):
             print(
                 f'The state I={spin} is a band terminus and it has no I+1 state in its partner band')
-        return
+        return -1
 
     IM1 = I - 1
     IP1 = I + 1
@@ -101,13 +101,13 @@ def Search_Energies(band, partner, spin):
     E_p_IP1 = False
     E_p_IM1 = False
 
-    print(
-        f'I={band[index_I][0]} | E_b[{spin}]={E_b_I}')
+    if(DEBUG_MODE):
+        print(f'I={band[index_I][0]} | E_b[{spin}]={E_b_I}')
 
     index_IM2 = Search_Spin(band, IM2)
     E_b_IM2 = band[index_IM2][1]
-    print(
-        f'I-2={band[index_IM2][0]} | E_b[{IM2}]={E_b_IM2}')
+    if(DEBUG_MODE):
+        print(f'I-2={band[index_IM2][0]} | E_b[{IM2}]={E_b_IM2}')
 
     index_IP1 = Search_Spin(partner, IP1)
     if(index_IP1 == -1):
@@ -117,8 +117,8 @@ def Search_Energies(band, partner, spin):
         return
     else:
         E_p_IP1 = partner[index_IP1][1]
-        print(
-            f'I+1={partner[index_IP1][0]} | E_p[{IP1}]={E_p_IP1}')
+        if(DEBUG_MODE):
+            print(f'I+1={partner[index_IP1][0]} | E_p[{IP1}]={E_p_IP1}')
 
     index_IM1 = Search_Spin(partner, IM1)
     if(index_IM1 == -1):
@@ -127,18 +127,23 @@ def Search_Energies(band, partner, spin):
         return
     else:
         E_p_IM1 = partner[index_IM1][1]
-        print(
-            f'I-1={partner[index_IM1][0]} | E_p[{IM1}]={E_p_IM1}')
+        if(DEBUG_MODE):
+            print(
+                f'I-1={partner[index_IM1][0]} | E_p[{IM1}]={E_p_IM1}')
 
     E_TUPLE = [E_b_I, E_b_IM2, E_p_IP1, E_p_IM1]
+
     if(all(E_TUPLE)):
         # print(f'E={E_b_I}', f'EM2={E_b_IM2}', f'EP1={E_p_IP1}', f'EM1={E_p_IM1}')
-        print(f'Found all the energies for the spin-state I={spin}')
+        if(DEBUG_MODE):
+            print(f'Found all the energies for the spin-state I={spin}')
         return E_TUPLE
     else:
-        print(f'Failed to obtain all the energies for the spin-state I={spin}')
-        return
-    return
+        if(DEBUG_MODE):
+            print(
+                f'Failed to obtain all the energies for the spin-state I={spin}')
+        return -1
+    return -1
 
 
 # print(Search_Energies(band, partner, 13))
