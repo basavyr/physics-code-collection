@@ -4,8 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-DATA_STACK_1 = 'data_stack1.dat'
-DATA_STACK_2 = 'data_stack2.dat'
+RU_108 = '108Ru.dat'
+RU_110 = '110Ru.dat'
+RU_112 = '112Ru.dat'
 
 
 def Import_Data(FILE):
@@ -46,9 +47,14 @@ def Import_Data(FILE):
         return DATA
 
 
-def Stagger(I, E1, E2):
+# Definition of the staggering parameter as defined by Luo et al (2009)
+def Stagger_Parameter(I, E1, E2):
     return (E2 - E1) / 2.0 * I
 
 
-for stack in Import_Data(DATA_STACK_1):
+# Definition of the staggering parameter in signature partner bands
+# As defined by Uma et al (2015)
+
+
+for stack in Import_Data(RU_112):
     print(stack)
