@@ -1,0 +1,80 @@
+
+
+trouble = 0
+
+if(trouble):
+    # data files for Ru isotopes
+    RU_108_FILE = '108Ru.dat'
+    RU_110_FILE = '110Ru.dat'
+    RU_112_FILE = '112Ru.dat'
+
+    # data files for Pd isotopes
+    PD_112_FILE = '112Pd.dat'
+    PD_114_FILE = '114Pd.dat'
+
+    # import data from the corresponding files
+    RU_108_DATA = importer.Import_Data(RU_108_FILE)
+    RU_110_DATA = importer.Import_Data(RU_110_FILE)
+    RU_112_DATA = importer.Import_Data(RU_112_FILE)
+
+    # files for plotting the staggering parameter for each isotope
+    RU_108_PLOT = './plots/stagger_108Ru.pdf'
+    RU_112_PLOT = './plots/stagger_112Ru.pdf'
+    RU_114_PLOT = './plots/stagger_114Ru.pdf'
+    PD_112_PLOT = './plots/stagger_112Pd.pdf'
+    PD_114_PLOT = './plots/stagger_114Pd.pdf'
+
+    # print(RU_112_DATA)
+    BANDS45 = [RU_112_DATA[0], RU_112_DATA[1]]
+    BANDS67 = [RU_112_DATA[3], RU_112_DATA[2]]
+    # GAMMA_BAND = [RU_112_DATA[4], RU_112_DATA[5]]
+    STAGGERS_112RU = [staggering.Compute_Stagger(BANDS45[1], BANDS45[0]),
+                      staggering.Compute_Stagger(BANDS67[1], BANDS67[0])]
+    # print(STAGGERS_112RU)
+    # plotter.Plot_Stagger_Bands(STAGGERS_112RU, plot_112)
+
+    # print(RU_110_DATA)
+    BANDS45 = [RU_110_DATA[0], RU_110_DATA[1]]
+    BANDS67 = [RU_110_DATA[2], RU_110_DATA[3]]
+    STAGGERS_110RU = [staggering.Compute_Stagger(BANDS45[1], BANDS45[0]),
+                      staggering.Compute_Stagger(BANDS67[1], BANDS67[0])]
+    # print(STAGGERS_110RU)
+    # plotter.Plot_Stagger_Bands(STAGGERS_110RU, plot_110)
+
+    # print(RU_108_DATA)
+    BANDS45 = [RU_108_DATA[0], RU_108_DATA[1]]
+    BANDS67 = [RU_108_DATA[2], RU_108_DATA[3]]
+    STAGGERS_108RU = [staggering.Compute_Stagger(BANDS45[1], BANDS45[0]),
+                      staggering.Compute_Stagger(BANDS67[1], BANDS67[0])]
+    # print(STAGGERS_108RU)
+    # plotter.Plot_Stagger_Bands(STAGGERS_108RU, plot_108)
+
+    # print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
+    # print(Stagger_Parameter(odd_stack[1][0], finder.Search_Energy_Partner(
+    # even_stack, odd_stack, odd_stack[1][0])))
+
+    # print(even_stack)
+    # print(odd_stack)
+
+    # print('Even-Spins')
+    # for data_point in even_stack:
+    #     result = finder.Search_Energies(even_stack, odd_stack, data_point[0])
+    #     if(result != -1):
+    #         print(data_point[0], result)
+
+    # print('Odd-Spins')
+    # for data_point in odd_stack:
+    #     result = finder.Search_Energies(odd_stack, even_stack, data_point[0])
+    #     if(result != -1):
+    #         print(data_point[0], result)
+
+    def TEST():
+        print('EVEN-SPINS -> TEST')
+
+        [print(f'I={spin} -> {finder.Search_Energy_Partner(even_stack, odd_stack, spin)}')
+         for spin in range(0, 20, 2)]
+
+        print('ODD-SPINS -> TEST')
+
+        [print(f'I={spin} -> {finder.Search_Energy_Partner(even_stack, odd_stack, spin)}')
+         for spin in range(1, 19, 2)]
