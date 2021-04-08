@@ -151,6 +151,7 @@ def Search_Energies(band, partner, spin):
 # search for the energy corresponding to I within that band, and the energy of its I-1 state from the partner band
 def Search_Energy_Partner(even_data, odd_data, spin):
     DEBUG_MODE = 0
+    BAND_HEAD = 0
     if(spin % 2 == 0):
         band = even_data
         partner = odd_data
@@ -160,7 +161,7 @@ def Search_Energy_Partner(even_data, odd_data, spin):
             if(DEBUG_MODE):
                 print(
                     f'🤦‍♂️ Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
-            return -1
+            pass
         # rest of conditional set
         if(index == -1):
             if(DEBUG_MODE):
@@ -168,6 +169,11 @@ def Search_Energy_Partner(even_data, odd_data, spin):
                     f'🤷‍♂️ Even-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
+        if(partner_index == -1):
+            if(DEBUG_MODE):
+                print(
+                    f'🤷‍♂️ The spin state I-1={int(spin-1)} does not exist within the partner band 😢')
+            return -1
     else:
         band = odd_data
         partner = even_data
@@ -177,7 +183,7 @@ def Search_Energy_Partner(even_data, odd_data, spin):
             if(DEBUG_MODE):
                 print(
                     f'🤦‍♂️ Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
-            return -1
+            pass
         # rest of conditional set
         if(index == -1):
             if(DEBUG_MODE):
@@ -185,6 +191,11 @@ def Search_Energy_Partner(even_data, odd_data, spin):
                     f'🤷‍♂️ Odd-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
+        if(partner_index == -1):
+            if(DEBUG_MODE):
+                print(
+                    f'🤷‍♂️ The spin state I-1={int(spin-1)} does not exist within the partner band 😢')
+            return -1
 
     # find the spin and energy of the band, based on the current spin value
     I_band = band[index][0]

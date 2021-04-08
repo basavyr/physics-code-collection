@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import finder
 import importer
+import plotter
 
 
 RU_108_FILE = '108Ru.dat'
@@ -76,7 +77,12 @@ RU_112_DATA = importer.Import_Data(RU_112_FILE)
 odd_stack = RU_112_DATA[0]
 even_stack = RU_112_DATA[1]
 
-Compute_Stagger(even_stack, odd_stack)
+t = Compute_Stagger(even_stack, odd_stack)
+
+plot_112 = './plots/stagger_112.pdf'
+
+plotter.Plot_Stagger_Bands(t, plot_112)
+
 # print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
 # print(Stagger_Parameter(odd_stack[1][0], finder.Search_Energy_Partner(
 # even_stack, odd_stack, odd_stack[1][0])))
@@ -100,10 +106,10 @@ Compute_Stagger(even_stack, odd_stack)
 def TEST():
     print('EVEN-SPINS -> TEST')
 
-    [print(f'I={spin} -> {finder.Search_Partner_EvenOdd(even_stack, odd_stack, spin)}')
+    [print(f'I={spin} -> {finder.Search_Energy_Partner(even_stack, odd_stack, spin)}')
      for spin in range(0, 20, 2)]
 
     print('ODD-SPINS -> TEST')
 
-    [print(f'I={spin} -> {finder.Search_Partner_EvenOdd(even_stack, odd_stack, spin)}')
+    [print(f'I={spin} -> {finder.Search_Energy_Partner(even_stack, odd_stack, spin)}')
      for spin in range(1, 19, 2)]
