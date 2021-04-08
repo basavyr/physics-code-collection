@@ -73,15 +73,36 @@ RU_108_DATA = importer.Import_Data(RU_108_FILE)
 RU_110_DATA = importer.Import_Data(RU_110_FILE)
 RU_112_DATA = importer.Import_Data(RU_112_FILE)
 
-
-odd_stack = RU_112_DATA[0]
-even_stack = RU_112_DATA[1]
-
-t = Compute_Stagger(even_stack, odd_stack)
-
 plot_112 = './plots/stagger_112.pdf'
+plot_110 = './plots/stagger_110.pdf'
+plot_108 = './plots/stagger_108.pdf'
 
-plotter.Plot_Stagger_Bands(t, plot_112)
+
+# print(RU_112_DATA)
+BANDS45 = [RU_112_DATA[0], RU_112_DATA[1]]
+BANDS67 = [RU_112_DATA[3], RU_112_DATA[2]]
+# GAMMA_BAND = [RU_112_DATA[4], RU_112_DATA[5]]
+STAGGERS_112RU = [Compute_Stagger(BANDS45[1], BANDS45[0]),
+                  Compute_Stagger(BANDS67[1], BANDS67[0])]
+# print(STAGGERS_112RU)
+plotter.Plot_Stagger_Bands(STAGGERS_112RU, plot_112)
+
+# print(RU_110_DATA)
+BANDS45 = [RU_110_DATA[0], RU_110_DATA[1]]
+BANDS67 = [RU_110_DATA[2], RU_110_DATA[3]]
+STAGGERS_110RU = [Compute_Stagger(BANDS45[1], BANDS45[0]),
+                  Compute_Stagger(BANDS67[1], BANDS67[0])]
+# print(STAGGERS_110RU)
+plotter.Plot_Stagger_Bands(STAGGERS_110RU, plot_110)
+
+# print(RU_108_DATA)
+BANDS45 = [RU_108_DATA[0], RU_108_DATA[1]]
+BANDS67 = [RU_108_DATA[2], RU_108_DATA[3]]
+STAGGERS_108RU = [Compute_Stagger(BANDS45[1], BANDS45[0]),
+                  Compute_Stagger(BANDS67[1], BANDS67[0])]
+# print(STAGGERS_108RU)
+plotter.Plot_Stagger_Bands(STAGGERS_108RU, plot_108)
+
 
 # print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
 # print(Stagger_Parameter(odd_stack[1][0], finder.Search_Energy_Partner(
