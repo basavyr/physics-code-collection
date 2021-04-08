@@ -12,6 +12,8 @@ isotopes = {
     'Ru': [108, 110, 112]}
 
 
+path = './plots/'
+
 # generate naming for the data files used for importing spins and energies
 data_file = lambda mass, isotope: f'{mass}{isotope}.dat'
 
@@ -31,6 +33,18 @@ def Data_Analysis(Isotope, Mass):
 
     EXPERIMENTAL_DATA = importer.Import_Data(INPUT_FILE)
 
+    DATA_SIZE = len(EXPERIMENTAL_DATA)
+    print(f'{DATA_SIZE} bands were imported into the stack')
 
-Data_Analysis('Ru', 112)
-# Data_Analysis('Pd', 112)
+    STAGGER_DATA = []
+
+    for id in range(0, DATA_SIZE, 2):
+        odd_band = EXPERIMENTAL_DATA[id]
+        even_band = EXPERIMENTAL_DATA[id + 1]
+        current_stagger = staggering.Compute_Stagger(even_band, odd_band)
+        STAGGER_DATA.append(current_stagger)
+    # print(STAGGER_DATA)
+    plotter.Plot_Stagger_Bands(STAGGER_DATA, path + PLOT_FILE,str(Mass)+str(Isotope))
+
+
+Data_Analysis('Ru', 108)

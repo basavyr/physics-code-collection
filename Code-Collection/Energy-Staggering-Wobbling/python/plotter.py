@@ -5,7 +5,7 @@ import numpy.random as rd
 from operator import itemgetter
 
 
-def Plot_Stagger_Bands(STAGGER_DATA, plot_file):
+def Plot_Stagger_Bands(STAGGER_DATA, plot_file, isotope):
     colors = []
     for _ in STAGGER_DATA:
         random_color = (rd.random(), rd.random(), rd.random())
@@ -20,8 +20,10 @@ def Plot_Stagger_Bands(STAGGER_DATA, plot_file):
         final_data.sort(key=itemgetter(0))
         spins = [x[0] for x in final_data]
         staggers = [x[1] for x in final_data]
-        plt.plot(spins, staggers, '-o', c=colors[count], label=r'Bands (4,5)')
+        plot_label = f'pair-{count+1}'
+        plt.plot(spins, staggers, '-o', c=colors[count], label=plot_label)
         plt.ylim(0, 30)
+        plt.title(f'The staggering parameter S(I) for {isotope}')
         count += 1
     plt.legend(loc='best')
     plt.savefig(plot_file, dpi=1200, bbox_inches='tight')
