@@ -8,7 +8,7 @@ band = [[x, rd.randint(1, 5)] for x in range(1, 17, 2)]
 partner = [[x, rd.randint(2, 6)] for x in range(2, 16, 2)]
 
 
-# Function that searches within a list of data-points of the form [(SPIN,ENERGY)] and returns the index of the found item
+# Function that searches for the SPIN within a list of data-points of the form [(SPIN,ENERGY)] and returns the index of the found item
 # The searching procedure is only looking for the first item within each pair (that is x1 from (x1,x2))
 def Search_Spin(obj, spin):
     count = 0
@@ -21,6 +21,8 @@ def Search_Spin(obj, spin):
     return -1
 
 
+# Function that searches for the ENERGY within a list of data-points of the form [(SPIN,ENERGY)] and returns the index of the found item
+# The searching procedure is only looking for the first item within each pair (that is x1 from (x1,x2))
 def Search_Energy(obj, energy):
     count = 0
     for data_point in obj:
@@ -146,12 +148,8 @@ def Search_Energies(band, partner, spin):
     return -1
 
 
-# print(Search_Energies(band, partner, 13))
-# print(Search_Energies(partner, band, 14))
-
-
 # search for the energy corresponding to I within that band, and the energy of its I-1 state from the partner band
-def Search_Partner_EvenOdd(even_data, odd_data, spin):
+def Search_Energy_Partner(even_data, odd_data, spin):
     DEBUG_MODE = 0
     if(spin % 2 == 0):
         band = even_data
@@ -178,13 +176,13 @@ def Search_Partner_EvenOdd(even_data, odd_data, spin):
         if(Band_Head_Check(spin, band)):
             if(DEBUG_MODE):
                 print(
-                    f'Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
+                    f'🤦‍♂️ Even-Spin state ({band[index][0]},{band[index][1]}) is the band-head 🥺')
             return -1
         # rest of conditional set
         if(index == -1):
             if(DEBUG_MODE):
                 print(
-                    f'Odd-Spin state I={int(spin)} not found within the data 🙈')
+                    f'🤷‍♂️ Odd-Spin state I={int(spin)} not found within the data 🙈')
             return -1
         partner_index = Search_Spin(partner, spin - 1)
 

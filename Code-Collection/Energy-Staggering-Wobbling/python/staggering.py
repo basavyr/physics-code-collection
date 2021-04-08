@@ -33,6 +33,39 @@ def Stagger_SPB(band, partner, I):
         E_g_I = E_gamma(E_I[0], E_I[3])
         S_I = E_g_I - 0.5 * (E_g_IP1 + E_g_IM1)
         return S_I
+    return -1
+
+
+def Compute_Stagger(even_data, odd_data):
+    even_stagger = []
+    odd_stagger = []
+
+    even_spins = []
+    odd_spins = []
+
+    for data_point in even_data:
+        I = data_point[0]
+        E = finder.Search_Energy_Partner(even_data, odd_data, I)
+        if(E != -1):
+            # print(E)
+            current_stagger = Stagger_Parameter(I, E)
+            even_stagger.append(current_stagger)
+            even_spins.append(I)
+            # print(current_stagger)
+
+    for data_point in odd_data:
+        I = data_point[0]
+        E = finder.Search_Energy_Partner(even_data, odd_data, I)
+        if(E != -1):
+            # print(E)
+            current_stagger = Stagger_Parameter(I, E)
+            odd_stagger.append(current_stagger)
+            odd_spins.append(I)
+            # print(current_stagger)
+
+    S_I_even = [even_spins, even_stagger]
+    S_I_odd = [odd_spins, odd_stagger]
+    return [S_I_even, S_I_odd]
 
 
 RU_108_DATA = importer.Import_Data(RU_108_FILE)
@@ -43,7 +76,10 @@ RU_112_DATA = importer.Import_Data(RU_112_FILE)
 odd_stack = RU_112_DATA[0]
 even_stack = RU_112_DATA[1]
 
-print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
+Compute_Stagger(even_stack, odd_stack)
+# print(Stagger_SPB(odd_stack, even_stack, odd_stack[1][0]))
+# print(Stagger_Parameter(odd_stack[1][0], finder.Search_Energy_Partner(
+# even_stack, odd_stack, odd_stack[1][0])))
 
 # print(even_stack)
 # print(odd_stack)
