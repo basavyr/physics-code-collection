@@ -3,10 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # The angular momentum component along the x-axis (rotational axis)
 # I_x is the total angular momentum projected ono the x-axis
-
-
 def I_x(I):
     I_m = I - 1
     K_values = np.arange(-I + 1, I, 1)
@@ -19,4 +18,12 @@ def I_x(I):
     return I_x_components
 
 
+# the reference angular momentum I_ref as a function of rotational frequency ω
+def I_ref(omega, J0, J1):
+    omega_squared = np.power(omega, 2)
+    I_ref_value = (J0 + J1 * omega_squared) * omega
+    return I_ref_value
+
+
 print(I_x(4))
+print(I_ref(0.2, 8, 40))
