@@ -18,7 +18,8 @@ def I_x(I):
     return I_x_components
 
 
-# the reference angular momentum I_ref as a function of rotational frequency ω
+# the reference value of the Aligned Angular Momentum I_ref as a function of rotational frequency ω
+# the reference value is parametrized in terms of the Harris parameters J0,J1
 def I_ref(omega, J0, J1):
     omega_squared = np.power(omega, 2)
     I_ref_value = (J0 + J1 * omega_squared) * omega
