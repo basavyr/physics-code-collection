@@ -39,11 +39,38 @@ def I_ref(omega, J0, J1):
     return I_ref_value
 
 
+def MinusOneTo(exp):
+    return np.power(-1, exp)
+
+
 # the energy spectrum for a spin state I, with given projection K
 # the spectrum is parametrized in terms of the intrinsic energy of the band-head "EK_0", the decoupling parameter "a", and the inertial parameter "A"
+# the inertial parameter "A" is obtained from the moment of inertia J
 # the decoupling parameter depends on the j-components which contribute to the particle state ψ_{1/2}.
-def E_I(EK_0, I, A, a, K):
-    return '1'
+def E_I(EK_0, I, J, a, K):
+    if(Kronecker_Delta(K, 1.0 / 2.0) == 0):
+        return -1
+    if(J == 0):
+        return -1
+    A = 1.0 / (2.0 * J)
+    rotor_term = I * (I + 1.0)
+    I_half = I + 0.5
+    decoupling_term = a * MinusOneTo(I_half) * \
+        I_half * Kronecker_Delta(K, 1.0 / 2.0)
+    E = A * (rotor_term + decoupling_term)
+    EK_I = E + EK_0
+    return EK_I
 
-# print(I_x(4))
-# print(I_ref(0.2, 8, 40))
+
+energy = lambda I, J, a: E_I(0, I, J, a, 1.0 / 2.0)
+spectrum = lambda spins, moi, a: [energy(spin, moi, a) for spin in spins]
+
+
+print(I_x(4))
+print(I_ref(0.2, 8, 40))
+
+
+band_head_spin = 0.5
+MOI = 65
+spins = np.arange(band_head_spin, band_head_spin + 20, 2)
+energies = spectrum(spins, MOI, 0.2)
