@@ -1,7 +1,7 @@
 #! /Users/robertpoenaru/.pyenv/versions/3.8.6/envs/numerical/bin/python
 
 import numpy as np
-import matplotlib.pyplot as plt
+import plotter as plt
 
 
 # definition of the Kronecker-Delta δ symbol
@@ -66,11 +66,24 @@ energy = lambda I, J, a: E_I(0, I, J, a, 1.0 / 2.0)
 spectrum = lambda spins, moi, a: [energy(spin, moi, a) for spin in spins]
 
 
-print(I_x(4))
-print(I_ref(0.2, 8, 40))
+# spins = np.arange(band_head_spin, band_head_spin + 20, 2)
+# energies = spectrum(spins, MOI, 0.2)
 
 
-band_head_spin = 0.5
-MOI = 65
-spins = np.arange(band_head_spin, band_head_spin + 20, 2)
-energies = spectrum(spins, MOI, 0.2)
+def Make_DataSet(N, a, MOI):
+    # band_head_spin
+    I0 = 6.5
+    spins = [x + I0 for x in range(0, N, 1)]
+    energies = spectrum(spins, MOI, a)
+    return [spins, energies]
+
+
+def Create_Data(a_min, a_max, N_SIZE):
+    a_values = np.linspace(a_min, a_max, N_SIZE)
+    data = [Make_DataSet(10, a, 20) for a in a_values]
+    return [data, a_values]
+
+
+test_data = Create_Data(-1.5, 1.5, 9)
+
+plt.PlotData(test_data)
