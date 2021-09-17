@@ -3,8 +3,11 @@
 import numpy as np
 import plotter as plt
 
+import os
 
 # definition of the Kronecker-Delta δ symbol
+
+
 def Kronecker_Delta(a, b):
     x = 1 if a == b else 0
     return x
@@ -62,8 +65,8 @@ def E_I(EK_0, I, J, a, K):
     return EK_I
 
 
-energy = lambda I, J, a: E_I(0, I, J, a, 1.0 / 2.0)
-spectrum = lambda spins, moi, a: [energy(spin, moi, a) for spin in spins]
+def energy(I, J, a): return E_I(0, I, J, a, 1.0 / 2.0)
+def spectrum(spins, moi, a): return [energy(spin, moi, a) for spin in spins]
 
 
 # spins = np.arange(band_head_spin, band_head_spin + 20, 2)
@@ -87,3 +90,5 @@ def Create_Data(a_min, a_max, N_SIZE):
 test_data = Create_Data(-1.5, 1.5, 9)
 
 plt.PlotData(test_data)
+
+print(os.uname().platform)
