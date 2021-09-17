@@ -4,6 +4,7 @@ import numpy as np
 import plotter as plt
 
 import os
+import datetime
 
 # definition of the Kronecker-Delta δ symbol
 
@@ -95,5 +96,8 @@ platform = os.uname().machine
 sys_version = os.uname().version
 
 if __name__ == '__main__':
-    print(platform)
-    print(sys_version)
+    # print(platform)
+    # print(sys_version)
+    print(sys_version.find('ARM'))
+    print(sys_version[sys_version.find('ARM'):])
+    print(datetime.datetime.utcnow())
