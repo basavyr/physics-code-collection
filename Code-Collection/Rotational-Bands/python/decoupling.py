@@ -89,6 +89,11 @@ def Create_Data(a_min, a_max, N_SIZE):
 
 test_data = Create_Data(-1.5, 1.5, 9)
 
-plt.PlotData(test_data)
+# plt.PlotData(test_data)
 
-print(os.uname().platform)
+platform = os.uname().machine
+sys_version = os.uname().version
+
+if __name__ == '__main__':
+    print(platform)
+    print(sys_version)
