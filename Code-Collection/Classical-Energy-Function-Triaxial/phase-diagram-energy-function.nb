@@ -1,0 +1,126 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3988,        118]
+NotebookOptionsPosition[      3441,         99]
+NotebookOutlinePosition[      3780,        114]
+CellTagsIndexPosition[      3737,        111]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Spin components", "Subsection",
+ CellChangeTimes->{{3.8419632779393473`*^9, 
+  3.8419632841372967`*^9}},ExpressionUUID->"fdd74b97-0345-4711-9296-\
+c24ac50b78d4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"j1", "=", 
+   RowBox[{
+    RowBox[{"13", "/", "2"}], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"Pi", "/", "4"}], "]"}], "*", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"Pi", "/", "4"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"j2", "=", 
+   RowBox[{
+    RowBox[{"13", "/", "2"}], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"Pi", "/", "4"}], "]"}], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"Pi", "/", "4"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"j3", "=", 
+   RowBox[{
+    RowBox[{"13", "/", "2"}], "*", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"Pi", "/", "4"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SpinValue", "=", 
+    RowBox[{"35", "/", "2"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"--", 
+    RowBox[{"\[Rule]", " ", 
+     RowBox[{
+      RowBox[{"I", " ", "[", "\[HBar]", "]"}], " ", "<", 
+      RowBox[{"--", "-"}]}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<\!\(\*SubscriptBox[\(j\), \(1\)]\)=\>\"", ",", 
+   RowBox[{"N", "[", "j1", "]"}], ",", "\"\<\\n\>\"", ",", 
+   "\"\<\!\(\*SubscriptBox[\(j\), \(2\)]\)=\>\"", ",", 
+   RowBox[{"N", "[", "j2", "]"}], ",", "\"\<\\n\>\"", ",", 
+   "\"\<\!\(\*SubscriptBox[\(j\), \(3\)]\)=\>\"", ",", 
+   RowBox[{"N", "[", "j3", "]"}], ",", "\"\<\\n\>\"", ",", "\"\<I=\>\"", ",", 
+   "SpinValue"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8419629651700583`*^9, 3.8419631133711863`*^9}, {
+  3.841963289674295*^9, 3.841963317314987*^9}, {3.84196349141957*^9, 
+  3.8419635354033413`*^9}},
+ CellLabel->"In[59]:=",ExpressionUUID->"f61f303f-612f-4a02-9b33-28e10448f94f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(j\\), \\(1\\)]\\)=\"\>", 
+   "\[InvisibleSpace]", "3.25`", "\[InvisibleSpace]", "\<\"\\n\"\>", 
+   "\[InvisibleSpace]", "\<\"\\!\\(\\*SubscriptBox[\\(j\\), \\(2\\)]\\)=\"\>",
+    "\[InvisibleSpace]", "3.25`", "\[InvisibleSpace]", "\<\"\\n\"\>", 
+   "\[InvisibleSpace]", "\<\"\\!\\(\\*SubscriptBox[\\(j\\), \\(3\\)]\\)=\"\>",
+    "\[InvisibleSpace]", "4.596194077712559`", 
+   "\[InvisibleSpace]", "\<\"\\n\"\>", "\[InvisibleSpace]", "\<\"I=\"\>", 
+   "\[InvisibleSpace]", 
+   FractionBox["35", "2"]}],
+  SequenceForm[
+  "\!\(\*SubscriptBox[\(j\), \(1\)]\)=", 3.25, "\n", 
+   "\!\(\*SubscriptBox[\(j\), \(2\)]\)=", 3.25, "\n", 
+   "\!\(\*SubscriptBox[\(j\), \(3\)]\)=", 4.596194077712559, "\n", "I=", 
+   Rational[35, 2]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.84196352992351*^9, 3.841963535851487*^9}},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"643d7ff0-41a4-4bc4-a1a3-d3c65af111a8"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 814}, {Automatic, 324}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 167, 3, 54, "Subsection",ExpressionUUID->"fdd74b97-0345-4711-9296-c24ac50b78d4"],
+Cell[CellGroupData[{
+Cell[772, 29, 1643, 44, 136, "Input",ExpressionUUID->"f61f303f-612f-4a02-9b33-28e10448f94f"],
+Cell[2418, 75, 995, 20, 97, "Print",ExpressionUUID->"643d7ff0-41a4-4bc4-a1a3-d3c65af111a8"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
