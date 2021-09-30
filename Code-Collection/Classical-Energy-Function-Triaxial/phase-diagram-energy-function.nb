@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    488550,       8544]
-NotebookOptionsPosition[    486771,       8504]
-NotebookOutlinePosition[    487110,       8519]
-CellTagsIndexPosition[    487067,       8516]
+NotebookDataLength[    488713,       8549]
+NotebookOptionsPosition[    486932,       8509]
+NotebookOutlinePosition[    487271,       8524]
+CellTagsIndexPosition[    487228,       8521]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,9 +25,14 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["Function for setting up the ticks length", "Subsection",
- CellChangeTimes->{{3.841964321045385*^9, 
-  3.841964329593523*^9}},ExpressionUUID->"ff650cf5-a56a-4cac-8fb2-\
+Cell["\<\
+Function for setting up the ticks length
+Source: https://mathematica.stackexchange.com/questions/206173/increasing-the-\
+length-of-frame-ticks\
+\>", "Subsection",
+ CellChangeTimes->{{3.841964321045385*^9, 3.841964329593523*^9}, {
+  3.841965859030525*^9, 
+  3.8419658622622643`*^9}},ExpressionUUID->"ff650cf5-a56a-4cac-8fb2-\
 9ddc4a054d95"],
 
 Cell[BoxData[{
@@ -8520,30 +8525,30 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 221, 3, 30, "Input",ExpressionUUID->"54de06c5-949a-4ab9-a7d8-df10fc486f8e"],
 Cell[CellGroupData[{
-Cell[804, 27, 188, 3, 54, "Subsection",ExpressionUUID->"ff650cf5-a56a-4cac-8fb2-9ddc4a054d95"],
-Cell[995, 32, 389, 10, 52, "Input",ExpressionUUID->"73fbdf17-4262-419e-903c-526d512df2ab"],
-Cell[1387, 44, 777, 19, 30, "Input",ExpressionUUID->"663d6395-f160-42fb-a709-465a2fe9560f"]
+Cell[804, 27, 349, 8, 108, "Subsection",ExpressionUUID->"ff650cf5-a56a-4cac-8fb2-9ddc4a054d95"],
+Cell[1156, 37, 389, 10, 52, "Input",ExpressionUUID->"73fbdf17-4262-419e-903c-526d512df2ab"],
+Cell[1548, 49, 777, 19, 30, "Input",ExpressionUUID->"663d6395-f160-42fb-a709-465a2fe9560f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2201, 68, 167, 3, 54, "Subsection",ExpressionUUID->"fdd74b97-0345-4711-9296-c24ac50b78d4"],
+Cell[2362, 73, 167, 3, 54, "Subsection",ExpressionUUID->"fdd74b97-0345-4711-9296-c24ac50b78d4"],
 Cell[CellGroupData[{
-Cell[2393, 75, 1643, 44, 136, "Input",ExpressionUUID->"f61f303f-612f-4a02-9b33-28e10448f94f"],
-Cell[4039, 121, 1044, 21, 97, "Print",ExpressionUUID->"c5ed1117-146d-4e06-a188-a261288fd71e"]
+Cell[2554, 80, 1643, 44, 136, "Input",ExpressionUUID->"f61f303f-612f-4a02-9b33-28e10448f94f"],
+Cell[4200, 126, 1044, 21, 97, "Print",ExpressionUUID->"c5ed1117-146d-4e06-a188-a261288fd71e"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5132, 148, 163, 3, 54, "Subsection",ExpressionUUID->"d983017a-6c8a-4dd9-95f4-51b2b2d5e1b7"],
-Cell[5298, 153, 1022, 33, 88, "Input",ExpressionUUID->"fbbe70bc-0dc7-4994-a83c-c0661034e09a"]
+Cell[5293, 153, 163, 3, 54, "Subsection",ExpressionUUID->"d983017a-6c8a-4dd9-95f4-51b2b2d5e1b7"],
+Cell[5459, 158, 1022, 33, 88, "Input",ExpressionUUID->"fbbe70bc-0dc7-4994-a83c-c0661034e09a"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6357, 191, 163, 3, 54, "Subsection",ExpressionUUID->"e9aaf4ba-5a3a-449f-ae8f-3b411b961e0f"],
+Cell[6518, 196, 163, 3, 54, "Subsection",ExpressionUUID->"e9aaf4ba-5a3a-449f-ae8f-3b411b961e0f"],
 Cell[CellGroupData[{
-Cell[6545, 198, 2040, 49, 136, "Input",ExpressionUUID->"39a210d2-340f-441b-a95d-05803b691859"],
-Cell[8588, 249, 236224, 4066, 539, "Output",ExpressionUUID->"d497c659-075c-4cb4-a5e8-e8b1f3a4afcd"]
+Cell[6706, 203, 2040, 49, 136, "Input",ExpressionUUID->"39a210d2-340f-441b-a95d-05803b691859"],
+Cell[8749, 254, 236224, 4066, 539, "Output",ExpressionUUID->"d497c659-075c-4cb4-a5e8-e8b1f3a4afcd"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[244849, 4320, 1796, 46, 136, "Input",ExpressionUUID->"849f8977-bf36-48aa-b914-91fb59d73439"],
-Cell[246648, 4368, 240095, 4132, 350, "Output",ExpressionUUID->"6089e2e1-d118-46fe-a8c6-41937abf2307"]
+Cell[245010, 4325, 1796, 46, 136, "Input",ExpressionUUID->"849f8977-bf36-48aa-b914-91fb59d73439"],
+Cell[246809, 4373, 240095, 4132, 350, "Output",ExpressionUUID->"6089e2e1-d118-46fe-a8c6-41937abf2307"]
 }, Open  ]]
 }, Open  ]]
 }
