@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    365396,       6671]
-NotebookOptionsPosition[    362308,       6606]
-NotebookOutlinePosition[    362649,       6621]
-CellTagsIndexPosition[    362606,       6618]
+NotebookDataLength[    361706,       6576]
+NotebookOptionsPosition[    358622,       6511]
+NotebookOutlinePosition[    358963,       6526]
+CellTagsIndexPosition[    358920,       6523]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -367,99 +367,51 @@ Cell["Contour-Plots 1-axis", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"contourSet1Axis", "=", 
-     RowBox[{"ContourPlot", "[", 
-      RowBox[{
-       RowBox[{"Energy", "[", 
-        RowBox[{"th", ",", "phi"}], "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"phi", ",", 
-         RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
-       RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
-       RowBox[{"ImageSize", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"320", ",", "520"}], "}"}]}], ",", 
-       RowBox[{"Frame", "\[Rule]", "True"}], ",", 
-       RowBox[{"(*", 
-        RowBox[{
-         RowBox[{"FrameTicks", "\[Rule]", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
-        "*)"}], 
-       RowBox[{"FrameStyle", "\[Rule]", 
-        RowBox[{"Directive", "[", 
-         RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
-       RowBox[{"FrameLabel", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"\"\<\[Theta] [rad]\>\"", ",", "\"\<\[CurlyPhi] [rad]\>\""}],
-          "}"}]}], ",", 
-       RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
-       RowBox[{"LabelStyle", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"19", ",", "Bold", ",", "Black", ",", 
-          RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
-       
-       RowBox[{"Contours", "\[Rule]", "7"}]}], 
-      RowBox[{"(*", 
-       RowBox[{"PlotLabel", "\[Rule]", 
-        RowBox[{
-         RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], 
-         "[", 
-         RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], ";"}], 
-   "*)"}], "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"contourSet1Axis", "=", 
-    RowBox[{"ContourPlot", "[", 
-     RowBox[{
-      RowBox[{"Energy1Axis", "[", 
-       RowBox[{"th", ",", "phi"}], "]"}], ",", 
+  RowBox[{"contourSet1Axis", "=", 
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{"Energy1Axis", "[", 
+      RowBox[{"th", ",", "phi"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"phi", ",", 
+       RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
       RowBox[{"{", 
-       RowBox[{"phi", ",", 
-        RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
-      RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
-      RowBox[{"ImageSize", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"520", ",", "320"}], "}"}]}], ",", 
-      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
-      RowBox[{"(*", 
-       RowBox[{
-        RowBox[{"FrameTicks", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
-       "*)"}], 
-      RowBox[{"FrameStyle", "\[Rule]", 
-       RowBox[{"Directive", "[", 
-        RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
-      RowBox[{"FrameLabel", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"\"\<\[CurlyPhi] [rad]\>\"", ",", "\"\<\[Theta] [rad]\>\""}], 
-        "}"}]}], ",", 
-      RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
-      RowBox[{"LabelStyle", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"19", ",", "Bold", ",", "Black", ",", 
-         RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
-      RowBox[{"Contours", "\[Rule]", "7"}]}], 
+       RowBox[{"520", ",", "320"}], "}"}]}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
      RowBox[{"(*", 
-      RowBox[{"PlotLabel", "\[Rule]", 
-       RowBox[{
-        RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], "[", 
-        RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], 
-   ";"}]}]], "Input",
+      RowBox[{
+       RowBox[{"FrameTicks", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
+      "*)"}], 
+     RowBox[{"FrameStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\[CurlyPhi] [rad]\>\"", ",", "\"\<\[Theta] [rad]\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"19", ",", "Bold", ",", "Black", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
+     RowBox[{"Contours", "\[Rule]", "7"}]}], 
+    RowBox[{"(*", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{
+       RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], "[", 
+       
+       RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.841963691983405*^9, 3.84196373036469*^9}, {
    3.841963797935862*^9, 3.8419638343814*^9}, {3.841964105878602*^9, 
    3.841964143050459*^9}, {3.841964177455212*^9, 3.841964205568284*^9}, {
@@ -468,9 +420,9 @@ Cell[BoxData[
    3.8419651722151423`*^9, 3.8419653208758373`*^9}, {3.841966059012158*^9, 
    3.8419660951904297`*^9}, {3.841967760260125*^9, 3.841967770709173*^9}, {
    3.842078160934409*^9, 3.842078177526733*^9}, {3.842081058949176*^9, 
-   3.842081077698378*^9}, 3.84208121194079*^9},
- CellLabel->
-  "In[217]:=",ExpressionUUID->"39a210d2-340f-441b-a95d-05803b691859"]
+   3.842081077698378*^9}, 3.84208121194079*^9, {3.842081746620123*^9, 
+   3.842081747371705*^9}},ExpressionUUID->"39a210d2-340f-441b-a95d-\
+05803b691859"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3848,99 +3800,51 @@ Cell["Contour-Plots 2-axis", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"contourSet1Axis", "=", 
-     RowBox[{"ContourPlot", "[", 
-      RowBox[{
-       RowBox[{"Energy", "[", 
-        RowBox[{"th", ",", "phi"}], "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"phi", ",", 
-         RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
-       RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
-       RowBox[{"ImageSize", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"320", ",", "520"}], "}"}]}], ",", 
-       RowBox[{"Frame", "\[Rule]", "True"}], ",", 
-       RowBox[{"(*", 
-        RowBox[{
-         RowBox[{"FrameTicks", "\[Rule]", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
-        "*)"}], 
-       RowBox[{"FrameStyle", "\[Rule]", 
-        RowBox[{"Directive", "[", 
-         RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
-       RowBox[{"FrameLabel", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"\"\<\[Theta] [rad]\>\"", ",", "\"\<\[CurlyPhi] [rad]\>\""}],
-          "}"}]}], ",", 
-       RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
-       RowBox[{"LabelStyle", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{"19", ",", "Bold", ",", "Black", ",", 
-          RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
-       
-       RowBox[{"Contours", "\[Rule]", "7"}]}], 
-      RowBox[{"(*", 
-       RowBox[{"PlotLabel", "\[Rule]", 
-        RowBox[{
-         RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], 
-         "[", 
-         RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], ";"}], 
-   "*)"}], "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"contourSet2Axis", "=", 
-    RowBox[{"ContourPlot", "[", 
-     RowBox[{
-      RowBox[{"Energy2Axis", "[", 
-       RowBox[{"th", ",", "phi"}], "]"}], ",", 
+  RowBox[{"contourSet2Axis", "=", 
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{"Energy2Axis", "[", 
+      RowBox[{"th", ",", "phi"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"phi", ",", 
+       RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
       RowBox[{"{", 
-       RowBox[{"phi", ",", 
-        RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"th", ",", "0", ",", "Pi"}], "}"}], ",", 
-      RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
-      RowBox[{"ImageSize", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"520", ",", "320"}], "}"}]}], ",", 
-      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
-      RowBox[{"(*", 
-       RowBox[{
-        RowBox[{"FrameTicks", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
-       "*)"}], 
-      RowBox[{"FrameStyle", "\[Rule]", 
-       RowBox[{"Directive", "[", 
-        RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
-      RowBox[{"FrameLabel", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"\"\<\[CurlyPhi] [rad]\>\"", ",", "\"\<\[Theta] [rad]\>\""}], 
-        "}"}]}], ",", 
-      RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
-      RowBox[{"LabelStyle", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"19", ",", "Bold", ",", "Black", ",", 
-         RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
-      RowBox[{"Contours", "\[Rule]", "7"}]}], 
+       RowBox[{"520", ",", "320"}], "}"}]}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
      RowBox[{"(*", 
-      RowBox[{"PlotLabel", "\[Rule]", 
-       RowBox[{
-        RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], "[", 
-        RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], 
-   ";"}]}]], "Input",
+      RowBox[{
+       RowBox[{"FrameTicks", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"tickFunc", ",", "tickFunc"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"tickFunc", ",", "tickFunc"}], "}"}]}], "}"}]}], ","}], 
+      "*)"}], 
+     RowBox[{"FrameStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", "Thick"}], "]"}]}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\[CurlyPhi] [rad]\>\"", ",", "\"\<\[Theta] [rad]\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"19", ",", "Bold", ",", "Black", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}]}], "}"}]}], ",", 
+     RowBox[{"Contours", "\[Rule]", "7"}]}], 
+    RowBox[{"(*", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{
+       RowBox[{"StringTemplate", "[", "\"\<I=``/2 [\[HBar]]\>\"", "]"}], "[", 
+       
+       RowBox[{"SpinValue", "*", "2"}], "]"}]}], "*)"}], "]"}]}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.841963691983405*^9, 3.84196373036469*^9}, {
    3.841963797935862*^9, 3.8419638343814*^9}, {3.841964105878602*^9, 
    3.841964143050459*^9}, {3.841964177455212*^9, 3.841964205568284*^9}, {
@@ -3950,17 +3854,18 @@ Cell[BoxData[
    3.8419660951904297`*^9}, {3.841967760260125*^9, 3.841967770709173*^9}, {
    3.842078160934409*^9, 3.842078177526733*^9}, {3.842081058949176*^9, 
    3.842081077698378*^9}, 3.84208121194079*^9, {3.842081360328739*^9, 
-   3.84208136234752*^9}},
- CellLabel->
-  "In[220]:=",ExpressionUUID->"147cf885-2434-4305-a522-5beb6ddeaf61"]
+   3.84208136234752*^9}, {3.84208174130862*^9, 
+   3.842081742992539*^9}},ExpressionUUID->"147cf885-2434-4305-a522-\
+5beb6ddeaf61"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Export figures 1-axis", "Subsection",
+Cell["Export figures 2-axis", "Subsection",
  CellChangeTimes->{{3.841966131107029*^9, 3.841966133532428*^9}, {
   3.841967250446342*^9, 3.8419672525173073`*^9}, {3.842081227215035*^9, 
-  3.842081227991273*^9}},ExpressionUUID->"79227e35-6be7-4653-a164-\
+  3.842081227991273*^9}, {3.842081752489345*^9, 
+  3.842081752564748*^9}},ExpressionUUID->"79227e35-6be7-4653-a164-\
 c95a20b41d51"],
 
 Cell[CellGroupData[{
@@ -6652,24 +6557,24 @@ Cell[10737, 290, 2132, 66, 168, "Input",ExpressionUUID->"fbbe70bc-0dc7-4994-a83c
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[12906, 361, 265, 4, 54, "Subsection",ExpressionUUID->"e9aaf4ba-5a3a-449f-ae8f-3b411b961e0f"],
-Cell[13174, 367, 4329, 105, 178, "Input",ExpressionUUID->"39a210d2-340f-441b-a95d-05803b691859"]
+Cell[13174, 367, 2462, 57, 94, "Input",ExpressionUUID->"39a210d2-340f-441b-a95d-05803b691859"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17540, 477, 266, 4, 54, "Subsection",ExpressionUUID->"42ac07fe-fdf5-469d-b74d-a9e23921436d"],
+Cell[15673, 429, 266, 4, 54, "Subsection",ExpressionUUID->"42ac07fe-fdf5-469d-b74d-a9e23921436d"],
 Cell[CellGroupData[{
-Cell[17831, 485, 676, 14, 52, "Input",ExpressionUUID->"530547a7-5df6-4419-bb19-64a1045569d6"],
-Cell[18510, 501, 190990, 3334, 350, "Output",ExpressionUUID->"b68d886f-a799-4fb3-8530-ffda30a93444"]
+Cell[15964, 437, 676, 14, 52, "Input",ExpressionUUID->"530547a7-5df6-4419-bb19-64a1045569d6"],
+Cell[16643, 453, 190990, 3334, 350, "Output",ExpressionUUID->"b68d886f-a799-4fb3-8530-ffda30a93444"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[209549, 3841, 314, 5, 54, "Subsection",ExpressionUUID->"e4bb7a07-7710-4ebe-bb04-052bb3892f5a"],
-Cell[209866, 3848, 4378, 106, 178, "Input",ExpressionUUID->"147cf885-2434-4305-a522-5beb6ddeaf61"]
+Cell[207682, 3793, 314, 5, 54, "Subsection",ExpressionUUID->"e4bb7a07-7710-4ebe-bb04-052bb3892f5a"],
+Cell[207999, 3800, 2510, 58, 94, "Input",ExpressionUUID->"147cf885-2434-4305-a522-5beb6ddeaf61"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[214281, 3959, 266, 4, 54, "Subsection",ExpressionUUID->"79227e35-6be7-4653-a164-c95a20b41d51"],
+Cell[210546, 3863, 315, 5, 54, "Subsection",ExpressionUUID->"79227e35-6be7-4653-a164-c95a20b41d51"],
 Cell[CellGroupData[{
-Cell[214572, 3967, 723, 14, 52, "Input",ExpressionUUID->"a621730a-2289-42d1-8ccc-7b23068a2d9c"],
-Cell[215298, 3983, 146970, 2618, 350, "Output",ExpressionUUID->"303c9450-f45d-4c30-bc9f-292074019537"]
+Cell[210886, 3872, 723, 14, 52, "Input",ExpressionUUID->"a621730a-2289-42d1-8ccc-7b23068a2d9c"],
+Cell[211612, 3888, 146970, 2618, 350, "Output",ExpressionUUID->"303c9450-f45d-4c30-bc9f-292074019537"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
