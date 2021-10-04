@@ -1,0 +1,105 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3036,         97]
+NotebookOptionsPosition[      2436,         79]
+NotebookOutlinePosition[      2775,         94]
+CellTagsIndexPosition[      2732,         91]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Classical energy functions", "Chapter",
+ CellChangeTimes->{{3.842308752369927*^9, 
+  3.842308757849369*^9}},ExpressionUUID->"e19acc7a-cce2-43a6-ab43-\
+ba28f0290ef8"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global*`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8423088758996763`*^9, 3.842308884710018*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"f781f09a-a9d6-4561-9e64-5a12cf635b9d"],
+
+Cell["\<\
+The expressions of the energy function \
+\[ScriptCapitalH](\[Theta],\[CurlyPhi]) for a axis quantization \
+\>", "Text",
+ CellChangeTimes->{{3.842308760131926*^9, 
+  3.842308792035145*^9}},ExpressionUUID->"2fe98f7a-64dd-4179-a6a3-\
+ea5db7069c7e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClassicalEnergy", "[", 
+    RowBox[{"Ivalues_", ",", "jvalues_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "120"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Ivalues", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "-", 
+        RowBox[{"jvalues", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "40"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Ivalues", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "-", 
+        RowBox[{"jvalues", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "60"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Ivalues", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], "-", 
+        RowBox[{"jvalues", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}], ")"}], "2"]}]}]}], ";"}]], "Input",\
+
+ CellChangeTimes->{{3.842308830140752*^9, 3.842308925015239*^9}, {
+  3.842308958910788*^9, 3.8423090665859413`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 680}, {323, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 171, 3, 69, "Chapter",ExpressionUUID->"e19acc7a-cce2-43a6-ab43-ba28f0290ef8"],
+Cell[754, 27, 222, 3, 30, "Input",ExpressionUUID->"f781f09a-a9d6-4561-9e64-5a12cf635b9d"],
+Cell[979, 32, 255, 6, 35, "Text",ExpressionUUID->"2fe98f7a-64dd-4179-a6a3-ea5db7069c7e"],
+Cell[1237, 40, 1183, 36, 109, "Input",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"]
+}, Open  ]]
+}
+]
+*)
+
