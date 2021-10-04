@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3036,         97]
-NotebookOptionsPosition[      2436,         79]
-NotebookOutlinePosition[      2775,         94]
-CellTagsIndexPosition[      2732,         91]
+NotebookDataLength[      8218,        230]
+NotebookOptionsPosition[      7120,        205]
+NotebookOutlinePosition[      7459,        220]
+CellTagsIndexPosition[      7416,        217]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -74,11 +74,137 @@ Cell[BoxData[
 
  CellChangeTimes->{{3.842308830140752*^9, 3.842308925015239*^9}, {
   3.842308958910788*^9, 3.8423090665859413`*^9}},
- CellLabel->"In[2]:=",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"]
+ CellLabel->"In[2]:=",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"],
+
+Cell["\<\
+The components of the odd-particle angular momentum j={j1,j2,j3}\
+\>", "Text",
+ CellChangeTimes->{{3.8423093935730247`*^9, 
+  3.8423094420013857`*^9}},ExpressionUUID->"7b01215e-992f-4081-9302-\
+db61f0ecb53e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"jvalues", "[", 
+    RowBox[{"axis_", ",", "jspin_", ",", "theta_", ",", "phi_"}], "]"}], ":=", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"jspin", "*", 
+             RowBox[{"Cos", "[", "theta", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Cos", "[", "phi", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Sin", "[", "phi", "]"}]}]}], "}"}], 
+          RowBox[{"axis", "\[Equal]", "1"}]},
+         {
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Sin", "[", "phi", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Cos", "[", "theta", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Cos", "[", "phi", "]"}]}]}], "}"}], 
+          RowBox[{"axis", "\[Equal]", "2"}]},
+         {
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Cos", "[", "phi", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Sin", "[", "theta", "]"}], "*", 
+             RowBox[{"Sin", "[", "phi", "]"}]}], ",", 
+            RowBox[{"jspin", "*", 
+             RowBox[{"Cos", "[", "theta", "]"}]}]}], "}"}], 
+          RowBox[{"axis", "\[Equal]", "3"}]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}},
+           "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True]}], ";"}]], "Input",
+ CellChangeTimes->{{3.842309466910864*^9, 3.842309510185594*^9}, {
+  3.8423102861408577`*^9, 3.842310362664576*^9}, {3.842310541436207*^9, 
+  3.842310613898672*^9}, {3.8423107025412483`*^9, 3.8423107100896473`*^9}, {
+  3.842310750721738*^9, 3.8423107800067253`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"50a97f96-304d-406c-ae91-eceb2ca3ae37"],
+
+Cell["The components of the total angular momentum I={I1,I2,I3}", "Text",
+ CellChangeTimes->{{3.842309445921666*^9, 
+  3.84230946108114*^9}},ExpressionUUID->"ebabf49e-03e1-4e18-87a9-\
+3eccfed06e6c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"jvalues", "[", 
+  RowBox[{"3", ",", 
+   RowBox[{"13", "/", "2"}], ",", "1", ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.842310787862513*^9, 3.842310825466461*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"beab14b9-3267-43dd-a588-bdf785ea4685"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    FractionBox["13", "2"], " ", 
+    RowBox[{"Cos", "[", "1", "]"}], " ", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   FractionBox[
+    RowBox[{"13", " ", 
+     SuperscriptBox[
+      RowBox[{"Sin", "[", "1", "]"}], "2"]}], "2"], ",", 
+   FractionBox[
+    RowBox[{"13", " ", 
+     RowBox[{"Cos", "[", "1", "]"}]}], "2"]}], "}"}]], "Output",
+ CellChangeTimes->{{3.842310802900663*^9, 3.842310825740533*^9}},
+ CellLabel->"Out[7]=",ExpressionUUID->"eccd530b-99df-4647-9f45-7bd13d205561"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 911},
-WindowMargins->{{Automatic, 680}, {323, Automatic}},
+WindowMargins->{{Automatic, 752}, {Automatic, 296}},
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -97,7 +223,14 @@ Cell[CellGroupData[{
 Cell[580, 22, 171, 3, 69, "Chapter",ExpressionUUID->"e19acc7a-cce2-43a6-ab43-ba28f0290ef8"],
 Cell[754, 27, 222, 3, 30, "Input",ExpressionUUID->"f781f09a-a9d6-4561-9e64-5a12cf635b9d"],
 Cell[979, 32, 255, 6, 35, "Text",ExpressionUUID->"2fe98f7a-64dd-4179-a6a3-ea5db7069c7e"],
-Cell[1237, 40, 1183, 36, 109, "Input",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"]
+Cell[1237, 40, 1183, 36, 109, "Input",ExpressionUUID->"f1abdcd1-b4c6-472b-8492-0e12a8939f37"],
+Cell[2423, 78, 218, 5, 35, "Text",ExpressionUUID->"7b01215e-992f-4081-9302-db61f0ecb53e"],
+Cell[2644, 85, 3408, 85, 89, "Input",ExpressionUUID->"50a97f96-304d-406c-ae91-eceb2ca3ae37"],
+Cell[6055, 172, 198, 3, 35, "Text",ExpressionUUID->"ebabf49e-03e1-4e18-87a9-3eccfed06e6c"],
+Cell[CellGroupData[{
+Cell[6278, 179, 272, 5, 30, "Input",ExpressionUUID->"beab14b9-3267-43dd-a588-bdf785ea4685"],
+Cell[6553, 186, 539, 15, 53, "Output",ExpressionUUID->"eccd530b-99df-4647-9f45-7bd13d205561"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
