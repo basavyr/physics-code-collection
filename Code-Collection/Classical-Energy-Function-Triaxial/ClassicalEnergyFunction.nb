@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    732477,      12971]
-NotebookOptionsPosition[    729055,      12909]
-NotebookOutlinePosition[    729395,      12924]
-CellTagsIndexPosition[    729352,      12921]
+NotebookDataLength[    730778,      12923]
+NotebookOptionsPosition[    727621,      12867]
+NotebookOutlinePosition[    727961,      12882]
+CellTagsIndexPosition[    727918,      12879]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -12750,8 +12750,6 @@ Cell[BoxData[{
  CellLabel->
   "In[391]:=",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"p1Axis", "=", 
@@ -12793,16 +12791,8 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"getPointLabel", "[", 
-  RowBox[{"3", ",", 
-   RowBox[{"minpoints3Axis", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}]}], "Input",
+       RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}], "]"}]}], ";"}]}], "Input",\
+
  CellChangeTimes->{{3.8423145385276413`*^9, 3.842314544881761*^9}, {
   3.8423146448847713`*^9, 3.842314721820484*^9}, {3.8423147912573757`*^9, 
   3.842314820594949*^9}, {3.8423148606694613`*^9, 3.8423148612755136`*^9}, {
@@ -12811,99 +12801,67 @@ Cell[BoxData[{
   3.84231636025873*^9, 3.842316387644143*^9}, {3.842316427095668*^9, 
   3.842316446718711*^9}, {3.842316481241037*^9, 3.8423164826365547`*^9}, {
   3.8423166437863503`*^9, 3.842316644279633*^9}, {3.842316729656405*^9, 
-  3.84231675419725*^9}, {3.842316785024979*^9, 3.8423167885077677`*^9}},
+  3.84231675419725*^9}, {3.842316785024979*^9, 3.8423167885077677`*^9}, {
+  3.842317038312608*^9, 3.842317038490415*^9}},
  CellLabel->
-  "In[405]:=",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
+  "In[416]:=",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"3-axis\"\>", ",", "1.1235236570818186`", ",", 
-   "0.2827921437099774`", ",", "1.360947468617011`"}], "}"}]], "Output",
- CellChangeTimes->{3.8423167890396833`*^9},
- CellLabel->
-  "Out[409]=",ExpressionUUID->"fb864127-b913-4a38-ac75-33c40412f824"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Grid", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "\"\<Axis quantization\>\"", ",", 
-       "\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(min\)]\)\>\"", ",", 
-       "\"\<\!\(\*SubscriptBox[\(\[CurlyPhi]\), \(min\)]\)\>\"", ",", 
-       "\"\<\!\(\*SubscriptBox[\(H\), \(min\)]\)(\[Theta],\[CurlyPhi])\>\""}],
-       "}"}], ",", 
-     RowBox[{"getPointLabel", "[", 
-      RowBox[{"1", ",", 
-       RowBox[{"minpoints1Axis", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}], ",", 
-     RowBox[{"getPointLabel", "[", 
-      RowBox[{"2", ",", 
-       RowBox[{"minpoints2Axis", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}], ",", 
-     RowBox[{"getPointLabel", "[", 
-      RowBox[{"2", ",", 
-       RowBox[{"minpoints2Axis", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"-", "\[Pi]"}], ",", 
-           RowBox[{"-", "0.5"}]}], "}"}]}], "]"}]}], "]"}], ",", 
-     RowBox[{"getPointLabel", "[", 
-      RowBox[{"3", ",", 
-       RowBox[{"minpoints3Axis", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}]}], "}"}], ",", 
-   
-   RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}]], "Input",
+ RowBox[{
+  RowBox[{"export", "[", 
+   RowBox[{"\"\<AllPoints\>\"", ",", 
+    RowBox[{"Grid", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Axis quantization\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(min\)]\)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(\[CurlyPhi]\), \(min\)]\)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(H\), \
+\(min\)]\)(\[Theta],\[CurlyPhi])\>\""}], "}"}], ",", 
+        RowBox[{"getPointLabel", "[", 
+         RowBox[{"1", ",", 
+          RowBox[{"minpoints1Axis", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"getPointLabel", "[", 
+         RowBox[{"2", ",", 
+          RowBox[{"minpoints2Axis", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"getPointLabel", "[", 
+         RowBox[{"2", ",", 
+          RowBox[{"minpoints2Axis", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "\[Pi]"}], ",", 
+              RowBox[{"-", "0.5"}]}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"getPointLabel", "[", 
+         RowBox[{"3", ",", 
+          RowBox[{"minpoints3Axis", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "\[Pi]"}], "}"}]}], "]"}]}], "]"}]}], "}"}], 
+      ",", 
+      RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}]}], "]"}], ";"}]], "Input",
  CellChangeTimes->{{3.842316560808613*^9, 3.842316610799509*^9}, {
-  3.8423168101419697`*^9, 3.842316937861932*^9}},
+  3.8423168101419697`*^9, 3.842316937861932*^9}, {3.8423170110983963`*^9, 
+  3.8423170328765163`*^9}},
  CellLabel->
-  "In[414]:=",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"],
-
-Cell[BoxData[
- TagBox[GridBox[{
-    {"\<\"Axis quantization\"\>", "\<\"\\!\\(\\*SubscriptBox[\\(\[Theta]\\), \
-\\(min\\)]\\)\"\>", "\<\"\\!\\(\\*SubscriptBox[\\(\[CurlyPhi]\\), \
-\\(min\\)]\\)\"\>", "\<\"\\!\\(\\*SubscriptBox[\\(H\\), \
-\\(min\\)]\\)(\[Theta],\[CurlyPhi])\"\>"},
-    {"\<\"1-axis\"\>", "0.38812862300676565`", "0.8702725838377573`", 
-     "1.2025226262413662`"},
-    {"\<\"2-axis\"\>", "1.206327812586722`", "1.236159341383865`", 
-     "1.3812987183501715`"},
-    {"\<\"2-axis\"\>", "1.1037781187908196`", 
-     RowBox[{"-", "0.9829240827049464`"}], "2.9595734000630944`"},
-    {"\<\"3-axis\"\>", "1.1235236570818186`", "0.2827921437099774`", 
-     "1.360947468617011`"}
-   },
-   AutoDelete->False,
-   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
-   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
-  "Grid"]], "Output",
- CellChangeTimes->{
-  3.842316596548551*^9, {3.842316815653964*^9, 3.8423168350122223`*^9}, 
-   3.842316870649495*^9, 3.8423169088448563`*^9, 3.842316939039873*^9},
- CellLabel->
-  "Out[414]=",ExpressionUUID->"8f4d0c36-70ba-49cb-92ff-a89b216a1252"]
-}, Open  ]]
+  "In[415]:=",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -12963,14 +12921,8 @@ Cell[422292, 7570, 295697, 5024, 350, "Output",ExpressionUUID->"633dc181-53df-4f
 Cell[CellGroupData[{
 Cell[718050, 12601, 167, 3, 67, "Section",ExpressionUUID->"13c75172-f40c-4a80-a0bd-37bf6159b9c6"],
 Cell[718220, 12606, 5179, 144, 367, "Input",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
-Cell[CellGroupData[{
-Cell[723424, 12754, 2277, 61, 115, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
-Cell[725704, 12817, 290, 6, 34, "Output",ExpressionUUID->"fb864127-b913-4a38-ac75-33c40412f824"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[726031, 12828, 1858, 51, 94, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"],
-Cell[727892, 12881, 1123, 23, 117, "Output",ExpressionUUID->"8f4d0c36-70ba-49cb-92ff-a89b216a1252"]
-}, Open  ]]
+Cell[723402, 12752, 2054, 54, 94, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
+Cell[725459, 12808, 2134, 55, 115, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
 }, Open  ]]
 }, Open  ]]
 }
