@@ -64,9 +64,16 @@ def Pure_Energy(coeff_list, I_values, j_values):
 COEFFS = [120, 40, 60]
 SPIN = 35.0 / 2.0
 ODD_SPIN = 13.0 / 2.0
+THETA = np.pi / 4.0
+PHI = np.pi / 4.0
+
+j_Values_1axis = j_Components(ODD_SPIN, THETA, PHI)[0]
+j_Values_2axis = j_Components(ODD_SPIN, THETA, PHI)[1]
+j_Values_3axis = j_Components(ODD_SPIN, THETA, PHI)[2]
+
+I_values_1axis = lambda theta, phi: I_Components(SPIN, theta, phi)[0]
+I_values_2axis = lambda theta, phi: I_Components(SPIN, theta, phi)[1]
+I_values_3axis = lambda theta, phi: I_Components(SPIN, theta, phi)[2]
 
 
-I_Values = [1, 1, 1]
-j_Values = [1, 1, 1]
-
-Pure_Energy(COEFFS, I_Values, j_Values)
+print(Pure_Energy(COEFFS, I_values_1axis(1,1), j_Values_1axis))
