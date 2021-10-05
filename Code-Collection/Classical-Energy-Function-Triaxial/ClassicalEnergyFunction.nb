@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[   1531688,      26666]
-NotebookOptionsPosition[   1528014,      26605]
-NotebookOutlinePosition[   1528354,      26620]
-CellTagsIndexPosition[   1528311,      26617]
+NotebookDataLength[   1535778,      26777]
+NotebookOptionsPosition[   1531445,      26706]
+NotebookOutlinePosition[   1531785,      26721]
+CellTagsIndexPosition[   1531742,      26718]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26322,6 +26322,100 @@ u7Tj/wD7IqeF
 
 Cell[CellGroupData[{
 
+Cell["Create 1-dimensional plot of H", "Section",
+ CellChangeTimes->{{3.842390489541587*^9, 
+  3.842390497711898*^9}},ExpressionUUID->"9b7bf5a9-46a9-4ee0-a89a-\
+cd784e064753"],
+
+Cell["\<\
+The graphical representation of H(\[CurlyPhi]), where the polar angle \
+\[Theta] is fixed \
+\>", "Text",
+ CellChangeTimes->{{3.842390502932823*^9, 
+  3.842390529336748*^9}},ExpressionUUID->"74edfae6-48e6-4e71-ae72-\
+24810e4a4030"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClEn2Axistheta", "[", "th_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"phi", ",", 
+       RowBox[{"Energy2Axis", "[", 
+        RowBox[{"th", ",", "phi"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"phi", ",", 
+       RowBox[{"-", "Pi"}], ",", "Pi", ",", "0.3"}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.84239053385364*^9, 3.842390574621491*^9}, {
+  3.842390673556033*^9, 
+  3.84239073237359*^9}},ExpressionUUID->"4723e798-2375-4df8-8260-\
+e413ab162d2c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"ClEn2Axistheta", "[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.842390715972033*^9, 3.8423907386602783`*^9}},
+ CellLabel->
+  "In[278]:=",ExpressionUUID->"59484efb-71dd-42e9-8a3a-66ba14d754b4"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQBWIQDQEf7F+vtNvj5ijhABVwSJTxFxL3gPE5HPyjOtP0
+F4tB+QIOvBymwR3PhaF8EYdOlutcJQ8FoHwJh9i6jf+XLuSB8mUc9t+VE1WM
+4oTyFRzurN74r5qLA8pXctCoWrlCnhfGV3EImskx67o3jK/mULfkl8qxnexQ
+voaDe+KD1/HHWaF8LQe7VS7an5YyQfk6DhckhCvlm//ZQ/h6DpuebdbievoT
+yjdwuJR39uplpl9QvqHDSp0L3PmaDFD9Rg4nHvasOOXKBuUbO8Q8tzu4xIMP
+yjdxcOaalRPkAPO/qYN+kfWflm4xBwDaPU+c
+      "]]}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[1.6]}, {}}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[1.6]}, {}}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0., 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 21.}, {0, 6.070400510862869}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.842390722033374*^9, 3.842390739153824*^9}},
+ CellLabel->
+  "Out[278]=",ExpressionUUID->"adcfba11-a815-43d5-8f29-adb274667307"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["Minimization procedure", "Section",
  CellChangeTimes->{{3.842314398190588*^9, 
   3.842314404639627*^9}},ExpressionUUID->"13c75172-f40c-4a80-a0bd-\
@@ -26472,6 +26566,13 @@ Cell[BoxData[{
   3.842316723199465*^9}},
  CellLabel->
   "In[261]:=",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
+
+Cell["\<\
+The list with minimal points of H, evaluated for each quantization case\
+\>", "Text",
+ CellChangeTimes->{{3.842390111933778*^9, 
+  3.842390134382121*^9}},ExpressionUUID->"e39d6663-7c25-4813-bfab-\
+21394932f71f"],
 
 Cell[BoxData[{
  RowBox[{
@@ -26660,12 +26761,22 @@ Cell[1186125, 20689, 331739, 5628, 350, "Output",ExpressionUUID->"bfe6d41e-58c4-
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1517925, 26324, 167, 3, 67, "Section",ExpressionUUID->"13c75172-f40c-4a80-a0bd-37bf6159b9c6"],
-Cell[1518095, 26329, 5179, 144, 367, "Input",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
-Cell[1523277, 26475, 2054, 54, 94, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
-Cell[1525334, 26531, 2386, 60, 136, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"],
-Cell[1527723, 26593, 129, 3, 30, "Input",ExpressionUUID->"de784b63-b169-455d-b7c7-37129f7eb86c"],
-Cell[1527855, 26598, 131, 3, 30, "Input",ExpressionUUID->"ed94c362-ba34-4f11-a678-e11b5c45a47c"]
+Cell[1517925, 26324, 175, 3, 67, "Section",ExpressionUUID->"9b7bf5a9-46a9-4ee0-a89a-cd784e064753"],
+Cell[1518103, 26329, 240, 6, 35, "Text",ExpressionUUID->"74edfae6-48e6-4e71-ae72-24810e4a4030"],
+Cell[1518346, 26337, 578, 17, 30, "Input",ExpressionUUID->"4723e798-2375-4df8-8260-e413ab162d2c"],
+Cell[CellGroupData[{
+Cell[1518949, 26358, 253, 5, 30, "Input",ExpressionUUID->"59484efb-71dd-42e9-8a3a-66ba14d754b4"],
+Cell[1519205, 26365, 1878, 47, 251, "Output",ExpressionUUID->"adcfba11-a815-43d5-8f29-adb274667307"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1521132, 26418, 167, 3, 67, "Section",ExpressionUUID->"13c75172-f40c-4a80-a0bd-37bf6159b9c6"],
+Cell[1521302, 26423, 5179, 144, 367, "Input",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
+Cell[1526484, 26569, 221, 5, 35, "Text",ExpressionUUID->"e39d6663-7c25-4813-bfab-21394932f71f"],
+Cell[1526708, 26576, 2054, 54, 94, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
+Cell[1528765, 26632, 2386, 60, 136, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"],
+Cell[1531154, 26694, 129, 3, 30, "Input",ExpressionUUID->"de784b63-b169-455d-b7c7-37129f7eb86c"],
+Cell[1531286, 26699, 131, 3, 30, "Input",ExpressionUUID->"ed94c362-ba34-4f11-a678-e11b5c45a47c"]
 }, Open  ]]
 }, Open  ]]
 }
