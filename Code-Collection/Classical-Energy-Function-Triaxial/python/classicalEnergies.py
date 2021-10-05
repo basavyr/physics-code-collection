@@ -3,6 +3,29 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def I_Components(spin, theta, phi):
+    """
+    For a given spin and polar coordinates, calculate the total angular momentum components for all three quantization cases
+    """
+    I = spin
+
+    One_Axis_Components = [
+        I * np.cos(theta), I * np.sin(theta) * np.cos(phi), I * np.sin(theta) * np.sin(phi)]
+    Two_Axis_Components = [
+        I * np.sin(theta) * np.sin(phi), I * np.cos(theta), I * np.sin(theta) * np.cos(phi)]
+    Three_Axis_Components = [
+        I * np.cos(theta), I * np.sin(theta) * np.cos(phi), I * np.sin(theta) * np.sin(phi)]
+
+    return [One_Axis_Components, Two_Axis_Components, Three_Axis_Components]
+
+
+def j_Components(oddspin, theta, phi):
+    """
+    For a given odd-spin and polar coordinates, calculate the odd spin components for all three quantization cases
+    """
+    j = oddspin
+
+
 def Pure_Energy(coeff_list, I_values, j_values):
     """
     Uses: 1) a set of three coefficients (*weights*)
