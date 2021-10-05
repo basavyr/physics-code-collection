@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[   1571932,      27562]
-NotebookOptionsPosition[   1567890,      27494]
-NotebookOutlinePosition[   1568231,      27509]
-CellTagsIndexPosition[   1568188,      27506]
+NotebookDataLength[   1573395,      27596]
+NotebookOptionsPosition[   1569255,      27527]
+NotebookOutlinePosition[   1569596,      27542]
+CellTagsIndexPosition[   1569553,      27539]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -27346,14 +27346,36 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
       RowBox[{"[", "3", "]"}], "]"}], ",", 
-     RowBox[{"getMinSpins", "[", 
-      RowBox[{"case", ",", 
-       RowBox[{
-        RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
-        RowBox[{"[", "1", "]"}], "]"}], ",", 
-       RowBox[{
-        RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
-        RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], "}"}]}], ";"}]}], "Input",
+     RowBox[{
+      RowBox[{"getMinSpins", "[", 
+       RowBox[{"case", ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"getMinSpins", "[", 
+       RowBox[{"case", ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"getMinSpins", "[", 
+       RowBox[{"case", ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"getMinPoints", "[", "quantization", "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "[", 
+      RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.842314405934712*^9, 3.842314529810042*^9}, {
   3.842314570544938*^9, 3.842314625048341*^9}, {3.842314767564917*^9, 
   3.842314781210567*^9}, {3.842314880131199*^9, 3.842314978835987*^9}, {
@@ -27361,9 +27383,15 @@ Cell[BoxData[{
   3.842315640745429*^9}, {3.842315777124639*^9, 3.842315777212109*^9}, {
   3.842315987481696*^9, 3.842315987568592*^9}, {3.8423166460144*^9, 
   3.842316723199465*^9}, {3.842395195475629*^9, 3.8423952698689423`*^9}, {
-  3.842395445105672*^9, 
-  3.8423954509098177`*^9}},ExpressionUUID->"78a2323f-b14b-49ea-b074-\
-d473d5d7876f"],
+  3.842395445105672*^9, 3.8423954509098177`*^9}, {3.842395727680064*^9, 
+  3.842395734526531*^9}},
+ CellLabel->
+  "In[663]:=",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.842395670291463*^9, 
+  3.8423956753300447`*^9}},ExpressionUUID->"49b9b4b1-d5ef-43ea-a014-\
+894a7fac3962"],
 
 Cell["\<\
 The list with minimal points of H, evaluated for each quantization case\
@@ -27426,7 +27454,7 @@ Cell[BoxData[{
   3.84231675419725*^9}, {3.842316785024979*^9, 3.8423167885077677`*^9}, {
   3.842317038312608*^9, 3.842317038490415*^9}},
  CellLabel->
-  "In[266]:=",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
+  "In[670]:=",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
 
 Cell[BoxData[
  RowBox[{
@@ -27442,7 +27470,10 @@ Cell[BoxData[
           "\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(min\)]\)\>\"", ",", 
           "\"\<\!\(\*SubscriptBox[\(\[CurlyPhi]\), \(min\)]\)\>\"", ",", 
           "\"\<\!\(\*SubscriptBox[\(H\), \
-\(min\)]\)(\[Theta],\[CurlyPhi])\>\""}], "}"}], ",", 
+\(min\)]\)(\[Theta],\[CurlyPhi])\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(I\), \(1\)]\)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(I\), \(2\)]\)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(I\), \(3\)]\)\>\""}], "}"}], ",", 
         RowBox[{"getPointLabel", "[", 
          RowBox[{"1", ",", 
           RowBox[{"minpoints1Axis", "[", 
@@ -27486,9 +27517,11 @@ Cell[BoxData[
       RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}]}], "]"}], ";"}]], "Input",
  CellChangeTimes->{{3.842316560808613*^9, 3.842316610799509*^9}, {
   3.8423168101419697`*^9, 3.842316937861932*^9}, {3.8423170110983963`*^9, 
-  3.8423170328765163`*^9}, {3.842389745542727*^9, 3.8423898382525473`*^9}},
+  3.8423170328765163`*^9}, {3.842389745542727*^9, 3.8423898382525473`*^9}, {
+  3.842395484460705*^9, 3.842395491512265*^9}, {3.842395745793521*^9, 
+  3.842395755882393*^9}},
  CellLabel->
-  "In[275]:=",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
+  "In[674]:=",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -27558,10 +27591,11 @@ Cell[1523398, 26474, 32435, 683, 337, "Output",ExpressionUUID->"6a675da9-7c9e-4c
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[1555882, 27163, 167, 3, 67, "Section",ExpressionUUID->"13c75172-f40c-4a80-a0bd-37bf6159b9c6"],
-Cell[1556052, 27168, 7140, 197, 346, "Input",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
-Cell[1563195, 27367, 221, 5, 35, "Text",ExpressionUUID->"e39d6663-7c25-4813-bfab-21394932f71f"],
-Cell[1563419, 27374, 2054, 54, 94, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
-Cell[1565476, 27430, 2386, 60, 94, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
+Cell[1556052, 27168, 8064, 220, 388, "Input",ExpressionUUID->"78a2323f-b14b-49ea-b074-d473d5d7876f"],
+Cell[1564119, 27390, 154, 3, 30, "Input",ExpressionUUID->"49b9b4b1-d5ef-43ea-a014-894a7fac3962"],
+Cell[1564276, 27395, 221, 5, 35, "Text",ExpressionUUID->"e39d6663-7c25-4813-bfab-21394932f71f"],
+Cell[1564500, 27402, 2054, 54, 94, "Input",ExpressionUUID->"7e6477e0-e7c0-4e27-bafa-831e8041a6d7"],
+Cell[1566557, 27458, 2670, 65, 94, "Input",ExpressionUUID->"70640cb9-6658-48c0-ac61-ee8aa960a94c"]
 }, Open  ]]
 }, Open  ]]
 }
