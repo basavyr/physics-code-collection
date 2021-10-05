@@ -25,6 +25,15 @@ def j_Components(oddspin, theta, phi):
     """
     j = oddspin
 
+    One_Axis_Components = [
+        j * np.cos(theta), j * np.sin(theta) * np.cos(phi), j * np.sin(theta) * np.sin(phi)]
+    Two_Axis_Components = [
+        j * np.sin(theta) * np.sin(phi), j * np.cos(theta), j * np.sin(theta) * np.cos(phi)]
+    Three_Axis_Components = [
+        j * np.cos(theta), j * np.sin(theta) * np.cos(phi), j * np.sin(theta) * np.sin(phi)]
+
+    return [One_Axis_Components, Two_Axis_Components, Three_Axis_Components]
+
 
 def Pure_Energy(coeff_list, I_values, j_values):
     """
