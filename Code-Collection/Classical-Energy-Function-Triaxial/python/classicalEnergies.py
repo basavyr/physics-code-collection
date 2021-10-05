@@ -13,8 +13,8 @@ def I_Components(spin, theta, phi):
         I * np.cos(theta), I * np.sin(theta) * np.cos(phi), I * np.sin(theta) * np.sin(phi)]
     Two_Axis_Components = [
         I * np.sin(theta) * np.sin(phi), I * np.cos(theta), I * np.sin(theta) * np.cos(phi)]
-    Three_Axis_Components = [
-        I * np.cos(theta), I * np.sin(theta) * np.cos(phi), I * np.sin(theta) * np.sin(phi)]
+    Three_Axis_Components = [I * np.sin(theta) * np.cos(phi), I * np.sin(theta) * np.sin(phi),
+                             I * np.cos(theta)]
 
     return [One_Axis_Components, Two_Axis_Components, Three_Axis_Components]
 
@@ -29,8 +29,8 @@ def j_Components(oddspin, theta, phi):
         j * np.cos(theta), j * np.sin(theta) * np.cos(phi), j * np.sin(theta) * np.sin(phi)]
     Two_Axis_Components = [
         j * np.sin(theta) * np.sin(phi), j * np.cos(theta), j * np.sin(theta) * np.cos(phi)]
-    Three_Axis_Components = [
-        j * np.cos(theta), j * np.sin(theta) * np.cos(phi), j * np.sin(theta) * np.sin(phi)]
+    Three_Axis_Components = [j * np.sin(theta) * np.cos(phi), j * np.sin(theta) * np.sin(phi),
+                             j * np.cos(theta)]
 
     return [One_Axis_Components, Two_Axis_Components, Three_Axis_Components]
 
@@ -76,4 +76,16 @@ I_values_2axis = lambda theta, phi: I_Components(SPIN, theta, phi)[1]
 I_values_3axis = lambda theta, phi: I_Components(SPIN, theta, phi)[2]
 
 
-print(Pure_Energy(COEFFS, I_values_1axis(1,1), j_Values_1axis))
+# numerical test
+def NumericalTest(thetas, phis):
+    for theta in thetas:
+        for phi in phis:
+            print(theta, phi, Pure_Energy(COEFFS, I_values_1axis(theta, phi), j_Values_1axis), Pure_Energy(
+                COEFFS, I_values_2axis(theta, phi), j_Values_2axis), Pure_Energy(COEFFS, I_values_3axis(theta, phi), j_Values_3axis))
+
+
+PHIS = [-3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841,
+        2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841]
+
+NumericalTest([0, 1, 2, 3], [-3.14159, -2.14159, -1.14159, -
+                             0.141593, 0.858407, 1.85841, 2.85841])
