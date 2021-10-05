@@ -98,8 +98,10 @@ def Classical_Energy(quantization_axis, theta, phi):
     I1, I3, I3 = I_values
     # <---------- change theta and phi if the component does not use the constant parameters defined at the start
 
-    print(j_values)
-    print(I_values)
+    # print(j_values)
+    # print(I_values)
+
+    return Pure_Energy(COEFFS, I_values, j_values)
 
 
 # numerical test
@@ -114,5 +116,6 @@ PHIS = [-3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.
         2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841]
 
 if __name__ == "__main__":
-    # NumericalTest([0, 1, 2, 3], [-3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841])
-    Classical_Energy(1, 1.21, 0.53)
+    print(Classical_Energy(1, 1, 0.858407))
+    print(Classical_Energy(2, 2, 0.858407))
+    print(Classical_Energy(3, 3, 0.858407))
