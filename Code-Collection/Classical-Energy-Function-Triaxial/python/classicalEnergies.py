@@ -13,6 +13,7 @@ PHI = np.pi / 4.0
 def I_Components(spin, theta, phi):
     """
     For a given spin and polar coordinates, calculate the total angular momentum components for all three quantization cases
+    The I_Components returns a list of tuples (I1,I2,I3), so calling the function with index [id] will in fact give the [id-1]-th quantization case, where id=1,2,3
     """
     I = spin
 
@@ -93,18 +94,20 @@ def Chiral_Energy(quantization_axis, theta, phi):
     Namely, the classical energy function admits -j1 ; -j2 ; -j3
     The chiral partner energy function admits +j1 ; +j2 ; +j3
     """
+
     j_values = j_Components(ODD_SPIN, THETA, PHI)[quantization_axis - 1]
 
-    I_values = I_Components(ODD_SPIN, theta, phi)[quantization_axis - 1]
+    I_values = I_Components(SPIN, theta, phi)[quantization_axis - 1]
 
-    energy_term: lambda k: 1.0 / COEFFS[k] * \
+    # print(j_values)
+    # print(I_values)
+
+    energy_term = lambda k: 1.0 / COEFFS[k] * \
         np.power(I_values[k] + j_values[k], 2)
 
     energy_terms = [energy_term(idx) for idx in range(3)]
 
-    Chiral_Energy = sum(energy_terms)
-
-    return Chiral_Energy
+    return sum(energy_terms)
 
 
 def Classical_Energy(quantization_axis, theta, phi):
@@ -129,16 +132,22 @@ def Classical_Energy(quantization_axis, theta, phi):
 
 
 # numerical test
-def NumericalTest_Energy(quantization_axis, thetas, phis):
-    for theta in thetas:
-        for phi in phis:
-            # print(theta, phi, Pure_Energy(COEFFS, I_values_1axis(theta, phi), j1_const), Pure_Energy(COEFFS, I_values_2axis(theta, phi), j2_const), Pure_Energy(COEFFS, I_values_3axis(theta, phi), j3_const))
-            print(theta, phi, Classical_Energy(quantization_axis,
-                                               theta, phi), Chiral_Energy(1, theta, phi))
+def NumericalTest_Energy(filename, quantization_axis, thetas, phis):
+    with open(f'{filename}.dat', 'w+') as f:
+        for theta in thetas:
+            for phi in phis:
+                # print(theta, phi, Pure_Energy(COEFFS, I_values_1axis(theta, phi), j1_const), Pure_Energy(COEFFS, I_values_2axis(theta, phi), j2_const), Pure_Energy(COEFFS, I_values_3axis(theta, phi), j3_const))
+                # print(theta, phi, Classical_Energy(quantization_axis,
+                #                                    theta, phi), Chiral_Energy(quantization_axis, theta, phi))
+                content = [theta, phi, Classical_Energy(quantization_axis,
+                                                        theta, phi), Chiral_Energy(quantization_axis, theta, phi)]
+                f.writelines(str(content) + '\n')
 
 
 PHIS = [-3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841,
         2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841, -3.14159, -2.14159, -1.14159, -0.141593, 0.858407, 1.85841, 2.85841]
 
 if __name__ == "__main__":
-    NumericalTest_Energy(1, [0, 1, 2, 3], [0, 1, 2, 3])
+    NumericalTest_Energy("1axis", 1, [0, 1, 2, 3], [0, 1, 2, 3])
+    NumericalTest_Energy("2axis", 2, [0, 1, 2, 3], [0, 1, 2, 3])
+    NumericalTest_Energy("3axis", 3, [0, 1, 2, 3], [0, 1, 2, 3])
