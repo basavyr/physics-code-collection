@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8377,        258]
-NotebookOptionsPosition[      7238,        231]
-NotebookOutlinePosition[      7578,        246]
-CellTagsIndexPosition[      7535,        243]
+NotebookDataLength[     13551,        411]
+NotebookOptionsPosition[     11999,        378]
+NotebookOutlinePosition[     12339,        393]
+CellTagsIndexPosition[     12296,        390]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -225,12 +225,159 @@ Cell[TextData[{
 }], "Text",
  CellChangeTimes->{{3.84247289634953*^9, 
   3.842472909289727*^9}},ExpressionUUID->"71cdd09f-6435-4d5b-9468-\
-f25e5b192a38"]
+f25e5b192a38"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"enChiral1axis", "[", 
+    RowBox[{"theta_", ",", "phi_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "120"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Cos", "[", "theta", "]"}]}], "+", 
+        RowBox[{"j1axis", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "40"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Cos", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j1axis", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "60"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Sin", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j1axis", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}], ")"}], "2"]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"enChiral2axis", "[", 
+    RowBox[{"theta_", ",", "phi_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "120"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Sin", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j2axis", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "40"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Cos", "[", "theta", "]"}]}], "+", 
+        RowBox[{"j2axis", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "60"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Cos", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j2axis", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}], ")"}], "2"]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"enChiral3axis", "[", 
+    RowBox[{"theta_", ",", "phi_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "120"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Cos", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j3axis", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "40"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"Sin", "[", "phi", "]"}]}], "+", 
+        RowBox[{"j3axis", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "2"]}], "+", 
+    RowBox[{
+     FractionBox["1", "60"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Iconst", "*", 
+         RowBox[{"Cos", "[", "theta", "]"}]}], "+", 
+        RowBox[{"j3axis", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}], ")"}], "2"]}]}]}], ";"}]}], "Input",\
+
+ CellChangeTimes->{{3.842473867387323*^9, 3.8424738871681623`*^9}, {
+  3.842473931340597*^9, 3.842473964152882*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"e208e19b-ce29-4f9f-a949-6ad65cd55597"],
+
+Cell["Numerical test of the chiral energies", "Item",
+ CellChangeTimes->{{3.8424739721206627`*^9, 
+  3.8424739779000893`*^9}},ExpressionUUID->"69ce85d6-6967-48aa-a7f2-\
+5a591539c09b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Print", "[", 
+  RowBox[{
+   RowBox[{"N", "[", 
+    RowBox[{"enChiral1axis", "[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "\"\< \>\"", ",", 
+   RowBox[{"N", "[", 
+    RowBox[{"enChiral2axis", "[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "\"\< \>\"", ",", 
+   RowBox[{"N", "[", 
+    RowBox[{"enChiral3axis", "[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.84247398094243*^9, 3.842473990851811*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"ad7b5b9c-3743-4cd2-b4a1-867721fbf661"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+  "8.862423369675259`", "\[InvisibleSpace]", "\<\" \"\>", "\[InvisibleSpace]",
+    "9.067892557760409`", "\[InvisibleSpace]", "\<\" \"\>", 
+   "\[InvisibleSpace]", "10.453501148740571`"}],
+  SequenceForm[
+  8.862423369675259, " ", 9.067892557760409, " ", 10.453501148740571`],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.842473991234576*^9},
+ CellLabel->
+  "During evaluation of \
+In[16]:=",ExpressionUUID->"bc268a66-654f-41b6-9a42-0255268a0d67"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{808, 911},
-WindowMargins->{{Automatic, 146}, {-114, Automatic}},
+WindowSize->{1043, 873},
+WindowMargins->{{222, Automatic}, {-94, Automatic}},
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -251,13 +398,19 @@ Cell[CellGroupData[{
 Cell[768, 29, 157, 3, 54, "Subsection",ExpressionUUID->"b76238ad-520c-46dc-8795-24847110172a"],
 Cell[928, 34, 981, 26, 115, "Input",ExpressionUUID->"43426cbc-54a7-4c94-b198-d98061e30997"],
 Cell[1912, 62, 229, 6, 35, "Text",ExpressionUUID->"746d2ab8-e9d4-4af3-9957-082f0642bff6"],
-Cell[2144, 70, 3499, 109, 368, "Input",ExpressionUUID->"cf95ccd2-a4ee-457b-9e84-d15b07bc79fa"],
+Cell[2144, 70, 3499, 109, 248, "Input",ExpressionUUID->"cf95ccd2-a4ee-457b-9e84-d15b07bc79fa"],
 Cell[5646, 181, 191, 3, 32, "Item",ExpressionUUID->"d0ad9e45-24ca-44d7-aa6d-eda789d3b1e1"],
 Cell[CellGroupData[{
 Cell[5862, 188, 544, 13, 30, "Input",ExpressionUUID->"a539f3e8-ad26-4f59-8d03-0f280a5c3e7d"],
 Cell[6409, 203, 504, 13, 24, "Print",ExpressionUUID->"6b61340f-f15a-4fff-a6cf-8f6e3df23103"]
 }, Open  ]],
-Cell[6928, 219, 282, 8, 35, "Text",ExpressionUUID->"71cdd09f-6435-4d5b-9468-f25e5b192a38"]
+Cell[6928, 219, 282, 8, 35, "Text",ExpressionUUID->"71cdd09f-6435-4d5b-9468-f25e5b192a38"],
+Cell[7213, 229, 3472, 108, 248, "Input",ExpressionUUID->"e208e19b-ce29-4f9f-a949-6ad65cd55597"],
+Cell[10688, 339, 183, 3, 32, "Item",ExpressionUUID->"69ce85d6-6967-48aa-a7f2-5a591539c09b"],
+Cell[CellGroupData[{
+Cell[10896, 346, 562, 13, 30, "Input",ExpressionUUID->"ad7b5b9c-3743-4cd2-b4a1-867721fbf661"],
+Cell[11461, 361, 498, 12, 24, "Print",ExpressionUUID->"bc268a66-654f-41b6-9a42-0255268a0d67"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
