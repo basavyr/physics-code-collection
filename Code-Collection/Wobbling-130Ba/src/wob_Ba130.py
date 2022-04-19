@@ -1,7 +1,6 @@
-from colorsys import TWO_THIRD
 import numpy as np
 
-import matplotlib.pyplot as plt
+import plotter
 
 
 def MeV(energy):
@@ -36,22 +35,11 @@ def Energy(n, spin, moi3, omega):
 
 
 def E_band1(spin, moi3, omega):
-    return Energy(0, spin, moi3, omega)
+    return Energy(PHONON_BAND1, spin, moi3, omega)
 
 
-def E_band1(spin, moi3, omega):
-    return Energy(1, spin, moi3, omega)
+def E_band2(spin, moi3, omega):
+    return Energy(PHONON_BAND2, spin, moi3, omega)
 
 
-def plotData(spins, energies, plotname):
-    plotfile = f'wobbling-plot-{str(plotname)}.pdf'
-
-    plt.plot(spins, energies, 'r-o', label='data')
-    plt.legend(loc='best')
-    plt.xlabel('spins')
-    plt.ylabel('energy')
-    plt.savefig(plotfile, dpi=300, bbox_inches='tight')
-    plt.close()
-
-
-# plotData(SPINS_BAND1, ENERGIES_BAND1, 11)
+plotter.plotData(SPINS_BAND1, ENERGIES_BAND1, 11)
