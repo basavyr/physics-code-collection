@@ -1,5 +1,5 @@
 import numpy as np
-
+from scipy.optimize import curve_fit
 import plotter
 
 
@@ -34,19 +34,24 @@ def Energy(n, spin, moi3, omega):
 
 
 def modelFunction(data, p1, p2):
-    wobbling_phonon, spins = data
+    wobbling_phonons, spins = data
 
-    model_energies = Energy(wobbling_phonon, spins, p1, p2)
+    model_energies = Energy(wobbling_phonons, spins, p1, p2)
 
     return model_energies
 
 
-data_1 = [np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1)]
-data_2 = [np.asarray(PHONON_BAND2), np.asarray(SPINS_BAND2)]
+data_1 = (np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1))
+data_2 = (np.asarray(PHONON_BAND2), np.asarray(SPINS_BAND2))
 
+# x_1 = modelFunction(data_1, 1, 1)
+# x_2 = modelFunction(data_2, 1, 1)
 
-x_1 = modelFunction(data_1, 1, 1)
-x_2 = modelFunction(data_2, 1, 1)
+# print(x_1)
+# print(x_2)
 
-print(x_1)
-print(x_2)
+# initial set of params to be adopted within the fitting procedure
+initial_params = [10, 20]
+popt, pcov = curve_fit(modelFunction, data_1, ENERGIES_BAND1, initial_params)
+
+print(popt)
