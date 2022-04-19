@@ -1,6 +1,10 @@
+from ast import BitAnd
 import numpy as np
 from scipy.optimize import curve_fit
 import plotter
+
+
+MAXVAL = 696969696969
 
 
 def MeV(energy):
@@ -21,37 +25,76 @@ PHONON_BAND2 = [1 for _ in range(len(SPINS_BAND2))]
 
 # define the general energy formula
 # the Energy depends on two parameters: 3rd MOI and the wobbling frequency
-def Energy(n, spin, moi3, omega):
+def Energy(n, spin, A1, A2, A3):
+    if(A1 <= 0 and A2 <= 0 and A3 <= 0):
+        return MAXVAL
+    if(A3 > A1 and A3 < A2):
+        return MAXVAL
+    if(A3 < A1 and A3 > A2):
+        return MAXVAL
+
     # calculate the energy term coming from the rotational motion around the 3-axis
-    T_rotor = 1.0/(2.0*moi3)*spin*(spin+1.0)
+    T_rotor = A3*spin*(spin+1.0)
 
     # calculate the energy coming from the contribution of axes (1,2) as small amplitude oscillations
-    T_wobbling = (n+0.5)*omega
+    T_wobbling = 2*spin*np.sqrt((A1-A3)*(A2-A3))*(n+0.5)
 
     T = T_rotor+T_wobbling
 
     return T
 
 
-def modelFunction(data, p1, p2):
+def modelFunction(data, p1, p2, p3):
     wobbling_phonons, spins = data
 
-    model_energies = Energy(wobbling_phonons, spins, p1, p2)
+    model_energies = Energy(wobbling_phonons, spins, p1, p2, p3)
 
     return model_energies
 
 
-data_1 = (np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1))
-data_2 = (np.asarray(PHONON_BAND2), np.asarray(SPINS_BAND2))
+# create a fitting procedure only for the first wobbling band
+def fit_band_1():
+    data_1 = (np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1))
 
-# x_1 = modelFunction(data_1, 1, 1)
-# x_2 = modelFunction(data_2, 1, 1)
+    # initial set of params to be adopted within the fitting procedure
+    initial_params = [10, 20]
 
-# print(x_1)
-# print(x_2)
+    popt, pcov = curve_fit(modelFunction, data_1,
+                           ENERGIES_BAND1, initial_params)
+    print(popt)
 
-# initial set of params to be adopted within the fitting procedure
-initial_params = [10, 20]
-popt, pcov = curve_fit(modelFunction, data_1, ENERGIES_BAND1, initial_params)
 
-print(popt)
+# create a fitting procedure only for the second wobbling band
+def fit_band_2():
+    data_2 = (np.asarray(PHONON_BAND2), np.asarray(SPINS_BAND2))
+
+    # initial set of params to be adopted within the fitting procedure
+    initial_params = [10, 20]
+
+    popt, pcov = curve_fit(modelFunction, data_2,
+                           ENERGIES_BAND1, initial_params)
+    print(popt)
+
+
+def fit_full_bands():
+    # create joint data sets
+    spins = np.asarray(SPINS_BAND1+SPINS_BAND2)
+    phonons = np.asarray(PHONON_BAND1+PHONON_BAND2)
+
+    # keep the energies in the same form
+    energies = ENERGIES_BAND1+ENERGIES_BAND2
+    band_head = energies[0]
+    energies = [e-band_head for e in energies]
+    energies = energies[1:]
+    spins = spins[1:]
+    phonons = phonons[1:]
+
+    initial_params = [0.05, 0.06, 0.07]
+    popt, pcov = curve_fit(
+        modelFunction, (spins, phonons), energies, initial_params)
+
+    return popt
+
+
+FIT = fit_full_bands()
+print(FIT)
