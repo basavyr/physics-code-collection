@@ -42,7 +42,7 @@ def E_band2(spin, moi3, omega):
     return Energy(PHONON_BAND2, spin, moi3, omega)
 
 
-def comboModel(spin_set1, spin_set2, moi3, omega):
+def comboModel(comboData, moi3, omega):
     partial_data1 = [E_band1(spin, moi3, omega) for spin in spin_set1]
     partial_data2 = [E_band2(spin, moi3, omega) for spin in spin_set2]
 
@@ -60,3 +60,18 @@ def comboEnergies(energy_set1, energy_set2):
 
 
 print(comboModel(SPINS_BAND1, SPINS_BAND2, 30, 20))
+
+#183-187Au_Wobbling-Bands/au_187_workflow.py at main · basavyr/183-187Au_Wobbling-Bands
+#https://github.com/basavyr/183-187Au_Wobbling-Bands/blob/main/src/python/excitation_energies_fit/au_187_workflow.py
+#
+#Simultaneously curve fitting for 2 models with shared parameters in R - Cross Validated
+#https://stats.stackexchange.com/questions/348765/simultaneously-curve-fitting-for-2-models-with-shared-parameters-in-r
+#
+#optimization - Fitting two sets of data with two different model functions simultaneously giving a unique optimal parameter - Stack Overflow
+#https://stackoverflow.com/questions/51906152/fitting-two-sets-of-data-with-two-different-model-functions-simultaneously-givin
+#
+#scipy.optimize.curve_fit — SciPy v1.8.0 Manual
+#https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html
+#
+#scipy - Python curve_fit with multiple independent variables - Stack Overflow
+#https://stackoverflow.com/questions/28372597/python-curve-fit-with-multiple-independent-variables/28373422
