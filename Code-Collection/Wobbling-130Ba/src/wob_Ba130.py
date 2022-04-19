@@ -41,9 +41,12 @@ def modelFunction(data, p1, p2):
     return model_energies
 
 
-data = [np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1)]
+data_1 = [np.asarray(PHONON_BAND1), np.asarray(SPINS_BAND1)]
+data_2 = [np.asarray(PHONON_BAND2), np.asarray(SPINS_BAND2)]
 
 
-x = modelFunction(data, 1, 1)
+x_1 = modelFunction(data_1, 1, 1)
+x_2 = modelFunction(data_2, 1, 1)
 
-print(x)
+print(x_1)
+print(x_2)
