@@ -42,4 +42,21 @@ def E_band2(spin, moi3, omega):
     return Energy(PHONON_BAND2, spin, moi3, omega)
 
 
-plotter.plotData(SPINS_BAND1, ENERGIES_BAND1, 11)
+def comboModel(spin_set1, spin_set2, moi3, omega):
+    partial_data1 = [E_band1(spin, moi3, omega) for spin in spin_set1]
+    partial_data2 = [E_band2(spin, moi3, omega) for spin in spin_set2]
+
+    return np.append(partial_data1, partial_data2)
+
+
+# return a joint array containing the spins for the two bands
+def comboSpins(spin_set1, spin_set2):
+    return np.append(spin_set1, spin_set2)
+
+
+# return a joint array containing the energies for the two bands
+def comboEnergies(energy_set1, energy_set2):
+    return np.append(energy_set1, energy_set2)
+
+
+print(comboModel(SPINS_BAND1, SPINS_BAND2, 30, 20))
