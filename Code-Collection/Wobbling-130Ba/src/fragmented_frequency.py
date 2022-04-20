@@ -1,5 +1,6 @@
 import numpy as np
 import math
+from scipy.optimize import curve_fit
 
 # escape value to be used in case of math failure
 MAXVAL = 6969696969
@@ -93,6 +94,17 @@ def exc_energy(n, I, I1, I2, I3):
     return e-e0
 
 
+def model_energy(xdata, I1, I2, I3):
+    phonons, spins = xdata
+
+    local_energy = exc_energy(phonons, spins, I1, I2, I3)
+
+    if(local_energy == MAXVAL):
+        return MAXVAL
+
+    return local_energy
+
+
 def write_energy_to_file():
     omega_file = 'omega_frequencies.dat'
     with open(omega_file, 'w+') as writer:
@@ -106,3 +118,10 @@ def write_energy_to_file():
 
 
 # write_energy_to_file()
+
+spins = np.asarray(SPINS_BAND1+SPINS_BAND2)
+phonons = np.asarray(PHONON_BAND1+PHONON_BAND2)
+energies = EXC_ENERGY1+EXC_ENERGY2
+xdata = (phonons, spins)
+
+popt, pcov = curve_fit(model_energy, xdata, energies, [10, 20, 30])
