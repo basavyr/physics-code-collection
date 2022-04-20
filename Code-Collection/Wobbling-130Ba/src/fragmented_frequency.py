@@ -126,8 +126,10 @@ xdata = (phonons, spins)
 PARAMS_BOUNDS = ([0.5, 0.5, 0.5], [120, 120, 120])
 
 
+p0 = [10, 1, 3]
+
 popt, pcov = curve_fit(model_energy, xdata, energies,
-                       [1, 2, 3], bounds=PARAMS_BOUNDS)
+                       p0, bounds=PARAMS_BOUNDS)
 
 print(popt[0], popt[1], popt[2])
 
@@ -138,9 +140,9 @@ theoretical_data_2 = [exc_energy(
 
 
 plt.plot(SPINS_BAND1, EXC_ENERGY1, 'ok', label='band1 exp')
-plt.plot(SPINS_BAND1, theoretical_data_1, '-r', label='band1 th')
-plt.plot(SPINS_BAND2, EXC_ENERGY2, 'ob', label='band2 exp')
-plt.plot(SPINS_BAND2, theoretical_data_2, '-k', label='band2 th')
+plt.plot(SPINS_BAND1, theoretical_data_1, '-k', label='band1 th')
+plt.plot(SPINS_BAND2, EXC_ENERGY2, 'or', label='band2 exp')
+plt.plot(SPINS_BAND2, theoretical_data_2, '-r', label='band2 th')
 plt.legend(loc='best')
 plt.xlabel('I')
 plt.ylabel('E')
