@@ -1,13 +1,11 @@
 import numpy as np
 import math
+
+# escape value to be used in case of math failure
 MAXVAL = 69696969
 
+
 # define a fragmented wobbling frequency for the rotor Hamiltonian
-
-
-omega_file = 'omega_frequencies.dat'
-
-
 def omega(I, I1, I2, I3):
     # implement fragmented stopping conditions
     if(I1 < 0.0):
@@ -57,6 +55,7 @@ def energy(n, I, I1, I2, I3):
 
 
 def write_energy_to_file():
+    omega_file = 'omega_frequencies.dat'
     with open(omega_file, 'w+') as writer:
         writer.writelines("I1 I2 I3 omega E\n")
         for I1 in np.arange(-10, 120, 1):
