@@ -1,7 +1,7 @@
 import numpy as np
 import math
 from scipy.optimize import curve_fit
-
+from matplotlib import pyplot as plt
 # escape value to be used in case of math failure
 MAXVAL = 6969696969
 
@@ -73,11 +73,11 @@ def omega(I, I1, I2, I3):
 # define the absolute energy formula
 def energy(n, I, I1, I2, I3):
     homega = omega(I, I1, I2, I3)
-    if (homega == MAXVAL):
-        return MAXVAL
+    # if (homega == MAXVAL):
+    #     return MAXVAL
     e = 1.0/(2.0*I3)*I*(I+1.0)+(n+0.5)*homega
-    if (e == MAXVAL):
-        return MAXVAL
+    # if (e == MAXVAL):
+    #     return MAXVAL
 
     return e
 
@@ -85,11 +85,11 @@ def energy(n, I, I1, I2, I3):
 # define the excitation energy for the triaxial rotator
 def exc_energy(n, I, I1, I2, I3):
     e0 = energy(0, spinhead, I1, I2, I3)
-    if(e0 == MAXVAL):
-        return MAXVAL
+    # if(e0 == MAXVAL):
+    #     return MAXVAL
     e = energy(n, I, I1, I2, I3)
-    if(e == MAXVAL):
-        return MAXVAL
+    # if(e == MAXVAL):
+    #     return MAXVAL
 
     return e-e0
 
@@ -99,8 +99,8 @@ def model_energy(xdata, I1, I2, I3):
 
     local_energy = exc_energy(phonons, spins, I1, I2, I3)
 
-    if(local_energy == MAXVAL):
-        return MAXVAL
+    # if(local_energy == MAXVAL):
+    #     return MAXVAL
 
     return local_energy
 
@@ -123,5 +123,26 @@ spins = np.asarray(SPINS_BAND1+SPINS_BAND2)
 phonons = np.asarray(PHONON_BAND1+PHONON_BAND2)
 energies = EXC_ENERGY1+EXC_ENERGY2
 xdata = (phonons, spins)
+PARAMS_BOUNDS = ([0.5, 0.5, 0.5], [120, 120, 120])
 
-popt, pcov = curve_fit(model_energy, xdata, energies, [10, 20, 30])
+
+popt, pcov = curve_fit(model_energy, xdata, energies,
+                       [1, 2, 3], bounds=PARAMS_BOUNDS)
+
+print(popt[0], popt[1], popt[2])
+
+theoretical_data_1 = [exc_energy(
+    0, SPINS_BAND1[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND1))]
+theoretical_data_2 = [exc_energy(
+    1, SPINS_BAND2[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND2))]
+
+
+plt.plot(SPINS_BAND1, EXC_ENERGY1, 'ok', label='band1 exp')
+plt.plot(SPINS_BAND1, theoretical_data_1, '-r', label='band1 th')
+plt.plot(SPINS_BAND2, EXC_ENERGY2, 'ob', label='band2 exp')
+plt.plot(SPINS_BAND2, theoretical_data_2, '-k', label='band2 th')
+plt.legend(loc='best')
+plt.xlabel('I')
+plt.ylabel('E')
+plt.savefig('wobbling_results.pdf', dpi=300, bbox_inches='tight')
+plt.close()
