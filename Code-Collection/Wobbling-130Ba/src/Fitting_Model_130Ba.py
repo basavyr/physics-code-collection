@@ -2,6 +2,11 @@ import numpy as np
 import math
 from scipy.optimize import curve_fit
 
+# paths at which fitting data will be saved
+BAND_1_PATH = "/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/ba_130_B1_band.dat"
+BAND_2_PATH = "/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/ba_130_B2_band.dat"
+FITTING_PARAMS_PATH = "/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/fit_params.dat"
+
 
 # escape value to be used in case of math failure
 MAXVAL = 6969696969
@@ -130,10 +135,26 @@ x_data = (phonons, spins)
 PARAMS_BOUNDS = ([0.5, 0.5, 0.5], [120, 120, 120])
 
 
-# start the model fit using the triaxial rigid rotor energy
+############################################################
+############################################################
+################### FITTING PROCEDURE ######################
+############################################################
+############################################################
 p0 = [10, 1, 3]
 popt, pcov = curve_fit(model_energy, x_data, experimental_energies,
                        p0, bounds=PARAMS_BOUNDS)
+############################################################
+############################################################
+################### FITTING PROCEDURE ######################
+############################################################
+############################################################
+
+
+# generate the theoretical values for the energies from the fitting parameters
+theoretical_data_1 = [exc_energy(
+    0, SPINS_BAND1[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND1))]
+theoretical_data_2 = [exc_energy(
+    1, SPINS_BAND2[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND2))]
 
 
 # print the parameters to console
@@ -141,9 +162,9 @@ def prin_params(params):
     print(params[0], params[1], params[2])
 
 
-# write
+# write parameters to file
 def write_params(params):
-    with open("/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/fit_params.dat", 'w+') as writer:
+    with open(FITTING_PARAMS_PATH, 'w+') as writer:
         writer.write(str(params[0]))
         writer.write("\n")
         writer.write(str(params[1]))
@@ -152,20 +173,14 @@ def write_params(params):
         writer.write("\n")
 
 
-theoretical_data_1 = [exc_energy(
-    0, SPINS_BAND1[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND1))]
-theoretical_data_2 = [exc_energy(
-    1, SPINS_BAND2[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND2))]
-
-
-with open("/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/ba_130_B1_band.dat", 'w+') as writer:
+with open(BAND_1_PATH, 'w+') as writer:
     for idx in range(len(SPINS_BAND1)):
         data_line = f'{SPINS_BAND1[idx]} {EXC_ENERGY1[idx]} {theoretical_data_1[idx]}'
         writer.write(data_line)
         writer.write("\n")
 
 
-with open("/Users/basavyr/Documents/Work/DFT/mathematica-useful-algorithms/Physics/wobbling-ba130/ba_130_B2_band.dat", 'w+') as writer:
+with open(BAND_2_PATH, 'w+') as writer:
     for idx in range(len(SPINS_BAND2)):
         data_line = f'{SPINS_BAND2[idx]} {EXC_ENERGY2[idx]} {theoretical_data_2[idx]}'
         writer.write(data_line)
