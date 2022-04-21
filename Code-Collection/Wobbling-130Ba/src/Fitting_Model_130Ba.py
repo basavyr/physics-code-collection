@@ -86,5 +86,32 @@ with open(BAND_2_PATH, 'w+') as writer:
         writer.write(data_line)
         writer.write("\n")
 
+
+def generate_latex_table(params):
+    """
+    Generate a latex table from the parameter set
+    """
+
+    table1 = """
+                \\begin{table}
+                \\centering
+                \\resizebox{0.5\\textwidth}{!}{%
+                \\begin{tabular}{|c|c|c|l|}
+                \hline
+                $\mathcal{I}_1$ & $\mathcal{I}_3$ & $\mathcal{I}_2$ & Unit \\\\ \hline
+            """
+    table0 = f'{int(params[0])} &{int(params[1])} &{int(params[2])} &' + "$\hbar ^ 2\\text{MeV} ^ {-1}$ \\\\ \hline"
+    table2 = """
+                \end{tabular}%
+                }
+                \caption{Table.}
+                    \label{table-params-ba130}
+                \end{table}
+            """
+    latex = table1+'\n'+table0+'\n'+table2
+    print(table0)
+
+
 write_params(fit_parameters)
-print_params(fit_parameters)
+# print_params(fit_parameters)
+generate_latex_table(fit_parameters)
