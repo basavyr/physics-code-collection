@@ -5,8 +5,10 @@ import math
 MAXVAL = 6969696969
 
 
-# transform the energy from keV to MeV
 def MeV(energy):
+    """
+    Transform the energy from keV to MeV
+    """
     return np.round(energy/1000.0, 3)
 
 
@@ -60,3 +62,32 @@ def Absolute_Energy(n, I, I1, I2, I3):
     energy = 1.0/(2.0*I3)*I*(I+1.0)+(n+0.5)*omega
 
     return energy
+
+
+def Excitation_Energy(n, I, I1, I2, I3):
+    """
+    Define the excitation energy for the triaxial rotator.\n
+    The excitation energy is defined as the difference between an energy level and the band head
+    """
+    # absolute value for the band head
+    e0 = Absolute_Energy(0, SPINHEAD, I1, I2, I3)
+
+    # absolute value for the current spin value
+    e = Absolute_Energy(n, I, I1, I2, I3)
+
+    return e-e0
+
+
+def write_energy_to_file():
+    """
+    Testing function for the numerical values of the Absolute Energy
+    """
+    omega_file = 'omega_frequencies.dat'
+    with open(omega_file, 'w+') as writer:
+        writer.writelines("I1 I2 I3 E\n")
+        for I1 in np.arange(0, 120, 1):
+            for I2 in np.arange(0, 120, 1):
+                for I3 in np.arange(0, 120, 1):
+                    e = Excitation_Energy(0, 28, I1, I2, I3)
+                    if(e is not MAXVAL):
+                        writer.writelines(f'{I1} {I2} {I3} {e}\n')
