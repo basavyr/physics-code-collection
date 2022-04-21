@@ -85,3 +85,6 @@ with open(BAND_2_PATH, 'w+') as writer:
         data_line = f'{Energies.SPINS_BAND2[idx]} {Energies.BAND2_EXP[idx]} {Band2_Th[idx]}'
         writer.write(data_line)
         writer.write("\n")
+
+write_params(fit_parameters)
+print_params(fit_parameters)
