@@ -26,9 +26,3 @@ def Compute_Chi_Squared(exp_data, th_data):
     chi_2 = math.sqrt(1.0/N*chi_sum)
 
     return chi_2
-
-
-expdata = [1, 2, 3, 4]
-thdata = [1.1, 2, 3, 4]
-
-print(Compute_Chi_Squared(expdata, thdata))

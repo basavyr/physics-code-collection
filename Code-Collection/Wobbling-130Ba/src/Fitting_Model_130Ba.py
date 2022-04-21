@@ -84,36 +84,36 @@ def omega(I, I1, I2, I3):
         return omega_res
 
 
-# define the absolute energy formula
+# absolute energy formula
 def energy(n, I, I1, I2, I3):
-    homega = omega(I, I1, I2, I3)
-    # if (homega == MAXVAL):
-    #     return MAXVAL
-    e = 1.0/(2.0*I3)*I*(I+1.0)+(n+0.5)*homega
-    # if (e == MAXVAL):
-    #     return MAXVAL
+    wobbling_frequency = omega(I, I1, I2, I3)
+    e = 1.0/(2.0*I3)*I*(I+1.0)+(n+0.5)*wobbling_frequency
 
     return e
 
 
 # define the excitation energy for the triaxial rotator
 def exc_energy(n, I, I1, I2, I3):
+    # absolute value for the band head
     e0 = energy(0, SPINHEAD, I1, I2, I3)
-    # if(e0 == MAXVAL):
-    #     return MAXVAL
-    e = energy(n, I, I1, I2, I3)
-    # if(e == MAXVAL):
-    #     return MAXVAL
+    # absolute value for the current spin value
+    e = np.asarray(energy(n, I, I1, I2, I3))
 
     return e-e0
 
 
+# create a function which evaluates the excitation energy for a triaxial rotor
 def model_energy(x_data, I1, I2, I3):
+    """
+    The model energy is capable of dealing with numpy arrays within the x_data tuple
+    """
     phonons, spins = x_data
     local_energy = exc_energy(phonons, spins, I1, I2, I3)
 
-    # if(local_energy == MAXVAL):
-    #     return MAXVAL
+    contains_bad_values = any(x == MAXVAL for x in local_energy)
+    if(contains_bad_values):
+        print('not good')
+        return
 
     return local_energy
 
@@ -141,8 +141,8 @@ PARAMS_BOUNDS = ([0.5, 0.5, 0.5], [120, 120, 120])
 ############################################################
 ############################################################
 p0 = [10, 1, 3]
-popt, pcov = curve_fit(model_energy, x_data, experimental_energies,
-                       p0, bounds=PARAMS_BOUNDS)
+fit_parameters, _ = curve_fit(model_energy, x_data, experimental_energies,
+                              p0, bounds=PARAMS_BOUNDS)
 ############################################################
 ############################################################
 ################### FITTING PROCEDURE ######################
@@ -150,15 +150,19 @@ popt, pcov = curve_fit(model_energy, x_data, experimental_energies,
 ############################################################
 
 
+##############################################################################
 # generate the theoretical values for the energies from the fitting parameters
+##############################################################################
 theoretical_data_1 = [exc_energy(
-    0, SPINS_BAND1[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND1))]
+    0, SPINS_BAND1[idx], fit_parameters[0], fit_parameters[1], fit_parameters[2]) for idx in range(len(SPINS_BAND1))]
 theoretical_data_2 = [exc_energy(
-    1, SPINS_BAND2[idx], popt[0], popt[1], popt[2]) for idx in range(len(SPINS_BAND2))]
+    1, SPINS_BAND2[idx], fit_parameters[0], fit_parameters[1], fit_parameters[2]) for idx in range(len(SPINS_BAND2))]
+##############################################################################
+##############################################################################
 
 
 # print the parameters to console
-def prin_params(params):
+def print_params(params):
     print(params[0], params[1], params[2])
 
 
