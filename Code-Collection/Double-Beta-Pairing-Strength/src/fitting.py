@@ -79,7 +79,12 @@ def Linear_Model(x_data, y_data):
     return b0, b1
 
 
-def plot_model(particle, params, x_data, y_data):
+def Plot_Model(particle, params, x_data, y_data):
+    """
+    Plot the experimental and fitted data using the set of parameters given as arguments\n
+    Particle == 1 => NEUTRONS\n
+    Particle == O => PROTONS\n
+    """
     _label = r'$\nu' if particle == 1 else r'$\pi'
     _plot_name = 'neutrons.pdf' if particle == 1 else 'protons.pdf'
     plt.plot(x_data, y_data, 'r*', label=_label)
@@ -92,9 +97,12 @@ if __name__ == '__main__':
     # get_task()
 
     # get the x-data
-    x_data, y_data1, y_data2 = Get_Data()
+    x_data, y_data_n, y_data_p = Get_Data()
 
     # print("**** NEUTRONS ****")
-    d, c = Linear_Model(x_data, y_data1)
+    d, c = Linear_Model(x_data, y_data_n)
+    Plot_Model(1, (d, c), x_data, y_data_n)
+
     # print("**** PROTONS ****")
-    b, a = Linear_Model(x_data, y_data2)
+    b, a = Linear_Model(x_data, y_data_p)
+    Plot_Model(0, (d, c), x_data, y_data_n)
