@@ -79,6 +79,11 @@ def Linear_Model(x_data, y_data):
     return b0, b1
 
 
+def Linear_Function(x_data, params):
+    y_data = [(params[0]+params[1]*x) for x in x_data]
+    return y_data
+
+
 def Plot_Model(particle, params, x_data, y_data):
     """
     Plot the experimental and fitted data using the set of parameters given as arguments\n
@@ -88,6 +93,7 @@ def Plot_Model(particle, params, x_data, y_data):
     _label = r'$\nu' if particle == 1 else r'$\pi'
     _plot_name = 'neutrons.pdf' if particle == 1 else 'protons.pdf'
     plt.plot(x_data, y_data, 'r*', label=_label)
+    plt.plot(x_data, Linear_Function(x_data, params), 'b-', label='model')
     plt.savefig(f'results/{_plot_name}', bbox_inches='tight')
     plt.close()
 
@@ -105,4 +111,4 @@ if __name__ == '__main__':
 
     # print("**** PROTONS ****")
     b, a = Linear_Model(x_data, y_data_p)
-    Plot_Model(0, (d, c), x_data, y_data_n)
+    Plot_Model(0, (b, a), x_data, y_data_p)
