@@ -76,13 +76,25 @@ def Linear_Model(x_data, y_data):
     print(f'b0 -> {b0}')
     print(f'b1 -> {b1}')
 
+    return b0, b1
+
+
+def plot_model(particle, params, x_data, y_data):
+    _label = r'$\nu' if particle == 1 else r'$\pi'
+    _plot_name = 'neutrons.pdf' if particle == 1 else 'protons.pdf'
+    plt.plot(x_data, y_data, 'r*', label=_label)
+    plt.savefig(f'results/{_plot_name}', bbox_inches='tight')
+    plt.close()
+
 
 if __name__ == '__main__':
-    get_task()
+    # show the main task
+    # get_task()
+
     # get the x-data
     x_data, y_data1, y_data2 = Get_Data()
 
-    print("**** NEUTRONS ****")
-    Linear_Model(x_data, y_data1)
-    print("**** PROTONS ****")
-    Linear_Model(x_data, y_data2)
+    # print("**** NEUTRONS ****")
+    d, c = Linear_Model(x_data, y_data1)
+    # print("**** PROTONS ****")
+    b, a = Linear_Model(x_data, y_data2)
