@@ -38,7 +38,41 @@ def Get_Data():
     return X_L, G_n, G_p
 
 
+def squared(x):
+    return np.power(x, 2)
+
+
+def Linear_Model(x_data, y_data):
+    """
+    Performs a linear regression using the least-squares method
+    Input: x_data, y_data
+    Output: the two parameters b0, b1
+    source: https://www.geeksforgeeks.org/linear-regression-python-implementation/
+    """
+
+    N1 = len(x_data)
+    N2 = len(y_data)
+    try:
+        assert N1 == N2
+    except AssertionError:
+        print('The data format is invalid. Cannot perform regression')
+        return -1
+    else:
+        N = N1
+    x_mean = np.mean(x_data)
+    y_mean = np.mean(y_data)
+
+    # evaluate the squared-deviation sum for x_data Sxx
+    # Sxx = sum(list(map(squared, x_data)))-N*x_mean
+    Sxx = np.sum(np.array(x_data)*np.array(x_data))-N*x_mean
+
+    # evaluate the cross-deviation sum for x_data and y_Data Sxy
+    Sxy = np.sum(np.array(x_data)*np.array(y_data))-N*x_mean*y_mean
+
+
 if __name__ == '__main__':
     get_task()
     # get the x-data
-    print(Get_Data())
+    x_data, y_data1, y_data2 = Get_Data()
+
+    Linear_Model(x_data, y_data1)
