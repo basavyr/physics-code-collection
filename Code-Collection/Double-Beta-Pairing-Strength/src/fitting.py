@@ -69,10 +69,20 @@ def Linear_Model(x_data, y_data):
     # evaluate the cross-deviation sum for x_data and y_Data Sxy
     Sxy = np.sum(np.array(x_data)*np.array(y_data))-N*x_mean*y_mean
 
+    # obtain the two fitting parameters of the model (b0, and b1)
+    b1 = np.round(float(Sxy/Sxx), 4)
+    b0 = y_mean-b1*x_mean
+
+    print(f'b0 -> {b0}')
+    print(f'b1 -> {b1}')
+
 
 if __name__ == '__main__':
     get_task()
     # get the x-data
     x_data, y_data1, y_data2 = Get_Data()
 
+    print("**** NEUTRONS ****")
     Linear_Model(x_data, y_data1)
+    print("**** PROTONS ****")
+    Linear_Model(x_data, y_data2)
