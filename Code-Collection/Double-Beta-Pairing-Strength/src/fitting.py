@@ -45,16 +45,30 @@ def Plot_Model(particle, params, x_data, y_data):
     plt.close()
 
 
+def RMS(y_data, y_data_th):
+    ss = np.sum(np.power(y_data_th-y_data, 2)/y_data)
+    N = len(y_data)
+
+    rms = np.sqrt(1.0/N*ss)
+    return rms
+
+
 def Main():
     # PROTONS
     protonParams, _ = curve_fit(model_p, x_data, y_data_p)
     print(protonParams)
     Plot_Model(0, protonParams, x_data, y_data_p)
+    y_data_p_th = np.asarray(
+        [model_n(x, protonParams[0], protonParams[1]) for x in x_data])
+    print(RMS(y_data_p, y_data_p_th))
 
     # NEUTRONS
     neutronParams, _ = curve_fit(model_n, x_data, y_data_n)
     print(neutronParams)
+    y_data_n_th = np.asarray(
+        [model_n(x, neutronParams[0], neutronParams[1]) for x in x_data])
     Plot_Model(1, neutronParams, x_data, y_data_n)
+    print(RMS(y_data_n, y_data_n_th))
 
 
 if __name__ == '__main__':
