@@ -5,10 +5,6 @@
 ###################################################################################################
 
 import numpy as np
-import matplotlib.pyplot as plt
-
-plot_location = './results'
-
 
 class Canonical:
     """
@@ -17,7 +13,7 @@ class Canonical:
 
     @staticmethod
     def rad(angle):
-        return float(angle*np.pi/180.0)
+        return angle*np.pi/180.0
 
     @staticmethod
     def A_varphi(inertia_factors, varphi):
@@ -60,4 +56,3 @@ class Canonical:
         return A
 
 
-print(Canonical.A_varphi([11, 1, 1], 1))
