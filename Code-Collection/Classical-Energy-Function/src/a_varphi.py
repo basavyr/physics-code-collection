@@ -22,7 +22,9 @@ y6 = A.Canonical.A_varphi([3, 7, 1], x)
 # use latex for matplotlib plot python
 plt.rcParams.update({
     "text.usetex": True})
-# for Palatino and other serif fonts use:
+
+# use custom size
+plt.rcParams["figure.figsize"] = (5, 4)
 
 # create the first plot
 plt.xlabel(r'$\varphi$')
