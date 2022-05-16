@@ -25,11 +25,11 @@ plt.rcParams.update({
 
 # use custom size
 # source: https://stackoverflow.com/questions/332289/how-do-i-change-the-size-of-figures-drawn-with-matplotlib
-plt.rcParams["figure.figsize"] = (5, 4)
+plt.rcParams["figure.figsize"] = (8,6)
 
 # change the font size
 # source: https://stackoverflow.com/questions/3899980/how-to-change-the-font-size-on-a-matplotlib-plot
-plt.rcParams.update({'font.size': 12})
+plt.rcParams.update({'font.size': 24})
 
 # create the first plot
 plt.xlabel(r'$\varphi$ [rad]')
@@ -37,6 +37,7 @@ plt.ylabel(r'$\mathcal{A}_\varphi\ [\hbar^{-2}$MeV$]$')
 plt.plot(x, y1, '-r', label=r'$A_1<A_2<A_3$')
 plt.plot(x, y2, '-b', label=r'$A_1<A_3<A_2$')
 plt.plot(x, y3, '-k', label=r'$A_3<A_2<A_1$')
+plt.rc('legend', fontsize=15)    # legend fontsize
 plt.legend(loc='best')
 plt.tight_layout()
 plt.savefig(f'{plot_location}/A_varphi_1.pdf', dpi=300)
@@ -48,6 +49,7 @@ plt.ylabel(r'$\mathcal{A}_\varphi\ [\hbar^{-2}$MeV$]$')
 plt.plot(x, y4, '-r', label=r'$A_2<A_3<A_1$')
 plt.plot(x, y5, '-b', label=r'$A_2<A_1<A_3$')
 plt.plot(x, y6, '-k', label=r'$A_3<A_1<A_3$')
+plt.rc('legend', fontsize=15)    # legend fontsize
 plt.legend(loc='best')
 plt.tight_layout()
 plt.savefig(f'{plot_location}/A_varphi_2.pdf', dpi=300)
