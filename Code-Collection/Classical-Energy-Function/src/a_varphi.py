@@ -19,6 +19,11 @@ y5 = A.Canonical.A_varphi([3, 1, 7], x)
 y6 = A.Canonical.A_varphi([3, 7, 1], x)
 
 
+# use latex for matplotlib plot python
+plt.rcParams.update({
+    "text.usetex": True})
+# for Palatino and other serif fonts use:
+
 # create the first plot
 plt.xlabel(r'$\varphi$')
 plt.ylabel(r'$\mathcal{A}_\varphi$')
