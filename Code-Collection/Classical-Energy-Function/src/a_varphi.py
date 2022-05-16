@@ -24,7 +24,11 @@ plt.rcParams.update({
     "text.usetex": True})
 
 # use custom size
+# soource: https://stackoverflow.com/questions/332289/how-do-i-change-the-size-of-figures-drawn-with-matplotlib
 plt.rcParams["figure.figsize"] = (5, 4)
+
+#change the font size
+plt.rcParams.update({'font.size': 12})
 
 # create the first plot
 plt.xlabel(r'$\varphi$')
