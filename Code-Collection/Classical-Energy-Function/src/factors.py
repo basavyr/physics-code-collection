@@ -47,6 +47,8 @@ class Canonical:
         A = A1*np.cos(Canonical.rad(varphi))*np.cos(Canonical.rad(psi)) + \
             A2*np.sin(Canonical.rad(varphi))*np.sin(Canonical.rad(psi))
 
+        return A
+
     @staticmethod
     def A_gamma(gamma, j, f, psi):
         rad3 = np.sqrt(3.0)
