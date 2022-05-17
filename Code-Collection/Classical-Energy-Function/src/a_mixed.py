@@ -84,6 +84,6 @@ for bars in zip(imgs, axis_list):
 
 plt.tight_layout()
 plt.subplots_adjust(wspace=0.1, hspace=0.15)
-plt.savefig(f'{figures_path_mini}/A_mixed.pdf', dpi=300, pad_inches=0)
+# plt.savefig(f'{figures_path_mini}/A_mixed.pdf', dpi=300, pad_inches=0)
 plt.savefig(f'{plot_location}/A_mixed.pdf', dpi=300, pad_inches=0)
 plt.close()
