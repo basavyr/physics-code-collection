@@ -6,6 +6,7 @@
 
 import numpy as np
 
+
 class Canonical:
     """
     - collection of methods that correspond to each of the four canonical terms within the CEF
@@ -33,7 +34,7 @@ class Canonical:
         A3 = inertia_factors[2]
 
         A = A1*np.power(np.cos(Canonical.rad(psi)), 2)+A2 * \
-            np.power(np.sin(Canonical.rad([psi])), 2)-A3
+            np.power(np.sin(Canonical.rad(psi)), 2)-A3
 
         return A
 
@@ -54,5 +55,3 @@ class Canonical:
             Canonical.rad(gamma))+np.sin(Canonical.rad(gamma))*np.cos(2*Canonical.rad(psi)))
 
         return A
-
-
