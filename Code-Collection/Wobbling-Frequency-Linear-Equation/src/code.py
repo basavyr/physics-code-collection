@@ -1,7 +1,7 @@
-from sympy.solvers import solve
-from sympy import Symbol
+# from sympy.solvers import solve
+# from sympy import Symbol
 import numpy as np
-
+from sympy.core.symbol import Symbol
 
 G1 = Symbol('G1')
 G2 = Symbol('G2')
