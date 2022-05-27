@@ -42,7 +42,7 @@ class Factors:
         gm = gamma
 
         Trig1 = 2.0*Factors.rad3*np.sin(gm)
-        G1 = (2.0*j-1.0)/(j(j+1.0))*Trig1
+        G1 = (2.0*j-1.0)/(j*(j+1.0))*Trig1
 
         return G1
 
@@ -53,6 +53,6 @@ class Factors:
         gm = gamma
 
         Trig2 = Factors.rad3*(Factors.rad3*np.cos(gm)+np.sin(gm))
-        G2 = (2.0*j-1.0)/(j(j+1.0))*Trig2
+        G2 = (2.0*j-1.0)/(j*(j+1.0))*Trig2
 
         return G2
