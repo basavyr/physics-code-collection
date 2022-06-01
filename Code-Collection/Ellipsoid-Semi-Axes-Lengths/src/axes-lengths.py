@@ -2,6 +2,7 @@
 # the required parameters are $\gamma$, $\beta_2$
 # each semi-axis has a specific index k
 
+from cProfile import label
 from operator import indexOf
 import numpy as np
 from matplotlib import pyplot as plt
@@ -46,10 +47,28 @@ def Show_Axes(beta, gamma):
 
 def main():
     beta = 0.35
-    gamma = 20
-    gamma_data = np.arange(-120, 120, 5)
+    # generate the gamma parameter
+    gamma_data = np.arange(-120, 120, 1)
+    gamma_1 = [x for x in gamma_data if Show_Axes(beta, x) == 1]
+    gamma_2 = [x for x in gamma_data if Show_Axes(beta, x) == 2]
+    gamma_3 = [x for x in gamma_data if Show_Axes(beta, x) == 3]
+
+    # generate the semi-axes lengths
     largest_axes_data = [Show_Axes(beta, x) for x in gamma_data]
-    
+    largest_axes_data1 = [x for x in largest_axes_data if x == 1]
+    largest_axes_data2 = [x for x in largest_axes_data if x == 2]
+    largest_axes_data3 = [x for x in largest_axes_data if x == 3]
+
+    fig, ax = plt.subplots()
+    plt.plot(gamma_1, largest_axes_data1, '-r', label='1-axis')
+    plt.plot(gamma_2, largest_axes_data2, '-b', label='2-axis')
+    plt.plot(gamma_3, largest_axes_data3, '-k', label='3-axis')
+    plt.legend(loc='best')
+    plt.xlabel(r'$\gamma$')
+    plt.ylabel(r'$R_k^{max}$')
+    fig.tight_layout()
+    plt.savefig('local_plot.pdf', dpi=300)
+    plt.close()
 
 
 if __name__ == '__main__':
