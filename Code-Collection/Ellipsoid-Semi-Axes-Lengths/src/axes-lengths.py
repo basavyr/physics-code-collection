@@ -47,7 +47,9 @@ def Show_Axes(beta, gamma):
 def main():
     beta = 0.35
     gamma = 20
-    Show_Axes(beta, gamma)
+    gamma_data = np.arange(-120, 120, 5)
+    largest_axes_data = [Show_Axes(beta, x) for x in gamma_data]
+    
 
 
 if __name__ == '__main__':
