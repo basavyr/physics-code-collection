@@ -32,43 +32,55 @@ def Show_Axes(beta, gamma):
     R2 = R_k(2, r0, beta, gamma)
     R3 = R_k(3, r0, beta, gamma)
 
-    axes = {"1": R1,
-            "2": R2,
-            "3": R3,
-            }
-    max_axes = max([ax for _, ax in axes.items()])
-    index_of_max_axes = indexOf(
-        [ax for _, ax in axes.items()], max_axes)+1
-    # print(max_axes)
-    # print(index_of_max_axes)
-    # print(f'The largest axis is the {index_of_max_axes}-axis')
-    return index_of_max_axes
+    # axes = {"R1": R1,
+    #         "R2": R2,
+    #         "R3": R3,
+    #         }
+    # print(axes)
+
+    # max_axes = max([ax for _, ax in axes.items()])
+    # index_of_max_axes = indexOf(
+    #     [ax for _, ax in axes.items()], max_axes)+1
+    # # print(index_of_max_axes)
+    # print(f'long-axis: {index_of_max_axes}-axis')
+
+    axes = [R1, R2, R3]
+    print(f'l-axis: {indexOf(axes,max(axes))+1}')
+    axes.pop()
+    print(f'm-axis: {indexOf(axes,max(axes))+1}')
+    print(f's-axis: {indexOf(axes,min(axes))+1}')
 
 
 def main():
     beta = 0.35
-    # generate the gamma parameter
-    gamma_data = np.arange(-120, 120, 1)
-    gamma_1 = [x for x in gamma_data if Show_Axes(beta, x) == 1]
-    gamma_2 = [x for x in gamma_data if Show_Axes(beta, x) == 2]
-    gamma_3 = [x for x in gamma_data if Show_Axes(beta, x) == 3]
+    gamma = 20
 
-    # generate the semi-axes lengths
-    largest_axes_data = [Show_Axes(beta, x) for x in gamma_data]
-    largest_axes_data1 = [x for x in largest_axes_data if x == 1]
-    largest_axes_data2 = [x for x in largest_axes_data if x == 2]
-    largest_axes_data3 = [x for x in largest_axes_data if x == 3]
+    Show_Axes(beta, gamma)
+    do_it = 0
 
-    fig, ax = plt.subplots()
-    plt.plot(gamma_1, largest_axes_data1, '-r', label='1-axis')
-    plt.plot(gamma_2, largest_axes_data2, '-b', label='2-axis')
-    plt.plot(gamma_3, largest_axes_data3, '-k', label='3-axis')
-    plt.legend(loc='best')
-    plt.xlabel(r'$\gamma$')
-    plt.ylabel(r'$R_k^{max}$')
-    fig.tight_layout()
-    plt.savefig('local_plot.pdf', dpi=300)
-    plt.close()
+    if(do_it):
+        # generate the gamma parameter
+        gamma_data = np.arange(-120, 120, 1)
+        gamma_1 = [x for x in gamma_data if Show_Axes(beta, x) == 1]
+        gamma_2 = [x for x in gamma_data if Show_Axes(beta, x) == 2]
+        gamma_3 = [x for x in gamma_data if Show_Axes(beta, x) == 3]
+
+        # generate the semi-axes lengths
+        largest_axes_data = [Show_Axes(beta, x) for x in gamma_data]
+        largest_axes_data1 = [x for x in largest_axes_data if x == 1]
+        largest_axes_data2 = [x for x in largest_axes_data if x == 2]
+        largest_axes_data3 = [x for x in largest_axes_data if x == 3]
+
+        fig, ax = plt.subplots()
+        plt.plot(gamma_1, largest_axes_data1, '-r', label='s-axis')
+        plt.plot(gamma_2, largest_axes_data2, '-b', label='m-axis')
+        plt.plot(gamma_3, largest_axes_data3, '-k', label='l-axis')
+        plt.legend(loc='best')
+        plt.xlabel(r'$\gamma$')
+        plt.ylabel(r'$R_k^{max}$')
+        fig.tight_layout()
+        plt.savefig('local_plot.pdf', dpi=300)
+        plt.close()
 
 
 if __name__ == '__main__':
