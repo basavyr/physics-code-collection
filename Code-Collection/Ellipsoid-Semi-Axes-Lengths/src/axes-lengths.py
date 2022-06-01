@@ -3,11 +3,13 @@
 # each semi-axis has a specific index k
 
 from cProfile import label
+from cmath import pi
 from operator import indexOf
 import numpy as np
 from matplotlib import pyplot as plt
 
 r0 = 1.2
+I0 = 25
 
 
 def R_k(k, R_0, beta, gamma):
@@ -51,12 +53,35 @@ def Show_Axes(beta, gamma):
     print(f's-axis: {indexOf(axes,min(axes))+1}')
 
 
+def MOI(k, I0, beta, gamma):
+    gm = gamma*np.pi/180.0
+    const_I0 = 4.0/3.0*I0
+    pi23_k = 2.0/3.0*np.pi*k
+    sin_term = np.power(np.sin(gm-pi23_k), 2)
+
+    return const_I0*sin_term
+
+
+def Show_MOI(beta, gamma):
+    I1 = MOI(1, I0,  beta, gamma)
+    I2 = MOI(2, I0,  beta, gamma)
+    I3 = MOI(3, I0,  beta, gamma)
+
+    mois = [I1, I2, I3]
+
+    print(f'I1: {mois[0]}')
+    print(f'I2: {mois[1]}')
+    print(f'I3: {mois[2]}')
+
+
 def main():
     beta = 0.35
     gamma = 20
 
     Show_Axes(beta, gamma)
     do_it = 0
+
+    Show_MOI(beta, gamma)
 
     if(do_it):
         # generate the gamma parameter
