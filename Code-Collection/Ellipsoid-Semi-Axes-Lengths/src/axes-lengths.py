@@ -38,8 +38,10 @@ def Show_Axes(beta, gamma):
     max_axes = max([ax for _, ax in axes.items()])
     index_of_max_axes = indexOf(
         [ax for _, ax in axes.items()], max_axes)+1
-    print(max_axes)
-    print(index_of_max_axes)
+    # print(max_axes)
+    # print(index_of_max_axes)
+    # print(f'The largest axis is the {index_of_max_axes}-axis')
+    return index_of_max_axes
 
 
 def main():
