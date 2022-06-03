@@ -1,0 +1,119 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3776,        111]
+NotebookOptionsPosition[      2989,         89]
+NotebookOutlinePosition[      3386,        105]
+CellTagsIndexPosition[      3343,        102]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fct", "[", 
+    RowBox[{"a_", ",", "x_"}], "]"}], ":=", 
+   RowBox[{"Exp", "[", 
+    RowBox[{"a", "*", "x"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"alpha", "=", 
+   RowBox[{"Values", "@", 
+    RowBox[{
+     RowBox[{"NSolve", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Integrate", "[", 
+         RowBox[{
+          RowBox[{"fct", "[", 
+           RowBox[{"a", ",", "x"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], "==", "69"}], 
+       ",", "a"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", "alpha"}], "Input",
+ CellChangeTimes->{{3.863232944286344*^9, 3.863233043045701*^9}, {
+  3.863233185525185*^9, 3.863233280000066*^9}},
+ CellLabel->"In[58]:=",ExpressionUUID->"5ed9e2e2-3d31-4c05-8846-2c90b9de351f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NSolve", "ifun", 
+   "\"Inverse functions are being used by \
+\\!\\(\\*RowBox[{\\\"NSolve\\\"}]\\), so some solutions may not be found; use \
+Reduce for complete solution information.\"", 2, 60, 28, 34234074534520815556,
+    "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.8632330262919416`*^9, 3.863233032346142*^9}, {
+  3.863233180803813*^9, 3.863233295711569*^9}},
+ CellLabel->
+  "During evaluation of \
+In[58]:=",ExpressionUUID->"f9be4e4d-3ee6-4de8-ba55-39d195bfd144"],
+
+Cell[BoxData["6.033898898707663`"], "Output",
+ CellChangeTimes->{{3.863232999045622*^9, 3.863233033487587*^9}, {
+  3.863233180825086*^9, 3.863233295716875*^9}},
+ CellLabel->"Out[61]=",ExpressionUUID->"f9e6a46c-8521-4c8c-a863-fa4540c86ba0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"fct", "[", 
+    RowBox[{"alpha", ",", "x"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.863233202545479*^9, 3.863233208394847*^9}, {
+  3.863233270625864*^9, 3.863233295266323*^9}},
+ CellLabel->"In[62]:=",ExpressionUUID->"cae4b967-f716-4083-9c02-9bbde82f1194"],
+
+Cell[BoxData["69.00000000000014`"], "Output",
+ CellChangeTimes->{{3.863233231285543*^9, 3.863233295734749*^9}},
+ CellLabel->"Out[62]=",ExpressionUUID->"38a93f04-924d-4662-b01e-f3be729ab582"]
+}, Open  ]]
+},
+WindowSize->{808, 897},
+WindowMargins->{{133, Automatic}, {Automatic, 35}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b25bce1d-82bf-4e65-bcb9-9ce2ebd895ee"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 990, 27, 94, "Input",ExpressionUUID->"5ed9e2e2-3d31-4c05-8846-2c90b9de351f"],
+Cell[1573, 51, 529, 12, 46, "Message",ExpressionUUID->"f9be4e4d-3ee6-4de8-ba55-39d195bfd144"],
+Cell[2105, 65, 239, 3, 34, "Output",ExpressionUUID->"f9e6a46c-8521-4c8c-a863-fa4540c86ba0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2381, 73, 399, 9, 30, "Input",ExpressionUUID->"cae4b967-f716-4083-9c02-9bbde82f1194"],
+Cell[2783, 84, 190, 2, 34, "Output",ExpressionUUID->"38a93f04-924d-4662-b01e-f3be729ab582"]
+}, Open  ]]
+}
+]
+*)
+
