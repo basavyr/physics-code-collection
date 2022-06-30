@@ -66,7 +66,7 @@ def Wobbling_Frequency(I, A1, A2, A3):
 def Energy(I, n, A1, A2, A3):
     if(Physical_Conditions(A1, A2, A3)):
         rotational_term = A3*I*(I+1)
-        harmonic_term = omega*(n+0.5)
+        harmonic_term = Wobbling_Frequency(I, A1, A2, A3)*(n+0.5)
         energy = rotational_term+harmonic_term
         return energy
 
@@ -83,10 +83,12 @@ def Excitation_Energy(I, I0, A1, A2, A3):
 
 def Wobbling_Energy(I, n, A1, A2, A3):
     if(I % 2 != 0):
-        wobbling = Energy(I, n, A1, A2, A3)-0.5 * \
-            (Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
+        wobbling = Energy(I, n, A1, A2, A3)-0.5*(
+            Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
     else:
         wobbling = Energy(I, n, A1, A2, A3)-Energy(I, 0, A1, A2, A3)
+
+    return wobbling
 
 
 ak_values = [Ak(x) for x in np.arange(0.5, 125, 1)]
