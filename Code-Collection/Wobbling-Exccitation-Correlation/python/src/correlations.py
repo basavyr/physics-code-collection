@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-from sre_compile import MAXCODE
 import numpy as np
 from scipy.optimize import curve_fit
 
@@ -39,6 +38,7 @@ def Physical_Conditions(A1, A2, A3):
 def chi_plotter(exp_data, th_data):
     # unpacking
     spins, experimental_energy = exp_data
+    # no need to unpack the spins twice
     _, theoretical_energy = th_data
     plt.plot(spins, exp_data, 'ok', label='Exp.')
     plt.plot(spins, th_data, '--*b', label='Th.')
@@ -64,6 +64,10 @@ def Wobbling_Frequency(I, A1, A2, A3):
 
 
 def Energy(I, n, A1, A2, A3):
+    """
+    - computes the pure rotational energy within the Harmonic Approximation
+    - uses the maximal MOI (smallest inertia factor) the one for the **3**-axis
+    """
     if(Physical_Conditions(A1, A2, A3)):
         rotational_term = A3*I*(I+1)
         harmonic_term = Wobbling_Frequency(I, A1, A2, A3)*(n+0.5)
