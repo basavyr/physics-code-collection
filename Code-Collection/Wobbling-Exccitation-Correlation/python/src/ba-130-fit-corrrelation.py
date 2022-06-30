@@ -32,11 +32,6 @@ def Physical_Conditions(A1, A2, A3):
     if(A3 < A1 and A2 < A3):
         return 0
 
-    t1 = np.power((A2+A1-2.0*A3), 2)
-    t2 = np.power((A2-A1), 2)
-    if(t1 < t2):
-        return 0
-
     # return true if the proper conditions for the inertia factors are net
     return 1
 
@@ -52,27 +47,46 @@ def chi_plotter(exp_data, th_data):
     plt.close()
 
 
-def Wobbling_Frequency(spin, A1, A2, A3):
+def Wobbling_Frequency(I, A1, A2, A3):
+
     # skip the non-physical solutions
-    if(A1 == A3):
-        return MAX_VAL
-    if(A2 == A3):
-        return MAX_VAL
-    if(A1 == A2):
-        return MAX_VAL
-    if(A1 < A3 and A3 < A2):
-        return MAX_VAL
-    if(A3 < A1 and A2 < A3):
-        return MAX_VAL
+    if(Physical_Conditions(A1, A2, A3)):
+        t1 = np.power((A2+A1-2.0*A3), 2)
+        t2 = np.power((A2-A1), 2)
+        if(t1 < t2):
+            return 0
 
-    I = spin
-    t1 = I*(A2+A1-2.0*A3)
-    t2 = I*(A2-A1)
-    if(t1 < t2):
-        return MAX_VAL
+        omega = 2.0*I*np.sqrt(np.power(t1, 2)-np.power(t2, 2))
+        return omega
 
-    omega = np.sqrt(np.power(t1, 2)-np.power(t2, 2))
-    return omega
+    # if the MOI give un-physical solutions return MAX_VAL
+    return MAX_VAL
+
+
+def Energy(I, n, A1, A2, A3):
+    if(Physical_Conditions(A1, A2, A3)):
+        rotational_term = A3*I*(I+1)
+        harmonic_term = omega*(n+0.5)
+        energy = rotational_term+harmonic_term
+        return energy
+
+    return MAX_VAL
+
+
+def Excitation_Energy(I, I0, A1, A2, A3):
+    E0 = Energy(I0, 0, A1, A2, A3)
+
+    E = Energy(I, n, A1, A2, A3)
+
+    return E-E0
+
+
+def Wobbling_Energy(I, n, A1, A2, A3):
+    if(I % 2 != 0):
+        wobbling = Energy(I, n, A1, A2, A3)-0.5 * \
+            (Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
+    else:
+        wobbling = Energy(I, n, A1, A2, A3)-Energy(I, 0, A1, A2, A3)
 
 
 ak_values = [Ak(x) for x in np.arange(0.5, 125, 1)]
