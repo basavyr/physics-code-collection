@@ -7,6 +7,17 @@ from scipy.optimize import curve_fit
 MAX_VAL = 6969696969
 
 
+def chi_plotter(exp_data, th_data):
+    # unpacking
+    spins, experimental_energy = exp_data
+    _, theoretical_energy = th_data
+    plt.plot(spins, exp_data, 'ok', label='Exp.')
+    plt.plot(spins, th_data, '--*b', label='Th.')
+    plt.legend(loc='best')
+    plt.savefig('chi_plot.pdf', dpi=300)
+    plt.close()
+
+
 def Wobbling_Frequency(spin, A1, A2, A3):
     # skip the non-physical solutions
     if(A1 == A3):
