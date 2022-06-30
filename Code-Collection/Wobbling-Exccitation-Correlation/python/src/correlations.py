@@ -35,18 +35,6 @@ def Physical_Conditions(A1, A2, A3):
     return 1
 
 
-def chi_plotter(exp_data, th_data):
-    # unpacking
-    spins, experimental_energy = exp_data
-    # no need to unpack the spins twice
-    _, theoretical_energy = th_data
-    plt.plot(spins, exp_data, 'ok', label='Exp.')
-    plt.plot(spins, th_data, '--*b', label='Th.')
-    plt.legend(loc='best')
-    plt.savefig('chi_plot.pdf', dpi=300)
-    plt.close()
-
-
 def Wobbling_Frequency(I, A1, A2, A3):
 
     # skip the non-physical solutions
@@ -77,9 +65,10 @@ def Energy(I, n, A1, A2, A3):
     return MAX_VAL
 
 
-def Excitation_Energy(I, I0, A1, A2, A3):
+def Excitation_Energy(I, I0, n, A1, A2, A3):
+    # band-head energy
     E0 = Energy(I0, 0, A1, A2, A3)
-
+    # absolute energy of the I-th level
     E = Energy(I, n, A1, A2, A3)
 
     return E-E0
