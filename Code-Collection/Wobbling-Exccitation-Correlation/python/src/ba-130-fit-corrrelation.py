@@ -7,6 +7,31 @@ from scipy.optimize import curve_fit
 MAX_VAL = 6969696969
 
 
+def Ak(moi):
+    return 1.0/(2.0*moi)
+
+
+def Ik(inertia_factor):
+    return 1.0/(2.0*inertia_factor)
+
+
+def Physical_Conditions(A1, A2, A3):
+    # skip the non-physical solutions
+    if(A1 == A3):
+        return 0
+    if(A2 == A3):
+        return 0
+    if(A1 == A2):
+        return 0
+    if(A1 < A3 and A3 < A2):
+        return 0
+    if(A3 < A1 and A2 < A3):
+        return 0
+    
+    # return true if the proper conditions for the inertia factors are net
+    return 1
+
+
 def chi_plotter(exp_data, th_data):
     # unpacking
     spins, experimental_energy = exp_data
@@ -41,23 +66,14 @@ def Wobbling_Frequency(spin, A1, A2, A3):
     return omega
 
 
-def Ak(moi):
-    return 1.0/(2.0*moi)
-
-
 ak_values = [Ak(x) for x in np.arange(0.5, 125, 5)]
-moi_values = [1.0/(2.0*x) for x in ak_values]
 
 
 def do_procedure():
-    print(ak_values)
-    print("*********************")
-    print(moi_values)
-    plt.plot(ak_values, '-or', label=r'$\mathcal{A}_k$')
-    plt.plot(moi_values, '-ob', label=r'$\mathcal{J}_k$')
-    plt.legend(loc='best')
-    plt.savefig('plotter.pdf', dpi=300)
-    plt.close()
+    for A1 in ak_values:
+        for A2 in ak_values:
+            for A3 in ak_values:
+                Physical_Conditions(A1, A2, A3)
 
 
 if __name__ == '__main__':
