@@ -37,6 +37,6 @@ class Spins:
     band_head = band1[0]
 
 
-print(Exp_Wobbling_Energy.band1)
-print(Exp_Excitation_Energies.band1)
-print(Exp_Excitation_Energies.band2)
+class Phonon_Number:
+    band1 = [0 for _ in range(len(Exp_Absolute_Energies.band1))]
+    band2 = [1 for _ in range(len(Exp_Absolute_Energies.band2))]
