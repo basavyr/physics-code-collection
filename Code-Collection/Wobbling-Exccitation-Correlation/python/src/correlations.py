@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
-from scipy.optimize import curve_fit
 
+import data130
 
 MAX_VAL = 6969696969
 
@@ -75,13 +75,25 @@ def Excitation_Energy(I, I0, n, A1, A2, A3):
 
 
 def Wobbling_Energy(I, n, A1, A2, A3):
-    if(I % 2 != 0):
-        wobbling = Energy(I, n, A1, A2, A3)-0.5*(
-            Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
-    else:
-        wobbling = Energy(I, n, A1, A2, A3)-Energy(I, 0, A1, A2, A3)
+    wobbling = Energy(I, n, A1, A2, A3)-0.5*(
+        Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
 
     return wobbling
+    # if(I % 2 != 0):
+    # wobbling = Energy(I, n, A1, A2, A3)-0.5*(
+    #     Energy(I-1, 0, A1, A2, A3)+Energy(I+1, 0, A1, A2, A3))
+    # else:
+    #     wobbling = Energy(I, n, A1, A2, A3)-Energy(I, 0, A1, A2, A3)
+
+
+def Wobbling_Energy_Theoretical(params):
+    spins = data130.Spins.band2
+    phonons = data130.Phonon_Number.band2
+    wob = []
+    for i in range(len(spins)):
+        wob.append(Wobbling_Energy(
+            spins[i], phonons[i], params[0], params[1], params[2]))
+    return wob
 
 
 ak_values = [Ak(x) for x in np.arange(0.5, 125, 1)]
