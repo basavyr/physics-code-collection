@@ -38,6 +38,10 @@ class CEF:
 
 def main():
     print('CEF')
+    step = 0.5
+    theta_values = np.arange(0, np.pi, step)
+    for theta in theta_values:
+        print(CEF.H_min(theta, np.pi, 25/2, 13/2, 0.1, 0.2, 0.3, 2.1, 22))
 
 
 if __name__ == '__main__':
