@@ -35,5 +35,25 @@ class Elliptic:
         I = spin
         j = odd_spin
         j2 = self.j_k(j, theta, 2)
-        result = A2*(1.0-j2/I)-A1
+        result = float(A2*(1.0-j2/I)-A1)
         return result
+
+    def v0(self, spin, odd_spin, theta, A1, A2):
+        """
+        - returns the v0 term from Eq. (2.4)
+        """
+        I = spin
+        j = odd_spin
+        j1 = self.j_k(j, theta, 1)
+        A_term = self.A(I, j, theta, A1, A2)
+        result = float(-(A1*j1)/A_term)
+        return result
+
+    def u(self, spin, odd_spin, theta, A1, A2, A3):
+        """
+        - return the u term from Eq. (2.4)
+        """
+        I = spin
+        j = odd_spin
+        A_term = self.A(I, j, theta, A1, A2)
+        result = float((A3-A1)/A_term)
