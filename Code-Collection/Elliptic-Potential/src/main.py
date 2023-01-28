@@ -94,10 +94,18 @@ class EllipticFunctions:
         q_int = integrate.quad(q_term, 0, phi)
         return q_int[0]
 
+    def phi_var(self, q, k):
+        """
+        - returns the Jacobi amplitude, connecting the coordinate q to the trigonometric variable \varphi
+        """
+        k_squared = np.power(k, 2)
+        sn, cn, dn, amu = special.ellipj(q, k_squared)
+        return amu
+
 
 def main():
     E = EllipticFunctions()
-    print(E.q_var(np.pi/2.0, 1.0/2.0))
+    print(E.phi_var(1, 1/2))
 
 
 if __name__ == '__main__':
