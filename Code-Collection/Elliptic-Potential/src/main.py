@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import scipy.integrate as integrate
 import scipy.special as special
 
+
 class NumericalFactors:
     """
     - the numerical factors that are used to define the Rotational Hamiltonian
@@ -89,4 +90,15 @@ class EllipticFunctions:
         """
         k_squared = np.power(k, 2)
         def sin2x(x): return np.power(np.sin(x), 2)
-        q_term=n
+        def q_term(x): return 1.0/np.sqrt(1-k_squared*sin2x(x))
+        q_int = integrate.quad(q_term, 0, phi)
+        return q_int[0]
+
+
+def main():
+    E = EllipticFunctions()
+    print(E.q_var(np.pi/2.0, 1.0/2.0))
+
+
+if __name__ == '__main__':
+    main()
