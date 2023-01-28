@@ -1,8 +1,12 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import scipy.integrate as integrate
+import scipy.special as special
 
-
-class Elliptic:
+class NumericalFactors:
+    """
+    - the numerical factors that are used to define the Rotational Hamiltonian
+    """
     THETA = -80.0
     ODD_SPIN = float(13.0/2.0)
     MOI_1 = 95.0
@@ -57,3 +61,32 @@ class Elliptic:
         j = odd_spin
         A_term = self.A(I, j, theta, A1, A2)
         result = float((A3-A1)/A_term)
+
+
+class EllipticFunctions:
+    """
+    - a class containing all the Jacobi Elliptic Functions and the associated elliptic potential
+    """
+
+    def k(self, u):
+        """
+        - returns the value of k term from Eq. (2.10)
+        """
+        k_term = np.sqrt(np.abs(u))
+        return k_term
+
+    def k_prime(self, u):
+        """
+        - returns the value of k' term from Eq. (2.10)
+        """
+        k_squared = np.power(self.k(u), 2)
+        k_prime_term = np.sqrt(1.0-k_squared)
+        return k_prime_term
+
+    def q_var(self, phi, k):
+        """
+        - returns the numerical value of the coordinate q, i.e., the inverse of the incomplete elliptic integral of first kind
+        """
+        k_squared = np.power(k, 2)
+        def sin2x(x): return np.power(np.sin(x), 2)
+        q_term=n
