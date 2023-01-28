@@ -9,12 +9,13 @@ class NumericalFactors:
     - the numerical factors that are used to define the Rotational Hamiltonian
     """
     THETA = -80.0
+    SPIN = 45.0/2.0
     ODD_SPIN = float(13.0/2.0)
     MOI_1 = 95.0
     MOI_2 = 100.0
     MOI_3 = 85.0
 
-    def inertia_factor(moi):
+    def inertia_factor(self, moi):
         return float(1.0/(2.0*moi))
 
     def j_vec(self, j_abs, theta):
@@ -62,6 +63,7 @@ class NumericalFactors:
         j = odd_spin
         A_term = self.A(I, j, theta, A1, A2)
         result = float((A3-A1)/A_term)
+        return result
 
 
 class EllipticFunctions:
@@ -102,10 +104,42 @@ class EllipticFunctions:
         sn, cn, dn, amu = special.ellipj(q, k_squared)
         return amu
 
+    def v_q(self, spin, q, k, v0):
+        """
+        - returns the expression for the elliptic potential V(q), given by Eq. (2.16)
+        """
+        I = spin
+        k_squared = np.power(k, 2)
+        v0_squared = np.power(v0, 2)
+        s, c, d, _ = special.ellipj(q, k_squared)
+        s_squared = np.power(s, 2)
+        t1 = (I*(I+1.0)*k_squared+v0_squared)*s_squared
+        t2 = (2.0*I+1.0)*v0*c*d
+        v_term = t1+t2
+        return v_term
+
 
 def main():
+    # create the class instances for usage
     E = EllipticFunctions()
-    print(E.phi_var(1, 1/2))
+    N = NumericalFactors()
+
+    # define the inertia factors
+    A1_N = N.inertia_factor(N.MOI_1)
+    A2_N = N.inertia_factor(N.MOI_2)
+    A3_N = N.inertia_factor(N.MOI_3)
+
+    u_N = N.u(N.SPIN, N.ODD_SPIN, N.THETA, A1_N, A2_N, A3_N)
+    A_N = N.A(N.SPIN, N.ODD_SPIN, N.THETA, A1_N, A2_N)
+    v0_N = N.v0(N.SPIN, N.ODD_SPIN, N.THETA, A1_N, A2_N)
+
+    k_N = E.k(u_N)
+    k_prime_N = E.k_prime(u_N)
+
+    q_values = np.arange(-8, 8, 0.2)
+    for q in q_values:
+        v_q = E.v_q(N.SPIN, q, k_N, v0_N)
+        print(q,v_q)
 
 
 if __name__ == '__main__':
