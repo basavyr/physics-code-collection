@@ -12,3 +12,7 @@ Code-Collection/Moments-Of-Inertia/.DS_Store
 Code-Collection/Quadrupole-Deformed-MeanField/.DS_Store
 Code-Collection/Quadrupole-Moments/.DS_Store
 .DS_Store
+
+*.pyc
+
+*.lock
