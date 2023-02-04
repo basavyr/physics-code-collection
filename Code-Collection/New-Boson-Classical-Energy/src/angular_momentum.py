@@ -20,3 +20,29 @@ class j_SingleParticle:
         j2 = self.j*np.sin(self.theta_rad)
         j3 = 0
         return [j1, j2, j3]
+
+
+class xk_AngularMomentum:
+    """
+    - the classical components of the total angular momentum I written in terms of the polar coordinates \theta,\varphi
+    """
+    @staticmethod
+    def x1(spin: float, theta_2_deg: float, varphi_2_deg: float) -> float:
+        I = spin
+        theta_2_rad = theta_2_deg*np.pi/180.0
+        varphi_2_rad = varphi_2_deg*np.pi/180.0
+        return float(I*np.sin(theta_2_rad)*np.sin(varphi_2_rad))
+
+    @staticmethod
+    def x2(spin: float, theta_2_deg: float, varphi_2_deg: float) -> float:
+        I = spin
+        theta_2_rad = theta_2_deg*np.pi/180.0
+        varphi_2_rad = varphi_2_deg*np.pi/180.0
+        return float(I*np.cos(theta_2_rad))
+
+    @staticmethod
+    def x3(spin: float, theta_2_deg: float, varphi_2_deg: float) -> float:
+        I = spin
+        theta_2_rad = theta_2_deg*np.pi/180.0
+        varphi_2_rad = varphi_2_deg*np.pi/180.0
+        return float(I*np.sin(theta_2_rad)*np.cos(varphi_2_rad))
