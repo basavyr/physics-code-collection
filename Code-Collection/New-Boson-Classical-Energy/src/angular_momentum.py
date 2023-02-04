@@ -7,22 +7,22 @@ class j_SingleParticle:
     - the polar coordinates are $\theta,\varphi$.
     """
 
-    def __init__(self, j_abs, theta_degrees):
+    def __init__(self, j_abs: float, theta_degrees: float) -> None:
         self.j = j_abs
         self.theta_degrees = theta_degrees
         self.theta_rad = np.pi*theta_degrees/180.0
 
-    def j_vec(self):
+    def j_vec(self) -> tuple[float, float, float]:
         """
-        - returns a tuple [j1, j2, j3] containing the three components of the angular momentum vector $\\vec{j}$
+        - returns a tuple (j1, j2, j3) containing the three components of the angular momentum vector $\\vec{j}$
         """
         j1 = self.j*np.cos(self.theta_rad)
         j2 = self.j*np.sin(self.theta_rad)
         j3 = 0
-        return [j1, j2, j3]
+        return (j1, j2, j3)
 
 
-class xk_AngularMomentum:
+class x_AngularMomentum:
     """
     - the classical components of the total angular momentum I written in terms of the polar coordinates \theta,\varphi
     """
@@ -37,7 +37,6 @@ class xk_AngularMomentum:
     def x2(spin: float, theta_2_deg: float, varphi_2_deg: float) -> float:
         I = spin
         theta_2_rad = theta_2_deg*np.pi/180.0
-        varphi_2_rad = varphi_2_deg*np.pi/180.0
         return float(I*np.cos(theta_2_rad))
 
     @staticmethod

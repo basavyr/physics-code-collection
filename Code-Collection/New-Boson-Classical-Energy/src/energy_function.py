@@ -5,17 +5,21 @@ class EnergyFunction:
     """
     - class that contains the numerical methods required for constructing the analytical expression of H'
     """
+    @staticmethod
     def A_term(A1: float, A2: float, spin: float, j2: float) -> float:
         I = spin
         return A2*(1.0-(j2/I))-A1
 
+    @staticmethod
     def u_term(A1: float, A3: float, A: float) -> float:
         return (A3-A1)/A
 
+    @staticmethod
     def v0_term(A1: float,  A: float, j1: float) -> float:
         return -float(A1*j1/A)
 
-    def H_polar(spin: float, x2: float, theta_2_deg: float, varphi_2_rad: float, u: float, v0: float) -> float:
+    @staticmethod
+    def H_polar(spin: float, x2: float, varphi_2_rad: float, u: float, v0: float) -> float:
         """
         - H' from Eq. (5.16)
         """
