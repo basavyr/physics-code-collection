@@ -8,12 +8,14 @@ class EnergyFunction:
             moi2: float,
             moi3: float,
             j: float,
-            theta: int) -> None:
+            theta: int,
+            band_head: float) -> None:
         self.A1 = 1.0 / (2.0 * moi1)
         self.A2 = 1.0 / (2.0 * moi2)
         self.A3 = 1.0 / (2.0 * moi3)
         self.j1 = j * np.cos(theta * np.pi / 180.0)
         self.j2 = j * np.sin(theta * np.pi / 180.0)
+        self.I0 = band_head
 
     def wobbling_frequency(self, spin: float) -> float:
         """
@@ -44,3 +46,10 @@ class EnergyFunction:
             self.A2 * np.power(self.j2, 2)
 
         return np.round(sub_term_1 + h_omega + sub_term_2, 3)
+
+    def excitation_energy(self, spin: float, n: int) -> float:
+        """
+        - returns the absolute energy of a spin state, minus the band head energy
+        """
+        band_head_energy = self.absolute_energy(self.I0, 0)
+        return np.round(self.absolute_energy(spin, n) - band_head_energy, 3)
