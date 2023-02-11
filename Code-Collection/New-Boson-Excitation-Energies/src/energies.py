@@ -2,7 +2,13 @@ import numpy as np
 
 
 class EnergyFunction:
-    def __init__(self, moi1, moi2, moi3, j, theta):
+    def __init__(
+            self,
+            moi1: float,
+            moi2: float,
+            moi3: float,
+            j: float,
+            theta: int) -> None:
         self.A1 = 1.0 / (2.0 * moi1)
         self.A2 = 1.0 / (2.0 * moi2)
         self.A3 = 1.0 / (2.0 * moi3)
@@ -22,7 +28,7 @@ class EnergyFunction:
         sub_term_3 = (self.A3 - self.A1) * \
             (self.A2 - self.A1 - (self.A2 * self.j2) / I)
 
-        return np.sqrt(sub_term_1 * sub_term_2 - sub_term_3)
+        return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 3)
 
     def excitation_energy(self, spin: float, n: int) -> float:
         """
@@ -37,4 +43,4 @@ class EnergyFunction:
         sub_term_2 = self.A1 * np.power(self.j1, 2) + \
             self.A2 * np.power(self.j2, 2)
 
-        return sub_term_1 + h_omega + sub_term_2
+        return np.round(sub_term_1 + h_omega + sub_term_2, 3)
