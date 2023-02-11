@@ -20,7 +20,7 @@ class EnergyFunction:
         sub_term_2 = (2.0 * I + 1) * (self.A3 - self.A1) + \
             2.0 * self.A1 * self.j1
         sub_term_3 = (self.A3 - self.A1) * \
-            (self.A2 - self.A1 - (self.A2 * self.j2)/I)
+            (self.A2 - self.A1 - (self.A2 * self.j2) / I)
 
         return np.sqrt(sub_term_1 * sub_term_2 - sub_term_3)
 
@@ -30,9 +30,9 @@ class EnergyFunction:
         """
         I = spin
 
-        h_omega = self.wobbling_frequency(I)*(n+0.5)
+        h_omega = self.wobbling_frequency(I) * (n + 0.5)
 
-        sub_term_1 = self.A1*np.power(I, 2) - \
+        sub_term_1 = self.A1 * np.power(I, 2) - \
             (2.0 * I + 1.0) * self.A1 * self.j1 - I * self.A2 * self.j2
         sub_term_2 = self.A1 * np.power(self.j1, 2) + \
             self.A2 * np.power(self.j2, 2)
