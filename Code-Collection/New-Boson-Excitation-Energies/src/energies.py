@@ -30,7 +30,7 @@ class EnergyFunction:
 
         return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 3)
 
-    def excitation_energy(self, spin: float, n: int) -> float:
+    def absolute_energy(self, spin: float, n: int) -> float:
         """
         - Returns the Excitation energy E_n from Eq. (4.3)
         """
