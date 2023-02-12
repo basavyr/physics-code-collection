@@ -23,8 +23,8 @@ class EnergyFunction:
         """
         I = spin
 
-        sub_term_1 = (2.0 * I + 1.0) * (self.A2 - self.A1 -
-                                        (self.A2 * self.j2) / I) + 2.0 * self.A1 * self.j1
+        sub_term_1 = (2.0 * I + 1.0) * (self.A2 - self.A1 - \
+                      (self.A2 * self.j2) / I) + 2.0 * self.A1 * self.j1
         sub_term_2 = (2.0 * I + 1) * (self.A3 - self.A1) + \
             2.0 * self.A1 * self.j1
         sub_term_3 = (self.A3 - self.A1) * \
@@ -37,8 +37,8 @@ class EnergyFunction:
         - Returns the wobbling frequency \\hbar\\omega' from Eq. (4.7)
         """
         I = spin
-        sub_term_1 = (2.0 * I + 1.0) * (self.A2 - self.A1 -
-                                        (self.A2 * self.j2) / I) - 2.0 * self.A1 * self.j1
+        sub_term_1 = (2.0 * I + 1.0) * (self.A2 - self.A1 - \
+                      (self.A2 * self.j2) / I) - 2.0 * self.A1 * self.j1
         sub_term_2 = (2.0 * I + 1.0) * (self.A3 - self.A1) - \
             2.0 * self.A1 * self.j1
         sub_term_3 = (self.A3 - self.A1) * (self.A2 -
@@ -76,8 +76,8 @@ class EnergyFunction:
         - Uses the fact that excited bands of spin I are evaluated using yrast level I-1
         """
         I = spin
-        h_omega = self.wobbling_frequency(I-n) * (n + 0.5)
-        h_min = self.h_min(I-n)
+        h_omega = self.wobbling_frequency(I - n) * (n + 0.5)
+        h_min = self.h_min(I - n)
 
         return np.round(h_min + h_omega, 4)
 
@@ -87,8 +87,8 @@ class EnergyFunction:
         - Uses the fact that excited bands of spin I are evaluated using yrast level I-1
         """
         I = spin
-        h_omega_prime = self.wobbling_frequency_prime(I-n) * (n + 0.5)
-        h_min_prime = self.h_min_prime(I-n)
+        h_omega_prime = self.wobbling_frequency_prime(I - n) * (n + 0.5)
+        h_min_prime = self.h_min_prime(I - n)
 
         return np.round(h_min_prime + h_omega_prime, 4)
 
@@ -104,7 +104,9 @@ class EnergyFunction:
         - returns the absolute energy of a spin state minus the band head energy
         """
         band_head_energy = self.absolute_energy_prime(self.I0, 0)
-        return np.round(self.absolute_energy_prime(spin, n) - band_head_energy, 4)
+        return np.round(
+            self.absolute_energy_prime(
+                spin, n) - band_head_energy, 4)
 
     def generate_energy_band(
             self,
