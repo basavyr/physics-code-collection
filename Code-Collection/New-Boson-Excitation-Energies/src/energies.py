@@ -30,7 +30,7 @@ class EnergyFunction:
         sub_term_3 = (self.A3 - self.A1) * \
             (self.A2 - self.A1 - (self.A2 * self.j2) / I)
 
-        return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 3)
+        return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 4)
 
     def absolute_energy(self, spin: float, n: int) -> float:
         """
@@ -45,11 +45,24 @@ class EnergyFunction:
         sub_term_2 = self.A1 * np.power(self.j1, 2) + \
             self.A2 * np.power(self.j2, 2)
 
-        return np.round(sub_term_1 + h_omega + sub_term_2, 3)
+        return np.round(sub_term_1 + h_omega + sub_term_2, 4)
 
     def excitation_energy(self, spin: float, n: int) -> float:
         """
         - returns the absolute energy of a spin state, minus the band head energy
         """
         band_head_energy = self.absolute_energy(self.I0, 0)
-        return np.round(self.absolute_energy(spin, n) - band_head_energy, 3)
+        return np.round(self.absolute_energy(spin, n) - band_head_energy, 4)
+
+    def generate_energy_band(
+            self,
+            band_head_energy: float,
+            gammas: list[float]) -> np.ndarray:
+        """
+        - Generate a list of energies based on the ground-state energy and the gamma transitions between adjacent levels
+        """
+        energies = [band_head_energy]
+        for idx in range(len(gammas)):
+            energies.append(gammas[idx] + energies[idx])
+
+        return np.array(np.round(energies, 4))
