@@ -32,15 +32,24 @@ def main():
         372.9, 659.8, 854.3, 999.7,
         1075.6, 843.7, 834.3, 882.2, 922.4, 957.0, 1005]
     e01 = 358.0
-    band1_exp = energy.generate_energy_band(e01, gamma1_exp)
+    band1_exp = energy.generate_excitation_band(
+        e01, energy.generate_energy_band(e01, gamma1_exp))
+    energy.math_print(band1_exp[1:], f'band1_exp'.replace(
+        "_", "").replace("exp", "Exp"))
 
     gamma2_exp = [726.5, 795.7, 955.7, 1111.7]
     e02 = 1477.9
-    band2_exp = energy.generate_energy_band(e02, gamma2_exp)
+    band2_exp = energy.generate_excitation_band(
+        e01, energy.generate_energy_band(e02, gamma2_exp))
+    energy.math_print(band2_exp, f'band2_exp'.replace(
+        "_", "").replace("exp", "Exp"))
 
     gamma3_exp = [826.3, 763.8, 1009.0]
     e03 = 358.0 + 372.9 + 1197.1
-    band3_exp = energy.generate_energy_band(e03, gamma3_exp)
+    band3_exp = energy.generate_excitation_band(
+        e01, energy.generate_energy_band(e03, gamma3_exp))
+    energy.math_print(band3_exp, f'band3_exp'.replace(
+        "_", "").replace("exp", "Exp"))
 
 
 if __name__ == '__main__':

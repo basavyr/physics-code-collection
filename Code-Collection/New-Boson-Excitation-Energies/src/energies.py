@@ -66,3 +66,23 @@ class EnergyFunction:
             energies.append(gammas[idx] + energies[idx])
 
         return np.array(np.round(energies, 4))
+
+    def generate_excitation_band(self, band_head_energy: float, absolute_band: np.ndarray[float]) -> np.ndarray[float]:
+        """
+        - generate the excitation energies from the absolute energies and the band-head level
+        """
+        return np.round(0.001*(absolute_band-band_head_energy), 4)
+
+    def math_print(self, array: np.ndarray[float], array_name: str) -> str:
+        """
+        - return a list in math output (ready for copy/paste in Mathematica)
+        - requires the array name so that it can write it in front of the {} object
+        """
+        string = f"{array_name} = {{"
+        for idx in range(len(array)):
+            if (idx == len(array)-1):
+                string = string+f"{array[idx]}}};"
+            else:
+                string = string+f"{array[idx]},"
+
+        print(string)
