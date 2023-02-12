@@ -19,7 +19,7 @@ class EnergyFunction:
 
     def wobbling_frequency(self, spin: float) -> float:
         """
-        - Returns the wobbling frequency from Eq. (4.4)
+        - Returns the wobbling frequency \hbar\omega from Eq. (4.4)
         """
         I = spin
 
@@ -29,6 +29,18 @@ class EnergyFunction:
             2.0 * self.A1 * self.j1
         sub_term_3 = (self.A3 - self.A1) * \
             (self.A2 - self.A1 - (self.A2 * self.j2) / I)
+
+        return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 4)
+
+    def wobbling_frequency_prime(self, spin: float) -> float:
+        """
+        - Returns the wobbling frequency \hbar\omega' from Eq. (4.7)
+        """
+        I = spin
+        sub_term_1 = (2.0*I+1.0)*(self.A2-self.A1 -
+                                  (self.A2 * self.j2) / I)-2.0*self.A1*self.j1
+        sub_term_2 = (2.0*I+1.0)*(self.A3-self.A1)-2.0*self.A1*self.j1
+        sub_term_3 = (self.A3-self.A1)*(self.A2-self.A1-(self.A2*self.j2)/I)
 
         return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 4)
 
