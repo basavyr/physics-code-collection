@@ -44,20 +44,45 @@ class EnergyFunction:
 
         return np.round(np.sqrt(sub_term_1 * sub_term_2 - sub_term_3), 4)
 
+    def h_min(self, spin: float) -> float:
+        """
+        - returns the minimal energy function that is used to determine the total energy E for a spin state I -> from Eq. (4.3)
+        """
+        I = spin
+        sub_term_1 = self.A1 * \
+            np.power(I, 2)-(2.0*I+1.0)*self.A1*self.j1-I*self.A2*self.j2
+        sub_term_2 = self.A1*np.power(self.j1, 2)+self.A2*np.power(self.j2, 2)
+        return np.round(sub_term_1+sub_term_2, 4)
+
+    def h_min_prime(self, spin: float) -> float:
+        """
+        - returns the minimal energy function that is used to determine the total energy E' for a spin state I -> from Eq. (4.6)
+        """
+        I = spin
+        sub_term_1 = self.A1 * \
+            np.power(I, 2)+(2.0*I+1.0)*self.A1*self.j1-I*self.A2*self.j2
+        sub_term_2 = self.A1*np.power(self.j1, 2)+self.A2*np.power(self.j2, 2)
+        return np.round(sub_term_1+sub_term_2, 4)
+
     def absolute_energy(self, spin: float, n: int) -> float:
         """
         - Returns the Excitation energy E_n from Eq. (4.3)
         """
         I = spin
-
         h_omega = self.wobbling_frequency(I) * (n + 0.5)
+        h_min = self.h_min(I)
 
-        sub_term_1 = self.A1 * np.power(I, 2) - \
-            (2.0 * I + 1.0) * self.A1 * self.j1 - I * self.A2 * self.j2
-        sub_term_2 = self.A1 * np.power(self.j1, 2) + \
-            self.A2 * np.power(self.j2, 2)
+        return np.round(h_min+h_omega, 4)
 
-        return np.round(sub_term_1 + h_omega + sub_term_2, 4)
+    def absolute_energy_prime(self, spin: float, n: int) -> float:
+        """
+        - Returns the Excitation energy E_n' from Eq. (4.6)
+        """
+        I = spin
+        h_omega_prime = self.wobbling_frequency_prime(I) * (n + 0.5)
+        h_min_prime = self.h_min_prime(I)
+
+        return np.round(h_min_prime+h_omega_prime, 4)
 
     def excitation_energy(self, spin: float, n: int) -> float:
         """
