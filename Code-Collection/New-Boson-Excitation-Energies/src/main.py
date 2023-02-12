@@ -32,7 +32,7 @@ def main():
     theta = -119
     j = 5.5
     energy = energies.EnergyFunction(91.0, 9.0, 51.0, j, theta, band_head)
-    do_tests_absolute_energies(energy)
+    # do_tests_absolute_energies(energy)
     do_tests_excitation_energies(energy)
     # gamma1_exp = [
     #     372.9, 659.8, 854.3, 999.7,
