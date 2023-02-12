@@ -1,35 +1,6 @@
 import energies
 import numpy as np
-
-
-def band_1_data(absolute_energies: energies.EnergyFunction.absolute_energy, absolute_energies_prime: energies.EnergyFunction.absolute_energy_prime):
-    spins_1 = np.arange(5.5, 29.5, 2)
-    band_1 = absolute_energies(spins_1, 0)
-    band_1_prime = absolute_energies_prime(spins_1, 0)
-    print("B1 - Absolute Energies")
-    print(spins_1)
-    print(band_1)
-    print(band_1_prime)
-
-
-def band_2_data(absolute_energies: energies.EnergyFunction.absolute_energy, absolute_energies_prime: energies.EnergyFunction.absolute_energy_prime):
-    spins_2 = np.arange(8.5, 18.5, 2)
-    band_2 = absolute_energies(spins_2, 0)
-    band_2_prime = absolute_energies_prime(spins_2, 0)
-    print("B2 - Absolute Energies")
-    print(spins_2)
-    print(band_2)
-    print(band_2_prime)
-
-
-def band_3_data(absolute_energies: energies.EnergyFunction.absolute_energy, absolute_energies_prime: energies.EnergyFunction.absolute_energy_prime):
-    spins_3 = np.arange(9.5, 17.5, 2)
-    band_3 = absolute_energies(spins_3, 1)
-    band_3_prime = absolute_energies_prime(spins_3, 1)
-    print("B3 - Absolute Energies")
-    print(spins_3)
-    print(band_3)
-    print(band_3_prime)
+import tests
 
 
 def main():
@@ -37,9 +8,15 @@ def main():
     theta = -119
     j = 5.5
     energy = energies.EnergyFunction(91.0, 9.0, 51.0, j, theta, band_head)
-    band_1_data(energy.absolute_energy, energy.absolute_energy_prime)
-    band_2_data(energy.absolute_energy, energy.absolute_energy_prime)
-    band_3_data(energy.absolute_energy, energy.absolute_energy_prime)
+    tests.AbsoluteEnergies.band_1_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
+    tests.AbsoluteEnergies.band_2_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
+    tests.AbsoluteEnergies.band_3_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
     # gamma1_exp = [
     #     372.9, 659.8, 854.3, 999.7,
     #     1075.6, 843.7, 834.3, 882.2, 922.4, 957.0, 1005]
