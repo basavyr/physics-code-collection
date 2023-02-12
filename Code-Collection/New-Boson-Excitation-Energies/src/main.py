@@ -36,7 +36,16 @@ def give_experimental_energies(energy) -> None:
             tests.ExperimentalEnergies.gamma1,
             tests.ExperimentalEnergies.e01),
         tests.ExperimentalEnergies.band_head)
+    band1_exc_cpp = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_1,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_1,
+            tests.ExperimentalEnergies.gamma1,
+            tests.ExperimentalEnergies.e01),
+        tests.ExperimentalEnergies.band_head)
     energy.math_print(band1_exc, f'band1_exp'.replace(
+        "_", "").replace("exp", "Exp"))
+    energy.math_print(band1_exc_cpp, f'band1_exp_CPP'.replace(
         "_", "").replace("exp", "Exp"))
 
     spins_2 = []
@@ -45,9 +54,18 @@ def give_experimental_energies(energy) -> None:
         tests.ExperimentalEnergies.band_energies_absolute(
             spins_2,
             tests.ExperimentalEnergies.gamma2,
+            tests.ExperimentalEnergies.e02),
+        tests.ExperimentalEnergies.band_head)
+    band2_exc_cpp = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_1,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_2,
+            tests.ExperimentalEnergies.gamma2,
             tests.ExperimentalEnergies.e02_cpp),
         tests.ExperimentalEnergies.band_head)
     energy.math_print(band2_exc, f'band2_exp'.replace(
+        "_", "").replace("exp", "Exp"))
+    energy.math_print(band2_exc_cpp, f'band2_exp_CPP'.replace(
         "_", "").replace("exp", "Exp"))
 
     spins_3 = []
@@ -56,9 +74,18 @@ def give_experimental_energies(energy) -> None:
         tests.ExperimentalEnergies.band_energies_absolute(
             spins_3,
             tests.ExperimentalEnergies.gamma3,
+            tests.ExperimentalEnergies.e03),
+        tests.ExperimentalEnergies.band_head)
+    band3_exc_cpp = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_3,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_3,
+            tests.ExperimentalEnergies.gamma3,
             tests.ExperimentalEnergies.e03_cpp),
         tests.ExperimentalEnergies.band_head)
     energy.math_print(band3_exc, f'band3_exp'.replace(
+        "_", "").replace("exp", "Exp"))
+    energy.math_print(band3_exc_cpp, f'band3_exp_CPP'.replace(
         "_", "").replace("exp", "Exp"))
 
 
