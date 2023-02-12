@@ -97,14 +97,26 @@ class ExcitationEnergies:
 
 
 class ExperimentalEnergies:
+    """
+    - the experimental values for the three wobbling bands in 135Pr
+    - band head for TW1 (B2) band is considered as the B1 ground state + 746.6
+    - band head for TW2 (B3) band is considered as the B1 ground state + 1197.1
+    """
     gamma1 = [
-        372.9, 659.8, 854.3, 999.7,
-        1075.6, 843.7, 834.3, 882.2, 922.4, 957.0, 1005]
+        372.9, 659.8, 854.3, 999.7, 1075.6, 843.7, 834.3, 882.2, 922.4,
+        957.0, 1005.0]
     e01 = 358.0
+
     gamma2 = [726.5, 795.7, 955.7, 1111.7]
     e02 = 358.0 + 372.9 + 746.6
+    e02_cpp = 358.0 + 746.6  # this band head is used in the 2020 implementation
+    # see: https://github.com/basavyr/pr135_EnergyFit_TW1TW2/blob/a1ce719a2630e0ee3a7f4fee7d507b1c32faba26/cc/expdata.cpp#L63
+
     gamma3 = [826.3, 763.8, 1009.0]
     e03 = 358.0 + 372.9 + 1197.1
+    e03_cpp = 358.0 + 1197.1  # this band head is used in the 2020 implementation
+    # see: https://github.com/basavyr/pr135_EnergyFit_TW1TW2/blob/a1ce719a2630e0ee3a7f4fee7d507b1c32faba26/cc/expdata.cpp#L88
+
     band_head = 358.0
 
     @staticmethod
@@ -116,7 +128,15 @@ class ExperimentalEnergies:
         - returns the experimental data for a band, based on the band-head level and the gamma transitions
         """
         energies = [band_head]
-        for idx in range(1, len(gammas)):
+        for idx in range(1, len(gammas)+1):
             e_idx = energies[idx - 1] + gammas[idx - 1]
             energies.insert(idx, e_idx)
         return energies
+
+    @staticmethod
+    def band_energies_excitation(spins: list[float], energies: list[float], band_head: float) -> list[float]:
+        """
+        - returns the excitation energies for a list of absolute energies and a band-head level
+        - give the results in MeV
+        """
+        return [np.round(0.001*(e-band_head), 4) for e in energies]

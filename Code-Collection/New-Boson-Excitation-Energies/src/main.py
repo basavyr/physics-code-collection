@@ -28,20 +28,37 @@ def do_tests_excitation_energies(energy):
 
 
 def give_experimental_energies(energy) -> None:
-
-    band1_exp = tests.ExperimentalEnergies.band_energies_absolute(
-        [], tests.ExperimentalEnergies.gamma1, tests.ExperimentalEnergies.e01)
-    energy.math_print(band1_exp, f'band1_exp'.replace(
+    spins_1 = []
+    band1_exc = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_1,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_1,
+            tests.ExperimentalEnergies.gamma1,
+            tests.ExperimentalEnergies.e01),
+        tests.ExperimentalEnergies.band_head)
+    energy.math_print(band1_exc, f'band1_exp'.replace(
         "_", "").replace("exp", "Exp"))
 
-    band2_exp = tests.ExperimentalEnergies.band_energies_absolute(
-        [], tests.ExperimentalEnergies.gamma2, tests.ExperimentalEnergies.e02)
-    energy.math_print(band2_exp, f'band2_exp'.replace(
+    spins_2 = []
+    band2_exc = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_1,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_2,
+            tests.ExperimentalEnergies.gamma2,
+            tests.ExperimentalEnergies.e02_cpp),
+        tests.ExperimentalEnergies.band_head)
+    energy.math_print(band2_exc, f'band2_exp'.replace(
         "_", "").replace("exp", "Exp"))
 
-    band3_exp = tests.ExperimentalEnergies.band_energies_absolute(
-        [], tests.ExperimentalEnergies.gamma3, tests.ExperimentalEnergies.e03)
-    energy.math_print(band3_exp, f'band3_exp'.replace(
+    spins_3 = []
+    band3_exc = tests.ExperimentalEnergies.band_energies_excitation(
+        spins_3,
+        tests.ExperimentalEnergies.band_energies_absolute(
+            spins_3,
+            tests.ExperimentalEnergies.gamma3,
+            tests.ExperimentalEnergies.e03_cpp),
+        tests.ExperimentalEnergies.band_head)
+    energy.math_print(band3_exc, f'band3_exp'.replace(
         "_", "").replace("exp", "Exp"))
 
 
@@ -50,7 +67,7 @@ def main():
     theta = -119
     j = 5.5
     energy = energies.EnergyFunction(91.0, 9.0, 51.0, j, theta, band_head)
-    # do_tests_excitation_energies(energy)
+    do_tests_excitation_energies(energy)
     give_experimental_energies(energy)
 
 
