@@ -41,3 +41,44 @@ class AbsoluteEnergies:
         print(f"E -> {band_3}")
         print(F"E' -> {band_3_prime}")
         print(f'\n')
+
+
+class ExcitationEnergies:
+    @staticmethod
+    def band_1_data(excitation_energies: energies.EnergyFunction.excitation_energy, excitation_energies_prime: energies.EnergyFunction.excitation_energy_prime):
+        spins_1 = np.arange(5.5, 29.5, 2)
+        band_1 = excitation_energies(spins_1, 0)
+        band_1_prime = excitation_energies_prime(spins_1, 0)
+        print("**********************")
+        print("B1 - Excitation Energies")
+        print("**********************")
+        print(spins_1)
+        print(f"E -> {band_1}")
+        print(F"E' -> {band_1_prime}")
+        print(f'\n')
+
+    @staticmethod
+    def band_2_data(excitation_energies: energies.EnergyFunction.excitation_energy, excitation_energies_prime: energies.EnergyFunction.excitation_energy_prime):
+        spins_2 = np.arange(8.5, 18.5, 2)
+        band_2 = excitation_energies(spins_2, 0)
+        band_2_prime = excitation_energies_prime(spins_2, 0)
+        print("**********************")
+        print("B2 - Excitation Energies")
+        print("**********************")
+        print(spins_2)
+        print(f"E -> {band_2}")
+        print(F"E' -> {band_2_prime}")
+        print(f'\n')
+
+    @staticmethod
+    def band_3_data(excitation_energies: energies.EnergyFunction.excitation_energy, excitation_energies_prime: energies.EnergyFunction.excitation_energy_prime):
+        spins_3 = np.arange(9.5, 17.5, 2)
+        band_3 = excitation_energies(spins_3, 1)
+        band_3_prime = excitation_energies_prime(spins_3, 1)
+        print("**********************")
+        print("B3 - Excitation Energies")
+        print("**********************")
+        print(spins_3)
+        print(f"E -> {band_3}")
+        print(F"E' -> {band_3_prime}")
+        print(f'\n')

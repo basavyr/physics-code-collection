@@ -15,12 +15,25 @@ def do_tests_absolute_energies(energy):
         energy.absolute_energy_prime)
 
 
+def do_tests_excitation_energies(energy):
+    tests.ExcitationEnergies.band_1_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
+    tests.ExcitationEnergies.band_2_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
+    tests.ExcitationEnergies.band_3_data(
+        energy.absolute_energy,
+        energy.absolute_energy_prime)
+
+
 def main():
     band_head = 5.5
     theta = -119
     j = 5.5
     energy = energies.EnergyFunction(91.0, 9.0, 51.0, j, theta, band_head)
-    do_tests_absolute_energies(energy)
+    # do_tests_absolute_energies(energy)
+    do_tests_excitation_energies(energy)
     # gamma1_exp = [
     #     372.9, 659.8, 854.3, 999.7,
     #     1075.6, 843.7, 834.3, 882.2, 922.4, 957.0, 1005]
