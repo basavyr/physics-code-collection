@@ -26,25 +26,25 @@ def main():
         print(q, v_q)
 
 
-def generate_potential_data(spin: float, q_values: list[float]) -> list[float]:
+def generate_potential_data(spin: float, theta_deg: float, q_values: list[float]) -> list[float]:
     """
     - Returns a list of numerical values for the elliptic potential V(q)
     - Requires the list of q values
     """
     elliptic = elliptic_potential.EllipticFunctions(
-        91.0, 5.0, 51.0, 5.5, -119.0)
-    return [elliptic.v_q_func(spin, q) for q in q_values]
+        91.0, 5.0, 51.0, 5.5)
+    return [elliptic.v_q_func(spin, theta_deg, q) for q in q_values]
 
 
 def create_elliptic_plots():
     x_label = "q [rad]"
     y_label = r'V(q) [$\hbar^2$]'
     plot_label = "V(q)"
-    x_data = np.linspace(-8.0, 8.0, 10)
+    x_data = np.linspace(-8.0, 8.0, 100)
     print(f'Will create plots for q: {x_data}')
-    y_data = generate_potential_data(22.5, x_data)
+    y_data = generate_potential_data(22.5, -119.0, x_data)
     print(f'The potential values are: {y_data}')
-    p = plotter.Plotter([1, 2, 3], [1, 2, 3])
+    p = plotter.Plotter(x_data, y_data)
     p.make_plot("test_plot_1", x_label, y_label, plot_label)
 
 

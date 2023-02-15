@@ -71,12 +71,11 @@ class EllipticFunctions:
     - Requires the moments of inertia, $\theta$ angle, and the single-particle angular momentum
     """
 
-    def __init__(self, moi_1: float, moi_2: float, moi_3: float, odd_spin: float, theta: float) -> None:
+    def __init__(self, moi_1: float, moi_2: float, moi_3: float, odd_spin: float) -> None:
         self.I1 = moi_1
         self.I2 = moi_2
         self.I3 = moi_3
         self.j = odd_spin
-        self.theta = theta
         self.A1 = 1.0/(2.0*moi_1)
         self.A2 = 1.0/(2.0*moi_2)
         self.A3 = 1.0/(2.0*moi_3)
@@ -128,8 +127,21 @@ class EllipticFunctions:
         v_term = t1 + t2
         return v_term
 
-    def v_q_func(self, spin: float, q: float) -> float:
+    def v_q_func(self, spin: float, theta_deg: float, q: float) -> float:
         """
-        - Calculate the elliptic potential only from the angular momentum value and q variable
+        - Calculate the elliptic potential only from the angular momentum, the angle theta, and q variable
         """
-        return q+spin
+        I = spin
+        theta_rad = theta_deg*np.pi/180.0
+        j1 = self.j*np.cos(theta_rad)
+        j2 = self.j*np.sin(theta_rad)
+        a = self.A2*(1.0-j2/I)-self.A1
+        v0 = -(self.A1*j1)/a
+        u = (self.A3-self.A1)/a
+        k = np.sqrt(np.abs(u))
+        k_squared = np.power(k, 2)
+        phi_q = self.phi_var(q, k_squared)
+        s, c, d, _ = special.ellipj(phi_q, k_squared)
+        v = (I*(I+1.0)*k_squared+np.power(v0, 2)) * \
+            np.power(s, 2)+(2.0*I+1.0)*v0*c*d
+        return v
