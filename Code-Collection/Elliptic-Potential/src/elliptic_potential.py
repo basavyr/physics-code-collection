@@ -33,7 +33,7 @@ class NumericalFactors:
         """
         return self.j_vec(j_abs, theta)[k - 1]
 
-    def A(self, spin, odd_spin, theta, A1, A2):
+    def a_term(self, spin, odd_spin, theta, A1, A2):
         """
         - returns the A term from Eq. (2.4)
         """
@@ -50,8 +50,8 @@ class NumericalFactors:
         I = spin
         j = odd_spin
         j1 = self.j_k(j, theta, 1)
-        A_term = self.A(I, j, theta, A1, A2)
-        result = float(-(A1 * j1) / A_term)
+        a_term = self.a_term(I, j, theta, A1, A2)
+        result = float(-(A1 * j1) / a_term)
         return result
 
     def u(self, spin, odd_spin, theta, A1, A2, A3):
@@ -60,8 +60,8 @@ class NumericalFactors:
         """
         I = spin
         j = odd_spin
-        A_term = self.A(I, j, theta, A1, A2)
-        result = float((A3 - A1) / A_term)
+        a_term = self.a_term(I, j, theta, A1, A2)
+        result = float((A3 - A1) / a_term)
         return result
 
 
@@ -100,7 +100,7 @@ class EllipticFunctions:
         - returns the Jacobi amplitude, connecting the coordinate q to the trigonometric variable \varphi
         """
         k_squared = np.power(k, 2)
-        sn, cn, dn, amu = special.ellipj(q, k_squared)
+        _, _, _, amu = special.ellipj(q, k_squared)
         return amu
 
     def v_q(self, spin, q, k, v0):
