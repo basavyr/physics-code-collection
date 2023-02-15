@@ -67,8 +67,19 @@ class NumericalFactors:
 
 class EllipticFunctions:
     """
-    - a class containing all the Jacobi Elliptic Functions and the associated elliptic potential
+    - A class containing the Jacobi Elliptic Functions and the elliptic potential
+    - Requires the moments of inertia, $\theta$ angle, and the single-particle angular momentum
     """
+
+    def __init__(self, moi_1: float, moi_2: float, moi_3: float, odd_spin: float, theta: float) -> None:
+        self.I1 = moi_1
+        self.I2 = moi_2
+        self.I3 = moi_3
+        self.j = odd_spin
+        self.theta = theta
+        self.A1 = 1.0/(2.0*moi_1)
+        self.A2 = 1.0/(2.0*moi_2)
+        self.A3 = 1.0/(2.0*moi_3)
 
     def k(self, u):
         """
@@ -116,3 +127,9 @@ class EllipticFunctions:
         t2 = (2.0 * I + 1.0) * v0 * c * d
         v_term = t1 + t2
         return v_term
+
+    def v_q_func(self, spin: float, q: float) -> float:
+        """
+        - Calculate the elliptic potential only from the angular momentum value and q variable
+        """
+        return q+spin
