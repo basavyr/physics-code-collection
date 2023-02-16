@@ -105,6 +105,13 @@ class EllipticFunctions:
         q_int = integrate.quad(q_term, 0, phi)
         return q_int[0]
 
+    def amu(self, q: float, k: float) -> float:
+        """
+        - returns the Jacobi amplitude for the variable q and modulus m=k^2
+        """
+        k_squared = np.power(k, 2)
+        return special.ellipj(q, k_squared)[3]
+
     def phi_var(self, q, k):
         """
         - returns the Jacobi amplitude, connecting the coordinate q to the trigonometric variable \varphi
@@ -140,8 +147,11 @@ class EllipticFunctions:
         u = (self.A3-self.A1)/a
         k = np.sqrt(np.abs(u))
         k_squared = np.power(k, 2)
-        phi_q = self.phi_var(q, k_squared)
-        s, c, d, _ = special.ellipj(phi_q, k_squared)
+        phi_q = self.amu(q, k)
+        s = np.sin(phi_q)
+        s_squared = np.power(s, 2)
+        c = np.cos(phi_q)
+        d = np.sqrt(1.0-k_squared*s_squared)
         v = (I*(I+1.0)*k_squared+np.power(v0, 2)) * \
-            np.power(s, 2)+(2.0*I+1.0)*v0*c*d
-        return v
+            s_squared+(2.0*I+1.0)*v0*c*d
+        return np.round(v, 3)

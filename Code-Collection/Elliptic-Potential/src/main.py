@@ -1,6 +1,7 @@
 import numpy as np
 import elliptic_potential
 import plotter
+import exporter as csv
 
 
 def main():
@@ -19,34 +20,40 @@ def main():
 
     k_N = E.k(u_N)
     k_prime_N = E.k_prime(u_N)
-
     q_values = np.arange(-8, 8, 0.2)
     for q in q_values:
         v_q = E.v_q(N.SPIN, q, k_N, v0_N)
         print(q, v_q)
 
 
-def generate_potential_data(spin: float, theta_deg: float, q_values: list[float]) -> list[float]:
+def generate_potential_data(q_values: list[float], moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin: float, odd_spin: float) -> list[float]:
     """
     - Returns a list of numerical values for the elliptic potential V(q)
     - Requires the list of q values
     """
     elliptic = elliptic_potential.EllipticFunctions(
-        91.0, 5.0, 51.0, 5.5)
+        moi_1, moi_2, moi_3, odd_spin)
     return [elliptic.v_q_func(spin, theta_deg, q) for q in q_values]
 
 
-def create_elliptic_plots():
+def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin: float, odd_spin: float):
     x_label = "q [rad]"
     y_label = r'V(q) [$\hbar^2$]'
     plot_label = "V(q)"
-    x_data = np.linspace(-8.0, 8.0, 100)
+    q_x_limit_left = -7
+    q_x_limit_right = 7
+    x_data = np.linspace(q_x_limit_left, q_x_limit_right, 100)
     print(f'Will create plots for q: {x_data}')
-    y_data = generate_potential_data(22.5, -119.0, x_data)
+    y_data = generate_potential_data(
+        x_data, moi_1, moi_2, moi_3, theta_deg, spin, odd_spin)
     print(f'The potential values are: {y_data}')
     p = plotter.Plotter(x_data, y_data)
     p.make_plot("test_plot_1", x_label, y_label, plot_label)
 
+    # save the results to a csv file
+    file_name = f'potential-spin-{int(2*spin)}-2'
+    csv.save_to_csv(x_data, y_data, file_name)
+
 
 if __name__ == '__main__':
-    create_elliptic_plots()
+    create_elliptic_plots(95, 100, 85, 100, 45/2, 6.5)
