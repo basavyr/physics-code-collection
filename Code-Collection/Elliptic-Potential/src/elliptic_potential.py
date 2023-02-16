@@ -107,17 +107,16 @@ class EllipticFunctions:
 
     def amu(self, q: float, k: float) -> float:
         """
-        - returns the Jacobi amplitude for the variable q and modulus m=k^2
+        - returns the Jacobi amplitude for the variable q and modulus k
+        - the function takes the argument k as is, and it produces similar results to the Mathematica's equivalent JacobiAmplitude[u,m] (ref/JacobiAmplitude)
         """
-        k_squared = np.power(k, 2)
-        return special.ellipj(q, k_squared)[3]
+        return special.ellipj(q, k)[3]
 
     def phi_var(self, q, k):
         """
         - returns the Jacobi amplitude, connecting the coordinate q to the trigonometric variable \varphi
         """
-        k_squared = np.power(k, 2)
-        _, _, _, amu = special.ellipj(q, k_squared)
+        _, _, _, amu = special.ellipj(q, k)
         return amu
 
     def v_q(self, spin, q, k, v0):
@@ -148,6 +147,8 @@ class EllipticFunctions:
         k = np.sqrt(np.abs(u))
         k_squared = np.power(k, 2)
         phi_q = self.amu(q, k)
+        # print(q, k, phi_q)
+        # print(self.amu(4.0, 2/3))
         s = np.sin(phi_q)
         s_squared = np.power(s, 2)
         c = np.cos(phi_q)

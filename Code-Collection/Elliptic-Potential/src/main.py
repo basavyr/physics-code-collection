@@ -36,19 +36,17 @@ def generate_potential_data(q_values: list[float], moi_1: float, moi_2: float, m
     return [elliptic.v_q_func(spin, theta_deg, q) for q in q_values]
 
 
-def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin: float, odd_spin: float):
+def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin: float, odd_spin: float, plot_name: str) -> None:
     x_label = "q [rad]"
     y_label = r'V(q) [$\hbar^2$]'
     plot_label = "V(q)"
-    q_x_limit_left = -7
-    q_x_limit_right = 7
+    q_x_limit_left = -8
+    q_x_limit_right = 8
     x_data = np.linspace(q_x_limit_left, q_x_limit_right, 100)
-    print(f'Will create plots for q: {x_data}')
     y_data = generate_potential_data(
         x_data, moi_1, moi_2, moi_3, theta_deg, spin, odd_spin)
-    print(f'The potential values are: {y_data}')
     p = plotter.Plotter(x_data, y_data)
-    p.make_plot("test_plot_1", x_label, y_label, plot_label)
+    p.make_plot(plot_name, x_label, y_label, plot_label)
 
     # save the results to a csv file
     file_name = f'potential-spin-{int(2*spin)}-2'
@@ -56,4 +54,6 @@ def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: f
 
 
 if __name__ == '__main__':
-    create_elliptic_plots(95, 100, 85, 100, 45/2, 6.5)
+    create_elliptic_plots(95, 100, 85, 100, 45/2, 6.5, "plot-test-moi")
+    create_elliptic_plots(91, 9, 51, -119, 45/2, 5.5, "plot-fit-moi")
+    create_elliptic_plots(91, 9, 51, 61, 45/2, 5.5, "plot-fit-moi-chiral")
