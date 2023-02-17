@@ -20,10 +20,11 @@ class Plotter:
         - Use pyplot to create and export a graphical representation of the input data
         - the y data is given as a list of tuples, where each tuple represents the potential V(q) evaluated for a list of spins
         """
+        default_colors = ['-r', '-k', '-b', '-g']
         for idx in range(len(self.spin_values)):
             plt.plot(
                 self.x_data, [x[idx] for x in self.y_data],
-                '-r', label=f'I={self.spin_values[idx]}')
+                default_colors[idx], label=f'I={self.spin_values[idx]}')
         plt.legend(loc='best')
         plt.xlabel(x_label)
         plt.ylabel(y_label)
