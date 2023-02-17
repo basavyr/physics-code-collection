@@ -33,7 +33,8 @@ def generate_potential_data(q_values: list[float], moi_1: float, moi_2: float, m
     """
     elliptic = elliptic_potential.EllipticFunctions(
         moi_1, moi_2, moi_3, odd_spin)
-    return [elliptic.v_q_func(spin_values, theta_deg, q) for q in q_values]
+    v_values=[elliptic.v_q_func(spin_values, theta_deg, q) for q in q_values]
+    return v_values
 
 
 def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin_values: list[float], odd_spin: float, plot_name: str) -> tuple[list[float], list[float]]:
@@ -48,12 +49,9 @@ def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: f
     q_x_limit_right = 8
 
     x_data = np.linspace(q_x_limit_left, q_x_limit_right, 100)
-    print(spin_values)
     y_data = generate_potential_data(
         x_data, moi_1, moi_2, moi_3, theta_deg, spin_values, odd_spin)
-    print(y_data)
-    exit()
-    p = plotter.Plotter(x_data, y_data)
+    p = plotter.Plotter(x_data, y_data, spin_values)
     p.make_plot(plot_name, x_label, y_label, plot_label)
 
     return x_data, y_data
@@ -63,7 +61,7 @@ def export_numerical_data(x_data: list[float], y_data: list[float], file_name: s
     csv.save_to_csv(x_data, y_data, file_name)
 
 
-def make_plot_batch(theta_deg_values: list[float]) -> None:
+def make_plot_batch(theta_deg_values: list[float], spin_values: list[float]) -> None:
     """
     - create a set of plots for a list of theta values (given in degrees)
     """
@@ -72,13 +70,14 @@ def make_plot_batch(theta_deg_values: list[float]) -> None:
         csv_file_name = f'numerical-data-theta-{int(abs(theta_deg))}'
         # create the plot
         q_values, v_values = create_elliptic_plots(
-            91, 9, 51, theta_deg, [19/2, 27/2, 45/2], 5.5, plot_name)
+            91, 9, 51, theta_deg, spin_values, 5.5, plot_name)
         # export the data to a csv file
-        export_numerical_data(q_values, v_values, csv_file_name)
+        # export_numerical_data(q_values, v_values, csv_file_name)
 
 
 if __name__ == '__main__':
     # create_elliptic_plots(95, 100, 85, 100, 45/2, 6.5, "plot-test-moi")
     # create_elliptic_plots(95, 100, 85, -80, 45/2, 6.5, "plot-test-moi-chiral")
     theta_deg_values = [-119, 61]
-    make_plot_batch(theta_deg_values)
+    spin_values = [19/2, 27/2, 45/2]
+    make_plot_batch(theta_deg_values, spin_values)

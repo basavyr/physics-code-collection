@@ -126,7 +126,7 @@ class EllipticFunctions:
         v_term = t1 + t2
         return v_term
 
-    def v_q_func(self, spin_values: list[float], theta_deg: float, q: float) -> float:
+    def v_q_func(self, spin_values: list[float], theta_deg: float, q: float) -> np.ndarray:
         """
         - Calculate the elliptic potential only from the angular momentum, the angle theta, and q coordinate
         - Works for a list of spin values
@@ -142,11 +142,11 @@ class EllipticFunctions:
             k = np.sqrt(np.abs(u))
             k_squared = np.power(k, 2)
             phi_q = self.amu(q, k)
+            print(phi_q)
             s = np.sin(phi_q)
             s_squared = np.power(s, 2)
             c = np.cos(phi_q)
             d = np.sqrt(1.0-k_squared*s_squared)
-            v_values = np.append(v_values, [(I*(I+1.0)*k_squared+np.power(v0, 2))
-                                            * s_squared+(2.0*I+1.0)*v0*c*d])
-
+            v_values = np.append(v_values, (I*(I+1.0)*k_squared+np.power(v0, 2))
+                                            * s_squared+(2.0*I+1.0)*v0*c*d)
         return v_values
