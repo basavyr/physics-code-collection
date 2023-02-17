@@ -112,13 +112,6 @@ class EllipticFunctions:
         """
         return special.ellipj(q, k)[3]
 
-    def phi_var(self, q, k):
-        """
-        - returns the Jacobi amplitude, connecting the coordinate q to the trigonometric variable \varphi
-        """
-        _, _, _, amu = special.ellipj(q, k)
-        return amu
-
     def v_q(self, spin, q, k, v0):
         """
         - returns the expression for the elliptic potential V(q), given by Eq. (2.16)
@@ -133,26 +126,27 @@ class EllipticFunctions:
         v_term = t1 + t2
         return v_term
 
-    def v_q_func(self, spin: float, theta_deg: float, q: float) -> float:
+    def v_q_func(self, spin_values: list[float], theta_deg: float, q: float) -> float:
         """
-        - Calculate the elliptic potential only from the angular momentum, the angle theta, and q variable
+        - Calculate the elliptic potential only from the angular momentum, the angle theta, and q coordinate
+        - Works for a list of spin values
         """
-        I = spin
-        theta_rad = theta_deg*np.pi/180.0
-        j1 = self.j*np.cos(theta_rad)
-        j2 = self.j*np.sin(theta_rad)
-        a = self.A2*(1.0-j2/I)-self.A1
-        v0 = -(self.A1*j1)/a
-        u = (self.A3-self.A1)/a
-        k = np.sqrt(np.abs(u))
-        k_squared = np.power(k, 2)
-        phi_q = self.amu(q, k)
-        # print(q, k, phi_q)
-        # print(self.amu(4.0, 2/3))
-        s = np.sin(phi_q)
-        s_squared = np.power(s, 2)
-        c = np.cos(phi_q)
-        d = np.sqrt(1.0-k_squared*s_squared)
-        v = (I*(I+1.0)*k_squared+np.power(v0, 2)) * \
-            s_squared+(2.0*I+1.0)*v0*c*d
-        return np.round(v, 3)
+        v_values = np.array([])
+        for I in spin_values:
+            theta_rad = theta_deg*np.pi/180.0
+            j1 = self.j*np.cos(theta_rad)
+            j2 = self.j*np.sin(theta_rad)
+            a = self.A2*(1.0-j2/I)-self.A1
+            v0 = -(self.A1*j1)/a
+            u = (self.A3-self.A1)/a
+            k = np.sqrt(np.abs(u))
+            k_squared = np.power(k, 2)
+            phi_q = self.amu(q, k)
+            s = np.sin(phi_q)
+            s_squared = np.power(s, 2)
+            c = np.cos(phi_q)
+            d = np.sqrt(1.0-k_squared*s_squared)
+            v_values = np.append(v_values, [(I*(I+1.0)*k_squared+np.power(v0, 2))
+                                            * s_squared+(2.0*I+1.0)*v0*c*d])
+
+        return v_values
