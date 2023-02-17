@@ -21,7 +21,6 @@ class Plotter:
         plt.legend(loc='best')
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        # plt.ylim(-200, 300)
         plt.savefig(f'{self.save_file_dir}{plot_name}.pdf',
                     dpi=300, bbox_inches='tight')
         plt.close()
