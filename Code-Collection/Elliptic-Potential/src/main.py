@@ -33,11 +33,11 @@ def generate_potential_data(q_values: list[float], moi_1: float, moi_2: float, m
     """
     elliptic = elliptic_potential.EllipticFunctions(
         moi_1, moi_2, moi_3, odd_spin)
-    v_values=[elliptic.v_q_func(spin_values, theta_deg, q) for q in q_values]
+    v_values = [elliptic.v_q_func(spin_values, theta_deg, q) for q in q_values]
     return v_values
 
 
-def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: float, spin_values: list[float], odd_spin: float, plot_name: str) -> tuple[list[float], list[float]]:
+def create_elliptic_plots(moi_values: list[float], theta_deg: float, spin_values: list[float], odd_spin: float, plot_name: str) -> tuple[list[float], list[float]]:
     """
     - create a plot with the elliptic potential V(q)
     - the plot contains a line for each spin value that is given as argument
@@ -47,6 +47,8 @@ def create_elliptic_plots(moi_1: float, moi_2: float, moi_3: float, theta_deg: f
     plot_label = "V(q)"
     q_x_limit_left = -8
     q_x_limit_right = 8
+
+    moi_1, moi_2, moi_3 = moi_values
 
     x_data = np.linspace(q_x_limit_left, q_x_limit_right, 100)
     y_data = generate_potential_data(
@@ -61,7 +63,7 @@ def export_numerical_data(x_data: list[float], y_data: list[float], file_name: s
     csv.save_to_csv(x_data, y_data, file_name)
 
 
-def make_plot_batch(theta_deg_values: list[float], spin_values: list[float]) -> None:
+def make_plot_batch(moi_values: list[float], theta_deg_values: list[float], spin_values: list[float], odd_spin: float) -> None:
     """
     - create a set of plots for a list of theta values (given in degrees)
     """
@@ -70,7 +72,7 @@ def make_plot_batch(theta_deg_values: list[float], spin_values: list[float]) -> 
         csv_file_name = f'numerical-data-theta-{int(abs(theta_deg))}'
         # create the plot
         q_values, v_values = create_elliptic_plots(
-            91, 9, 51, theta_deg, spin_values, 5.5, plot_name)
+            moi_values, theta_deg, spin_values, odd_spin, plot_name)
         # export the data to a csv file
         # export_numerical_data(q_values, v_values, csv_file_name)
 
@@ -78,6 +80,14 @@ def make_plot_batch(theta_deg_values: list[float], spin_values: list[float]) -> 
 if __name__ == '__main__':
     # create_elliptic_plots(95, 100, 85, 100, 45/2, 6.5, "plot-test-moi")
     # create_elliptic_plots(95, 100, 85, -80, 45/2, 6.5, "plot-test-moi-chiral")
-    theta_deg_values = [-119, 61]
-    spin_values = [19/2, 27/2, 45/2]
-    make_plot_batch(theta_deg_values, spin_values)
+    theta_deg_values_fit = [-119, 61]
+    theta_deg_values_test = [-80, 100]
+    spin_values = [29/2, 37/2, 45/2]
+    moi_values_fit = [91, 9, 51]
+    moi_values_test = [95, 100, 85]
+    odd_spin112 = 5.5
+    odd_spin132 = 6.5
+    # make_plot_batch(moi_values_fit, theta_deg_values,
+    #                 spin_values, odd_spin112)
+    make_plot_batch(moi_values_test, theta_deg_values_test,
+                    spin_values, odd_spin132)
