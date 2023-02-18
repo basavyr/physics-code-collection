@@ -41,3 +41,17 @@ class Jacobi:
         """
         phi_k_squared, _ = self.amu(q, k)
         return np.sin(phi_k_squared)
+
+    def cn_k(self, q: float, k: float) -> float:
+        """
+        - returns the Jacobi Elliptic function cn=cos(amu(q,k))
+        """
+        _, phi_k = self.amu(q, k)
+        return np.cos(phi_k)
+
+    def cn_k_squared(self, q: float, k: float) -> float:
+        """
+        - returns the Jacobi Elliptic function cn=cos(amu(q,k^2))
+        """
+        phi_k_squared, _ = self.amu(q, k)
+        return np.cos(phi_k_squared)
