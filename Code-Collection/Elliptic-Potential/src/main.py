@@ -104,16 +104,18 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     potential = jacobi_func.Potential(
         mois[0], mois[1], mois[2], oddspin, theta_deg)
 
-    q_values = np.linspace(-7.5, 7.5, 100)
+    k_values = [potential.k_term(spin) for spin in spin_values]
+    periods = [[idx*jacobi.period(k) for idx in range(1, 5)] for k in k_values]
+
+    max_q = max([max(period) for period in periods])
+
+    q_values = np.linspace(-max_q, max_q, 100)
 
     potentials = [
         [potential.v_q(q, spin) for q in q_values] for spin in spin_values]
-
     max_potentials = max([max(potential) for potential in potentials])
     min_potentials = min([min(potential) for potential in potentials])
 
-    k_values = [potential.k_term(spin) for spin in spin_values]
-    periods = [[idx*jacobi.period(k) for idx in range(1, 5)] for k in k_values]
     period_points = [generate_points(
         min_potentials, max_potentials, period) for period in periods]
 
