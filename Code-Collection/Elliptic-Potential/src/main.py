@@ -95,8 +95,12 @@ def main():
     odd_spin112 = 5.5
     odd_spin132 = 6.5
     k = 0.5
+    q_test = 1.2
     jacobi = jacobi_func.Jacobi(k)
     periods = [idx*jacobi.period(k) for idx in range(1, 5)]
+
+    print(q_test, jacobi.amu_squared(q_test, k))
+
     elliptic_func_comparison(
         jacobi.sn_k_squared, k, periods, 'elliptic_sn_comparison')
     elliptic_func_comparison(
