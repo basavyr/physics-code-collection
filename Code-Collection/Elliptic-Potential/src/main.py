@@ -126,14 +126,6 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     plot_styles = iter(['-r', '-b', '-k', 'g'])
     spin_iter = iter(spin_values)
 
-    idx = 1
-    for point in period_points[0]:
-        # unwraps the tuple ([x_0,x_0], [y_0,y_1])
-        p_x, p_y = point
-        # plots a vertical line at x -> x_0, between y0 and y1
-        plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
-        idx = idx+1
-
     for potential in potentials:
         plotter.plt.plot(
             q_values, potential, next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
