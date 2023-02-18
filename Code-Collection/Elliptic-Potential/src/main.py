@@ -60,14 +60,11 @@ def generate_points(y_0: float, y_1: float, x_values: list[float]) -> list[tuple
     return points
 
 
-def elliptic_func_comparison(k):
-    jacobi = jacobi_func.Jacobi(k, 6)
+def elliptic_func_comparison(jacobi_function, k, periods, plot_name):
     q_values = np.linspace(0, 7, 100)
-    s_values_k = [jacobi.sn_k(q, k) for q in q_values]
-    s_values_k_squared = [jacobi.sn_k_squared(q, k) for q in q_values]
+    s_values_k_squared = [jacobi_function(q, k) for q in q_values]
 
-    periods = [idx*jacobi.period(k) for idx in range(1, 5)]
-    y0, y1 = -1, 1
+    y0, y1 = min(s_values_k_squared), max(s_values_k_squared)
     # generate the list of points for each of the periods 0, K, 2K, 3K, 4K
     period_points = generate_points(y0, y1, periods)
 
@@ -83,15 +80,11 @@ def elliptic_func_comparison(k):
         # plots a vertical line at x -> x_0, between y0 and y1
         plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
         idx = idx+1
-    plotter.plt.plot(q_values, s_values_k, '-r', label=r'$k=m$')
-    plotter.plt.plot(q_values, s_values_k_squared, '--r',  label=r'$k^2=m$')
+    plotter.plt.plot(q_values, s_values_k_squared, '-r',  label=r'$m=k^2$')
     plotter.plt.legend(loc='best')
-    plotter.plt.savefig(f'../data/elliptic_sn_comparison.pdf',
+    plotter.plt.savefig(f'../data/{plot_name}.pdf',
                         dpi=450, bbox_inches='tight')
     plotter.plt.close()
-    # plotter.Plotter.plot_data(
-    #     q_values, [s_values_k, s_values_k_squared], [
-    #         r'$m=k$', r'$m=k^2$'], 'elliptic_sn_comparison')
 
 
 def main():
@@ -104,7 +97,11 @@ def main():
     odd_spin132 = 6.5
     # make_plot_batch(moi_values_test, theta_deg_values_test,
     #                 spin_values, odd_spin132)
-    elliptic_func_comparison(0.5)
+    k = 0.5
+    jacobi = jacobi_func.Jacobi(k, 6)
+    periods = [idx*jacobi.period(k) for idx in range(1, 5)]
+    elliptic_func_comparison(
+        jacobi.sn_k_squared, k, 'elliptic_sn_comparison', periods)
 
 
 if __name__ == '__main__':
