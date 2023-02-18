@@ -130,5 +130,23 @@ class Potential:
     def u_term(self, spin: float) -> float:
         return (self.A3-self.A1)/self.a_term(spin)
 
-    def v0(self, spin: float) -> float:
+    def v0_term(self, spin: float) -> float:
         return -((self.A1*self.j1)/self.a_term(spin))
+
+    def k_term(self, spin: float) -> float:
+        return np.sqrt(np.abs(self.u_term(spin)))
+
+    def v_q(self, q: float, spin: float) -> float:
+        """
+        - gives the Elliptic potential V(q) from Eq. 2.16 (New-Boson 2020 paper)
+        """
+        v0 = self.v0_term(spin)
+        k = self.k_term(spin)
+        jacobi = Jacobi(k)
+        sn = jacobi.sn_k_squared(q, k)
+        cn = jacobi.cn_k_squared(q, k)
+        dn = jacobi.cn_k_squared(q, k)
+
+        t1 = spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)
+        t2 = (2.0*spin+1.0)*v0
+        return t1*np.power(sn, 2)+t2*cn*dn
