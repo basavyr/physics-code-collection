@@ -32,14 +32,12 @@ class Jacobi:
 
     def amu_squared(self, q: float, k: float) -> float:
         """
-        - Helper function that gives the Jacobi Amplitude amu(q,m), where m=k^2
+        - Helper function that gives the Jacobi Amplitude `amu(q,m)`, where `m=k^2`
         - Use this method if a 1:1 correspondence with the calculations in New-Boson paper is required
-        - Similarly, m=k^2 is the modulus considered in Wolfram Mathematica for JacobiAmplitude[q,k]
+        - Similarly, `m=k^2` is the modulus considered in Wolfram Mathematica for `JacobiAmplitude[q,k]`
         """
         k_squared = np.power(k, 2)
-        phi = special.ellipj(q, k_squared)[3]
-
-        return phi
+        return special.ellipj(q, k_squared)[3]
 
     def sn_k(self, q: float, k: float) -> float:
         """
