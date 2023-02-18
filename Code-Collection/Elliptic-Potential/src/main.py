@@ -104,7 +104,7 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     potential = jacobi_func.Potential(
         mois[0], mois[1], mois[2], oddspin, theta_deg)
 
-    q_values = np.linspace(-8, 8, 100)
+    q_values = np.linspace(-7.5, 7.5, 100)
 
     potentials = [
         [potential.v_q(q, spin) for q in q_values] for spin in spin_values]
@@ -114,13 +114,14 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
 
     k_values = [potential.k_term(spin) for spin in spin_values]
     periods = [[idx*jacobi.period(k) for idx in range(1, 5)] for k in k_values]
-    period_points = generate_points(min_potentials, max_potentials, periods[0])
+    period_points = [generate_points(
+        min_potentials, max_potentials, period) for period in periods]
 
     plot_styles = iter(['-r', '-b', '-k', 'g'])
     spin_iter = iter(spin_values)
 
     idx = 1
-    for point in period_points:
+    for point in period_points[0]:
         # unwraps the tuple ([x_0,x_0], [y_0,y_1])
         p_x, p_y = point
         # plots a vertical line at x -> x_0, between y0 and y1
