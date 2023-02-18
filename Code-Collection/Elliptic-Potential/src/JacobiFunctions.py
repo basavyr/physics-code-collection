@@ -103,3 +103,22 @@ class Jacobi:
         def sin_func(t): return np.power(
             1.0-np.power(k, 2)*np.power(np.sin(t), 2), -0.5)
         return integrate.quad(sin_func, a, b)[0]
+
+
+@dataclass
+class Potential:
+    """
+    - Class that evaluates the Elliptic potential V(q), which is given in terms of the Jacobi functions
+    """
+    moi1: float
+    moi2: float
+    moi3: float
+    j1: float
+    j2: float
+
+    def __init__(self, moi1: float, moi2: float, moi3: float, odd_spin: float, theta_deg: float) -> None:
+        self.moi1 = moi1
+        self.moi2 = moi2
+        self.moi3 = moi3
+        self.j1 = odd_spin*np.cos(theta_deg*np.pi/180.0)
+        self.j2 = odd_spin*np.sin(theta_deg*np.pi/180.0)
