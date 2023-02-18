@@ -86,20 +86,10 @@ def elliptic_func_comparison(jacobi_function, k, periods, plot_name):
     plotter.plt.close()
 
 
-def main():
-    theta_deg_values_fit = [-119, 61]
-    theta_deg_values_test = [-80, 100]
-    spin_values = [29/2, 37/2, 45/2]
-    moi_values_fit = [91, 9, 51]
-    moi_values_test = [95, 100, 85]
-    odd_spin112 = 5.5
-    odd_spin132 = 6.5
+def jacobi_functions():
     k = 0.5
-    q_test = 1.2
-    jacobi = jacobi_func.Jacobi(k)
+    jacobi = jacobi_func.Jacobi()
     periods = [idx*jacobi.period(k) for idx in range(1, 5)]
-
-    print(q_test, jacobi.amu_squared(q_test, k))
 
     elliptic_func_comparison(
         jacobi.sn_k_squared, k, periods, 'elliptic_sn_comparison')
@@ -107,6 +97,71 @@ def main():
         jacobi.cn_k_squared, k, periods, 'elliptic_cn_comparison')
     elliptic_func_comparison(
         jacobi.dn_k_squared, k, periods, 'elliptic_dn_comparison')
+
+
+def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
+    jacobi = jacobi_func.Jacobi()
+    potential = jacobi_func.Potential(
+        mois[0], mois[1], mois[2], oddspin, theta_deg)
+
+    q_values = np.linspace(-8, 8, 100)
+
+    potentials = [
+        [potential.v_q(q, spin) for q in q_values] for spin in spin_values]
+
+    max_potentials = max([max(potential) for potential in potentials])
+    min_potentials = min([min(potential) for potential in potentials])
+
+    k_values = [potential.k_term(spin) for spin in spin_values]
+    periods = [[idx*jacobi.period(k) for idx in range(1, 5)] for k in k_values]
+    period_points = generate_points(min_potentials, max_potentials, periods[0])
+
+    plot_styles = iter(['-r', '-b', '-k', 'g'])
+    spin_iter = iter(spin_values)
+
+    idx = 1
+    for point in period_points:
+        # unwraps the tuple ([x_0,x_0], [y_0,y_1])
+        p_x, p_y = point
+        print(point)
+        # plots a vertical line at x -> x_0, between y0 and y1
+        plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
+        idx = idx+1
+
+    # for potential in potentials:
+    #     plotter.plt.plot(
+    #         q_values, potential, next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
+    plotter.plt.plot(
+        q_values, potentials[0], next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
+
+    plotter.plt.legend(loc='best')
+    plotter.plt.savefig(f'../data/{plot_name}.pdf',
+                        dpi=450, bbox_inches='tight')
+    plotter.plt.close()
+
+
+def main():
+    moi_values_fit = [91, 9, 51]
+    moi_values_test = [95, 100, 85]
+
+    theta_deg_fit = -119
+    theta_deg_test = -80
+
+    spin_values = [45/2, 37/2, 29/2]
+    odd_spin112 = 5.5
+    odd_spin132 = 6.5
+    elliptic_potential(
+        spin_values, moi_values_fit,
+        odd_spin112, theta_deg_fit, 'jacobi_potential_fit_1')
+    elliptic_potential(
+        spin_values, moi_values_fit,
+        odd_spin112, theta_deg_fit + 180.0, 'jacobi_potential_fit_2')
+    elliptic_potential(
+        spin_values, moi_values_test,
+        odd_spin132, theta_deg_test, 'jacobi_potential_1')
+    elliptic_potential(
+        spin_values, moi_values_test,
+        odd_spin132, theta_deg_test + 180.0, 'jacobi_potential_2')
 
 
 if __name__ == '__main__':

@@ -12,10 +12,6 @@ class Jacobi:
     - It uses the scipy module to get the Jacobi Amplitude of modulus m
     - The class contains methods that give numerical results for m=k and also m=k^2
     """
-    k: float
-
-    def __init__(self, k) -> None:
-        self.k = k
 
     def amu(self, q: float, k: float) -> tuple[float, float]:
         """
@@ -124,8 +120,7 @@ class Potential:
         self.j2 = odd_spin*np.sin(theta_deg*np.pi/180.0)
 
     def a_term(self, spin: float) -> float:
-        I = spin
-        return self.A2*(1.0-self.j2/I)-self.A1
+        return self.A2*(1.0-self.j2/spin)-self.A1
 
     def u_term(self, spin: float) -> float:
         return (self.A3-self.A1)/self.a_term(spin)
@@ -142,10 +137,11 @@ class Potential:
         """
         v0 = self.v0_term(spin)
         k = self.k_term(spin)
-        jacobi = Jacobi(k)
+        jacobi = Jacobi()
         sn = jacobi.sn_k_squared(q, k)
         cn = jacobi.cn_k_squared(q, k)
-        dn = jacobi.cn_k_squared(q, k)
+        dn = jacobi.dn_k_squared(q, k)
+        # print(q, k, sn, cn, dn)
 
         t1 = spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)
         t2 = (2.0*spin+1.0)*v0

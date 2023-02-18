@@ -3,7 +3,9 @@
         "axvline",
         "ellipj",
         "hbar",
+        "mois",
         "ndarray",
+        "oddspin",
         "savefig",
         "ylabel"
     ]
