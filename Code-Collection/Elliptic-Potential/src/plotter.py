@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import os
-import numpy as np
 
 
 class Plotter:
@@ -32,3 +31,17 @@ class Plotter:
         plt.savefig(f'{self.save_file_dir}{plot_name}.pdf',
                     dpi=300, bbox_inches='tight')
         plt.close()
+
+    @staticmethod
+    def plot_data(x_data: list[float], y_data_list: list[list[float]], label_list: list[str], plot_name: str) -> None:
+        """
+        - create a graphical representation with several functions
+        - uses a line plot style
+        """
+        iter_labels = iter(label_list)
+        for y_data in y_data_list:
+            plt.plot(x_data, y_data, '-r', label=f'{next(iter_labels)}')
+        plt.legend(loc='best')
+        plt.xlabel(r'x')
+        plt.xlabel(r'f(x)')
+        plt.savefig(f'../data/{plot_name}.pdf', dpi=450, bbox_inches='tight')

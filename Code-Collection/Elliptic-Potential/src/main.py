@@ -2,6 +2,7 @@ import numpy as np
 import elliptic_potential
 import plotter
 import exporter as csv
+import JacobiFunctions as jacobi_func
 
 
 def create_elliptic_plots(elliptic_potential_func: elliptic_potential.EllipticFunctions, theta_deg: float, spin_values: list[float], plot_name: str) -> tuple[list[float], list[float]]:
@@ -52,8 +53,16 @@ def main():
     moi_values_test = [95, 100, 85]
     odd_spin112 = 5.5
     odd_spin132 = 6.5
-    make_plot_batch(moi_values_test, theta_deg_values_test,
-                    spin_values, odd_spin132)
+    # make_plot_batch(moi_values_test, theta_deg_values_test,
+    #                 spin_values, odd_spin132)
+    k = 0.5
+    jacobi = jacobi_func.Jacobi(k, 6)
+    q_values = np.linspace(0, 7, 100)
+    s_values_k = [jacobi.sn_k(q, k) for q in q_values]
+    s_values_k_squared = [jacobi.sn_k_squared(q, k) for q in q_values]
+    plotter.Plotter.plot_data(
+        q_values, [s_values_k, s_values_k_squared], [
+            r'$m=k$', r'$m=k^2$'], 'elliptic_sn_comparison')
 
 
 if __name__ == '__main__':

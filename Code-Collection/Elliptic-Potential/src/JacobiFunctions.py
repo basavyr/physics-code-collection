@@ -11,12 +11,10 @@ class Jacobi:
     - A class containing the Jacobi Elliptic Functions, such as sn, cn, dn
     - It uses the scipy module to get the Jacobi Amplitude of modulus m
     """
-    q: float
     k: float
     v0: float
 
-    def __init__(self,  q: float, k: float, v0: float) -> None:
-        self.q = q
+    def __init__(self, k: float, v0: float) -> None:
         self.v0 = v0
         self.k = k
 
