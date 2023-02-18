@@ -75,14 +75,17 @@ class Jacobi:
         - Returns the numerical value of the coordinate q when the Jacobi Amplitude phi and the modulus are known
         """
         a, b = 0, phi
-        def sin_func(t): return 1.0-np.power(k, 2)*np.power(np.sin(t), 2)
+        def sin_func(t): return np.power(
+            1.0-np.power(k, 2)*np.power(np.sin(t), 2), -0.5)
 
-        return integrate.quad(np.power(sin_func, -0.5), a, b)[0]
+        return integrate.quad(sin_func, a, b)[0]
 
     def period(self, k: float) -> float:
         """
         - Returns the period K of the Jacobi elliptic functions
         """
         a, b = 0, np.pi/2.0
-        def sin_func(t): return 1.0-np.power(k, 2)*np.power(np.sin(t), 2)
-        return integrate.quad(np.power(sin_func, -0.5), a, b)
+
+        def sin_func(t): return np.power(
+            1.0-np.power(k, 2)*np.power(np.sin(t), 2), -0.5)
+        return integrate.quad(sin_func, a, b)[0]
