@@ -1,5 +1,7 @@
 import numpy as np
 import scipy.special as special
+import scipy.integrate as integrate
+
 from dataclasses import dataclass
 
 
@@ -69,3 +71,13 @@ class Jacobi:
         """
         s = self.sn_k_squared(q, k)
         return np.sqrt(1-np.power(k, 2)*np.power(s, 2))
+
+    def q_var(self, phi: float, k: float) -> float:
+        """
+        - Returns the numerical value of the coordinate q when the Jacobi Amplitude phi and the modulus are known
+        """
+        a, b = 0, phi
+        k_squared = np.power(k, 2)
+        def sin_func(t): return 1.0-k_squared*np.power(np.sin(t), 2)
+
+        return integrate.quad(sin_func, a, b)[0]
