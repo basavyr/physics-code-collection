@@ -51,7 +51,7 @@ class Jacobi:
         - returns the Jacobi Elliptic function sn=sin(amu(q,k^2))
         - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
-        phi_k_squared, _ = self.amu(q, k)
+        phi_k_squared = self.amu_squared(q, k)
         return np.sin(phi_k_squared)
 
     def cn_k(self, q: float, k: float) -> float:
@@ -66,7 +66,7 @@ class Jacobi:
         - returns the Jacobi Elliptic function cn=cos(amu(q,k^2))
         - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
-        phi_k_squared, _ = self.amu(q, k)
+        phi_k_squared = self.amu_squared(q, k)
         return np.cos(phi_k_squared)
 
     def dn_k(self, q: float, k: float) -> float:
