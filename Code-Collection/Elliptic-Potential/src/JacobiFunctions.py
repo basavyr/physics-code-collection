@@ -10,6 +10,7 @@ class Jacobi:
     """
     - A class containing the Jacobi Elliptic Functions, such as sn, cn, dn
     - It uses the scipy module to get the Jacobi Amplitude of modulus m
+    - The class contains methods that give numerical results for m=k and also m=k^2
     """
     k: float
     v0: float
@@ -20,8 +21,11 @@ class Jacobi:
 
     def amu(self, q: float, k: float) -> tuple[float, float]:
         """
-        - Returns the JacobiAmplitude (amu) of modulus m=k^2 and m=k
-        - If the amu(q,k)=phi, then s=sin(phi)...s
+        - Returns a tuple with the Jacobi Amplitudes (i.e., `amu`) for modulus `k^2` and `k`, respectively
+        - If `amu(q,k)=phi`, then `sn=sin(phi)`, `cn=cos(phi)`, ...
+        - 1:1 correspondence with the Figure 1 from New-Boson is achieved for modulus k^squared
+        - A 1:1 correspondence means that the intrinsic periods of `sn(phi), cn(phi)...`, coincide with the true period K, given the values of `q` and `k`
+        - The correct phi is calculated thus as `amu(q,k^2)`
         """
         amu_k_squared = special.ellipj(q, np.power(k, 2))[3]
         amu_k = special.ellipj(q, k)[3]
@@ -38,6 +42,7 @@ class Jacobi:
     def sn_k_squared(self, q: float, k: float) -> float:
         """
         - returns the Jacobi Elliptic function sn=sin(amu(q,k^2))
+        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         phi_k_squared, _ = self.amu(q, k)
         return np.sin(phi_k_squared)
@@ -52,6 +57,7 @@ class Jacobi:
     def cn_k_squared(self, q: float, k: float) -> float:
         """
         - returns the Jacobi Elliptic function cn=cos(amu(q,k^2))
+        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         phi_k_squared, _ = self.amu(q, k)
         return np.cos(phi_k_squared)
@@ -66,6 +72,7 @@ class Jacobi:
     def dn_k_squared(self, q: float, k: float) -> float:
         """
         - returns the Jacobi Elliptic function dn(q,k^2)
+        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         s = self.sn_k_squared(q, k)
         return np.sqrt(1-np.power(k, 2)*np.power(s, 2))
