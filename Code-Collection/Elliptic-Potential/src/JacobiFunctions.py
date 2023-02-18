@@ -20,11 +20,24 @@ class Jacobi:
 
     def amu(self, q: float, k: float) -> tuple[float, float]:
         """
-        - Returns the JacobiAmplitude (amu) of modulus m=k^2 and also m=k
+        - Returns the JacobiAmplitude (amu) of modulus m=k^2 and m=k
         - If the amu(q,k)=phi, then s=sin(phi)...s
         """
-        k_squared = np.power(k, 2)
+        amu_k_squared = special.ellipj(q, np.power(k, 2))[3]
         amu_k = special.ellipj(q, k)[3]
-        amu_k_squared = special.ellipj(q, k_squared)[3]
 
-        return [amu_k, amu_k_squared]
+        return (amu_k_squared, amu_k)
+
+    def sn_k(self, q: float, k: float) -> float:
+        """
+        - returns the Jacobi Elliptic function sn=sin(amu(q,k))
+        """
+        _, phi_k = self.amu(q, k)
+        return np.sin(phi_k)
+
+    def sn_k_squared(self, q: float, k: float) -> float:
+        """
+        - returns the Jacobi Elliptic function sn=sin(amu(q,k^2))
+        """
+        phi_k_squared, _ = self.amu(q, k)
+        return np.sin(phi_k_squared)
