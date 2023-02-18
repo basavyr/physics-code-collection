@@ -110,15 +110,25 @@ class Potential:
     """
     - Class that evaluates the Elliptic potential V(q), which is given in terms of the Jacobi functions
     """
-    moi1: float
-    moi2: float
-    moi3: float
+    A1: float
+    A2: float
+    A3: float
     j1: float
     j2: float
 
     def __init__(self, moi1: float, moi2: float, moi3: float, odd_spin: float, theta_deg: float) -> None:
-        self.moi1 = moi1
-        self.moi2 = moi2
-        self.moi3 = moi3
+        self.A1 = 1.0/(2.0*moi1)
+        self.A2 = 1.0/(2.0*moi2)
+        self.A3 = 1.0/(2.0*moi3)
         self.j1 = odd_spin*np.cos(theta_deg*np.pi/180.0)
         self.j2 = odd_spin*np.sin(theta_deg*np.pi/180.0)
+
+    def a_term(self, spin: float) -> float:
+        I = spin
+        return self.A2*(1.0-self.j2/I)-self.A1
+
+    def u_term(self, spin: float) -> float:
+        return (self.A3-self.A1)/self.a_term(spin)
+
+    def v0(self, spin: float) -> float:
+        return -((self.A1*self.j1)/self.a_term(spin))
