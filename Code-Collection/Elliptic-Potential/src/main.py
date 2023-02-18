@@ -68,11 +68,6 @@ def elliptic_func_comparison(jacobi_function, k, periods, plot_name):
     # generate the list of points for each of the periods 0, K, 2K, 3K, 4K
     period_points = generate_points(y0, y1, periods)
 
-    # add vertical lines to a plot using the axvline function from within matplotlib
-    # source: https://stackoverflow.com/questions/52757586/python-plotting-lines-parallel-to-y-axis-from-array
-    # for l in x_values:
-    #     plotter.plt.axvline(l)
-
     idx = 1
     for point in period_points:
         # unwraps the tuple ([x_0,x_0], [y_0,y_1])
@@ -81,6 +76,10 @@ def elliptic_func_comparison(jacobi_function, k, periods, plot_name):
         plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
         idx = idx+1
     plotter.plt.plot(q_values, s_values_k_squared, '-r',  label=r'$m=k^2$')
+    # add vertical lines to a plot using the axvline function from within matplotlib
+    # source: https://stackoverflow.com/questions/52757586/python-plotting-lines-parallel-to-y-axis-from-array
+    # for l in x_values:
+    #     plotter.plt.axvline(l)
     plotter.plt.legend(loc='best')
     plotter.plt.savefig(f'../data/{plot_name}.pdf',
                         dpi=450, bbox_inches='tight')
@@ -95,13 +94,15 @@ def main():
     moi_values_test = [95, 100, 85]
     odd_spin112 = 5.5
     odd_spin132 = 6.5
-    # make_plot_batch(moi_values_test, theta_deg_values_test,
-    #                 spin_values, odd_spin132)
     k = 0.5
     jacobi = jacobi_func.Jacobi(k, 6)
     periods = [idx*jacobi.period(k) for idx in range(1, 5)]
     elliptic_func_comparison(
-        jacobi.sn_k_squared, k, 'elliptic_sn_comparison', periods)
+        jacobi.sn_k_squared, k, periods, 'elliptic_sn_comparison')
+    elliptic_func_comparison(
+        jacobi.cn_k_squared, k, periods, 'elliptic_cn_comparison')
+    elliptic_func_comparison(
+        jacobi.dn_k_squared, k, periods, 'elliptic_dn_comparison')
 
 
 if __name__ == '__main__':
