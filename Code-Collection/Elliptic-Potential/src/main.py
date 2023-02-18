@@ -123,7 +123,6 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     for point in period_points:
         # unwraps the tuple ([x_0,x_0], [y_0,y_1])
         p_x, p_y = point
-        print(point)
         # plots a vertical line at x -> x_0, between y0 and y1
         plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
         idx = idx+1
@@ -143,9 +142,11 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
 def main():
     moi_values_fit = [91, 9, 51]
     moi_values_test = [95, 100, 85]
+    moi_values_raduta = [89, 12, 48]
 
     theta_deg_fit = -119
     theta_deg_test = -80
+    theta_deg_raduta = -71
 
     spin_values = [45/2, 37/2, 29/2]
     odd_spin112 = 5.5
@@ -162,6 +163,12 @@ def main():
     elliptic_potential(
         spin_values, moi_values_test,
         odd_spin132, theta_deg_test + 180.0, 'jacobi_potential_2')
+    elliptic_potential(
+        spin_values, moi_values_raduta,
+        odd_spin112, theta_deg_raduta, 'jacobi_potential_raduta_1')
+    elliptic_potential(
+        spin_values, moi_values_raduta,
+        odd_spin112, theta_deg_raduta + 180.0, 'jacobi_potential_raduta_2')
 
 
 if __name__ == '__main__':
