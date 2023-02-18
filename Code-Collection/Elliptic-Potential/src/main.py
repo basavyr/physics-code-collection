@@ -104,11 +104,15 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     potential = jacobi_func.Potential(
         mois[0], mois[1], mois[2], oddspin, theta_deg)
 
+    # calculate the k value for all the spins, where k=fct(spin)
     k_values = [potential.k_term(spin) for spin in spin_values]
+    # for a given k value, calculate the period K, and create an array K,2K,3K,4K
     periods = [[idx*jacobi.period(k) for idx in range(1, 5)] for k in k_values]
 
+    # determines the maximum period (i.e., 4K) that is obtained from all k values across all spins
     max_q = max([max(period) for period in periods])
 
+    # set the x-axis to only have q values between the -4K and 4K range
     q_values = np.linspace(-max_q, max_q, 100)
 
     potentials = [
@@ -130,11 +134,11 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
         plotter.plt.plot(p_x, p_y, '--k', label=f'{idx}K')
         idx = idx+1
 
-    # for potential in potentials:
-    #     plotter.plt.plot(
-    #         q_values, potential, next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
-    plotter.plt.plot(
-        q_values, potentials[0], next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
+    for potential in potentials:
+        plotter.plt.plot(
+            q_values, potential, next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
+    # plotter.plt.plot(
+    #     q_values, potentials[0], next(plot_styles), label=f'I={int(2*next(spin_iter))}/2')
 
     plotter.plt.legend(loc='best')
     plotter.plt.savefig(f'../data/{plot_name}.pdf',
