@@ -1,13 +1,13 @@
 import csv
 
 
-def save_to_csv(x_data: list[float], y_data: list[float], file_name: str, header: str) -> None:
+def save_to_csv(data: list[tuple], file_name: str, header: list[str]) -> None:
     """
     - save the input data to a csv file
     """
     data_pre_path = '../data'
     with open(f'{data_pre_path}/{file_name}.csv', 'w+', encoding='UTF8') as handler:
         writer = csv.writer(handler)
-        writer.writerow([header])
-        for idx in range(len(x_data)):
-            writer.writerow([idx+1, x_data[idx], y_data[idx]])
+        writer.writerow(header)
+        for row in data:
+            writer.writerow(row)

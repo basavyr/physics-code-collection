@@ -101,29 +101,7 @@ def evaluate_function_2_args(func: jacobi_func.Jacobi, arg_1: list[float], arg_2
     """
     - returns a list with the numerical values for func(arg_1, arg_2) where arg_1 is a list and arg_2 a number
     """
-    return np.round(list(map(func, arg_1, repeat(arg_2))), 3)
-
-
-def numerical_data_export(spin: float) -> None:
-    """
-    - helper method that exports to a CSV file the numerical values of q, phi, sn, cn, dn, and V(q)
-    - requires a 
-    """
-    moi1, moi2, moi3 = config.MOI_VALUES_FIT
-
-    jacobi = jacobi_func.Jacobi()
-    potential = jacobi_func.Potential(
-        moi1, moi2, moi3, config.ODD_SPIN112, config.THETA_DEG_FIT)
-    # determine the value of the modulus k
-    k = potential.k_term(spin)
-
-    # fix the values for the coordinate q
-    q_values = np.round(np.linspace(-8, 8, 10), 3)
-
-    # calculate the numerical values for the elliptic functions
-    phi_values = evaluate_function_2_args(jacobi.amu_squared, q_values, k)
-    for idx in range(len(q_values)):
-        print(q_values[idx], phi_values[idx])
+    return np.round(list(map(func, arg_1, repeat(arg_2))), 5)
 
 
 def make_elliptic_plots():
@@ -145,6 +123,38 @@ def make_elliptic_plots():
     elliptic_potential(
         config.SPIN_VALUES, config.MOI_VALUES_RADUTA,
         config.ODD_SPIN112, config.MOI_VALUES_RADUTA + 180.0, 'jacobi_potential_raduta_2')
+
+
+def numerical_data_export(spin: float) -> None:
+    """
+    - helper method that exports to a CSV file the numerical values of q, phi, sn, cn, dn, and V(q)
+    - requires a 
+    """
+    moi1, moi2, moi3 = config.MOI_VALUES_FIT
+
+    jacobi = jacobi_func.Jacobi()
+    potential = jacobi_func.Potential(
+        moi1, moi2, moi3, config.ODD_SPIN112, config.THETA_DEG_FIT)
+    # determine the value of the modulus k
+    k = potential.k_term(spin)
+
+    # fix the values for the coordinate q
+    q_values = np.round(np.linspace(-8, 8, 10), 3)
+
+    # calculate the numerical values for the elliptic functions
+    phi_values = evaluate_function_2_args(jacobi.amu_squared, q_values, k)
+    sn_values = evaluate_function_2_args(jacobi.sn_k_squared, q_values, k)
+    cn_values = evaluate_function_2_args(jacobi.cn_k_squared, q_values, k)
+    dn_values = evaluate_function_2_args(jacobi.dn_k_squared, q_values, k)
+
+    elliptic_data = [
+        (q_values[idx], phi_values[idx], sn_values[idx], cn_values[idx], dn_values[idx]) for idx in range(len(phi_values))
+    ]
+
+    csv.save_to_csv(
+        elliptic_data, "elliptic_data_fit",
+        ["q", "amu", "sn", "cn", "dn"]
+    )
 
 
 def main():
