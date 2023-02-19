@@ -136,6 +136,7 @@ class Potential:
         """
         - Returns the Elliptic Potential V(q) from Eq. 2.16 (New-Boson 2020 paper)
         - It is evaluated for a given q-coordinate and total angular momentum I
+        - 1:1 numerical correspondence with the Mathematica computations: https://github.com/basavyr/mathematica-useful-algorithms/blob/5b859a38c63ee10f4140ba73e08108d90bbcc6b7/Physics/Elliptic-Functions-New-Boson/Elliptic-Potrential-Jacobi.nb#L1754
         """
         v0 = self.v0_term(spin)
         k = self.k_term(spin)
