@@ -122,7 +122,7 @@ def evaluate_function_2_args(func: jacobi_func.Jacobi, arg_1: list[float], arg_2
     """
     - returns a list with the numerical values for func(arg_1, arg_2) where arg_1 is a list and arg_2 a number
     """
-    return np.round(list(map(func, arg_1, repeat(arg_2))), 5)
+    return list(map(func, arg_1, repeat(arg_2)))
 
 
 def numerical_data_export(spin: float) -> None:
@@ -139,7 +139,7 @@ def numerical_data_export(spin: float) -> None:
     k = potential.k_term(spin)
 
     # fix the values for the coordinate q
-    q_values = np.round(np.linspace(-8, 8, 10), 3)
+    q_values = np.linspace(-8, 8, 10)
 
     # calculate the numerical values for the elliptic functions
     phi_values = evaluate_function_2_args(jacobi.amu_squared, q_values, k)
@@ -151,7 +151,7 @@ def numerical_data_export(spin: float) -> None:
     headers = ["q", "k", "amu", "sn", "cn", "dn", "V(q)"]
 
     elliptic_data = [
-        (q_values[idx], np.round(k, 3), phi_values[idx], sn_values[idx], cn_values[idx], dn_values[idx], vq_values[idx]) for idx in range(len(phi_values))
+        np.round((q_values[idx], k, phi_values[idx], sn_values[idx], cn_values[idx], dn_values[idx], vq_values[idx]), 4) for idx in range(len(phi_values))
     ]
 
     csv.save_to_csv(elliptic_data, "elliptic_data_fit", headers)

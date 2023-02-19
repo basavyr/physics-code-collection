@@ -144,4 +144,4 @@ class Potential:
         cn = self.jacobi.cn_k_squared(q, k)
         dn = self.jacobi.dn_k_squared(q, k)
 
-        return spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)*np.power(sn, 2)+(2.0*spin+1.0)*v0*cn*dn
+        return (spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2))*np.power(sn, 2)+(2.0*spin+1.0)*v0*cn*dn
