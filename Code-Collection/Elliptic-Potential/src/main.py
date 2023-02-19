@@ -3,6 +3,7 @@ import plotter
 import exporter as csv
 import JacobiFunctions as jacobi_func
 import config
+from itertools import repeat
 
 
 def generate_points(y_0: float, y_1: float, x_values: list[float]) -> list[tuple]:
@@ -96,8 +97,31 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     plotter.plt.close()
 
 
-def main():
+def numerical_data_export(spin: float) -> None:
+    """
+    - helper method that exports to a CSV file the numerical values of q, phi, sn, cn, dn, and V(q)
+    - requires a 
+    """
+    ROUND_DIGITS = 3
+    moi1, moi2, moi3 = config.MOI_VALUES_FIT
 
+    jacobi = jacobi_func.Jacobi()
+    potential = jacobi_func.Potential(
+        moi1, moi2, moi3, config.ODD_SPIN112, config.THETA_DEG_FIT)
+    # determine the value of the modulus k
+    k = potential.k_term(spin)
+
+    # fix the values for the coordinate q
+    q_values = np.round(np.linspace(-8, 8, 10), ROUND_DIGITS)
+
+    # calculate the numerical values for the elliptic functions
+    phi_values = np.round(
+        list(map(jacobi.amu_squared, q_values, repeat(k))), ROUND_DIGITS)
+    for idx in range(len(q_values)):
+        print(q_values[idx], phi_values[idx])
+
+
+def make_elliptic_plots():
     elliptic_potential(
         config.SPIN_VALUES, config.MOI_VALUES_FIT,
         config.ODD_SPIN112, config.THETA_DEG_FIT, 'jacobi_potential_fit_1')
@@ -116,6 +140,11 @@ def main():
     elliptic_potential(
         config.SPIN_VALUES, config.MOI_VALUES_RADUTA,
         config.ODD_SPIN112, config.MOI_VALUES_RADUTA + 180.0, 'jacobi_potential_raduta_2')
+
+
+def main():
+    spin = config.SPIN_VALUES[0]
+    numerical_data_export(spin)
 
 
 if __name__ == '__main__':
