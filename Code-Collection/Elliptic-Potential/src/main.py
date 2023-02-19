@@ -2,6 +2,7 @@ import numpy as np
 import plotter
 import exporter as csv
 import JacobiFunctions as jacobi_func
+import config
 
 
 def generate_points(y_0: float, y_1: float, x_values: list[float]) -> list[tuple]:
@@ -96,35 +97,25 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
 
 
 def main():
-    moi_values_fit = [91, 9, 51]
-    moi_values_test = [95, 100, 85]
-    moi_values_raduta = [89, 12, 48]
 
-    theta_deg_fit = -119
-    theta_deg_test = -80
-    theta_deg_raduta = -71
-
-    spin_values = [45/2, 37/2, 29/2]
-    odd_spin112 = 5.5
-    odd_spin132 = 6.5
     elliptic_potential(
-        spin_values, moi_values_fit,
-        odd_spin112, theta_deg_fit, 'jacobi_potential_fit_1')
+        config.SPIN_VALUES, config.MOI_VALUES_FIT,
+        config.ODD_SPIN112, config.THETA_DEG_FIT, 'jacobi_potential_fit_1')
     elliptic_potential(
-        spin_values, moi_values_fit,
-        odd_spin112, theta_deg_fit + 180.0, 'jacobi_potential_fit_2')
+        config.SPIN_VALUES, config.MOI_VALUES_FIT,
+        config.ODD_SPIN112, config.THETA_DEG_FIT + 180.0, 'jacobi_potential_fit_2')
     elliptic_potential(
-        spin_values, moi_values_test,
-        odd_spin132, theta_deg_test, 'jacobi_potential_1')
+        config.SPIN_VALUES, config.MOI_VALUES_TEST,
+        config.ODD_SPIN132, config.MOI_VALUES_TEST, 'jacobi_potential_1')
     elliptic_potential(
-        spin_values, moi_values_test,
-        odd_spin132, theta_deg_test + 180.0, 'jacobi_potential_2')
+        config.SPIN_VALUES, config.MOI_VALUES_TEST,
+        config.ODD_SPIN132, config.MOI_VALUES_TEST + 180.0, 'jacobi_potential_2')
     elliptic_potential(
-        spin_values, moi_values_raduta,
-        odd_spin112, theta_deg_raduta, 'jacobi_potential_raduta_1')
+        config.SPIN_VALUES, config.MOI_VALUES_RADUTA,
+        config.ODD_SPIN112, config.MOI_VALUES_RADUTA, 'jacobi_potential_raduta_1')
     elliptic_potential(
-        spin_values, moi_values_raduta,
-        odd_spin112, theta_deg_raduta + 180.0, 'jacobi_potential_raduta_2')
+        config.SPIN_VALUES, config.MOI_VALUES_RADUTA,
+        config.ODD_SPIN112, config.MOI_VALUES_RADUTA + 180.0, 'jacobi_potential_raduta_2')
 
 
 if __name__ == '__main__':
