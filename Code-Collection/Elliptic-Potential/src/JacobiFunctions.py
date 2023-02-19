@@ -44,8 +44,8 @@ class Jacobi:
 
     def sn_k_squared(self, q: float, k: float) -> float:
         """
-        - returns the Jacobi Elliptic function sn=sin(amu(q,k^2))
-        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
+        - returns the Jacobi Elliptic function `sn=sin(amu(q,m)) | m=k^2`
+        - gives 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         phi_k_squared = self.amu_squared(q, k)
         return np.sin(phi_k_squared)
@@ -59,8 +59,8 @@ class Jacobi:
 
     def cn_k_squared(self, q: float, k: float) -> float:
         """
-        - returns the Jacobi Elliptic function cn=cos(amu(q,k^2))
-        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
+        - returns the Jacobi Elliptic function `cn=cos(amu(q,m)) | m=k^2`
+        - gives 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         phi_k_squared = self.amu_squared(q, k)
         return np.cos(phi_k_squared)
@@ -74,8 +74,8 @@ class Jacobi:
 
     def dn_k_squared(self, q: float, k: float) -> float:
         """
-        - returns the Jacobi Elliptic function dn(q,k^2)
-        - 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
+        - returns the Jacobi Elliptic function `dn(q,m)) | m=k^2`
+        - gives 1:1 correspondence with the period K and the Figure 1 from New-Boson (2020 paper)
         """
         s = self.sn_k_squared(q, k)
         return np.sqrt(1-np.power(k, 2)*np.power(s, 2))
@@ -118,6 +118,7 @@ class Potential:
         self.A3 = 1.0/(2.0*moi3)
         self.j1 = odd_spin*np.cos(theta_deg*np.pi/180.0)
         self.j2 = odd_spin*np.sin(theta_deg*np.pi/180.0)
+        self.jacobi = Jacobi()
 
     def a_term(self, spin: float) -> float:
         return self.A2*(1.0-self.j2/spin)-self.A1
@@ -133,16 +134,14 @@ class Potential:
 
     def v_q(self, q: float, spin: float) -> float:
         """
-        - gives the Elliptic potential V(q) from Eq. 2.16 (New-Boson 2020 paper)
+        - Returns the Elliptic Potential V(q) from Eq. 2.16 (New-Boson 2020 paper)
+        - It is evaluated for a given q-coordinate and total angular momentum I
         """
         v0 = self.v0_term(spin)
         k = self.k_term(spin)
-        jacobi = Jacobi()
-        sn = jacobi.sn_k_squared(q, k)
-        cn = jacobi.cn_k_squared(q, k)
-        dn = jacobi.dn_k_squared(q, k)
-        # print(q, k, sn, cn, dn)
 
-        t1 = spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)
-        t2 = (2.0*spin+1.0)*v0
-        return t1*np.power(sn, 2)+t2*cn*dn
+        sn = self.jacobi.sn_k_squared(q, k)
+        cn = self.jacobi.cn_k_squared(q, k)
+        dn = self.jacobi.dn_k_squared(q, k)
+
+        return spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)*np.power(sn, 2)+(2.0*spin+1.0)*v0*cn*dn

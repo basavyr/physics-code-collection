@@ -97,13 +97,6 @@ def elliptic_potential(spin_values, mois, oddspin, theta_deg, plot_name):
     plotter.plt.close()
 
 
-def evaluate_function_2_args(func: jacobi_func.Jacobi, arg_1: list[float], arg_2: float) -> list[float]:
-    """
-    - returns a list with the numerical values for func(arg_1, arg_2) where arg_1 is a list and arg_2 a number
-    """
-    return np.round(list(map(func, arg_1, repeat(arg_2))), 5)
-
-
 def make_elliptic_plots():
     elliptic_potential(
         config.SPIN_VALUES, config.MOI_VALUES_FIT,
@@ -123,6 +116,13 @@ def make_elliptic_plots():
     elliptic_potential(
         config.SPIN_VALUES, config.MOI_VALUES_RADUTA,
         config.ODD_SPIN112, config.MOI_VALUES_RADUTA + 180.0, 'jacobi_potential_raduta_2')
+
+
+def evaluate_function_2_args(func: jacobi_func.Jacobi, arg_1: list[float], arg_2: float) -> list[float]:
+    """
+    - returns a list with the numerical values for func(arg_1, arg_2) where arg_1 is a list and arg_2 a number
+    """
+    return np.round(list(map(func, arg_1, repeat(arg_2))), 5)
 
 
 def numerical_data_export(spin: float) -> None:
@@ -146,15 +146,15 @@ def numerical_data_export(spin: float) -> None:
     sn_values = evaluate_function_2_args(jacobi.sn_k_squared, q_values, k)
     cn_values = evaluate_function_2_args(jacobi.cn_k_squared, q_values, k)
     dn_values = evaluate_function_2_args(jacobi.dn_k_squared, q_values, k)
+    vq_values = evaluate_function_2_args(potential.v_q, q_values, spin)
+
+    headers = ["q", "k", "amu", "sn", "cn", "dn", "V(q)"]
 
     elliptic_data = [
-        (q_values[idx], phi_values[idx], sn_values[idx], cn_values[idx], dn_values[idx]) for idx in range(len(phi_values))
+        (q_values[idx], np.round(k, 3), phi_values[idx], sn_values[idx], cn_values[idx], dn_values[idx], vq_values[idx]) for idx in range(len(phi_values))
     ]
 
-    csv.save_to_csv(
-        elliptic_data, "elliptic_data_fit",
-        ["q", "amu", "sn", "cn", "dn"]
-    )
+    csv.save_to_csv(elliptic_data, "elliptic_data_fit", headers)
 
 
 def main():
