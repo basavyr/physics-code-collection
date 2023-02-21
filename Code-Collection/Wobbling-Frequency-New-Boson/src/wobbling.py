@@ -1,5 +1,5 @@
 import numpy as np
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -14,13 +14,12 @@ class Wobbling:
     theta_chiral: float
     j: float
 
-    def __init__(self, params) -> None:
-        self.A1 = 1.0/(2.0*params['MOIS'][0])
-        self.A2 = 1.0/(2.0*params['MOIS'][1])
-        self.A3 = 1.0/(2.0*params['MOIS'][2])
-        self.theta = params['THETA_DEG']*np.pi/180.0
-        self.theta_chiral = (params['THETA_DEG']+180.0)*np.pi/180.0
-        self.j = params['ODD_SPIN']
+    def __init__(self, param_set: dict[str, float]) -> None:
+        self.A1, self.A2, self.A3 = 1.0/(2.0*param_set['MOIS'][0]), 1.0/(
+            2.0*param_set['MOIS'][1]), 1.0/(2.0*param_set['MOIS'][2])
+        self.theta, self.theta_chiral = param_set['THETA_DEG'] * \
+            np.pi/180.0, (param_set['THETA_DEG']+180.0)*np.pi/180.0
+        self.j = param_set['ODD_SPIN']
 
     def j_k(self, theta_rad: float) -> tuple[float, float, float]:
         return (self.j * np.cos(theta_rad), self.j * np.sin(theta_rad), 0.0)
