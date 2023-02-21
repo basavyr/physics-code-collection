@@ -27,20 +27,40 @@ class Wobbling:
 
     def a_term(self, spin: float, theta_rad: float) -> float:
         """
-        - Calculates the A term from 2.4
+        - Calculates the A term from 2.4 (New Boson 2020)
         """
         j2 = self.j_k(theta_rad)[1]
         return self.A2*(1.0-j2/spin)-self.A1
 
-    def u_term(self, spin: float, theta_rad: float) -> float:
-        """
-        - Calculates the u term from 2.4
-        """
-        return (self.A3-self.A1)/self.a_term(spin, theta_rad)
-
     def v0_term(self, spin: float, theta_rad: float) -> float:
         """
-        - Calculates the v0 term from 2.4
+        - Calculates the v0 term from 2.4 (New Boson 2020)
         """
         j1 = self.j_k(theta_rad)[0]
         return -((self.A1*j1)/self.a_term(spin, theta_rad))
+
+    def u_term(self, spin: float, theta_rad: float) -> float:
+        """
+        - Calculates the u term from 2.4 (New Boson 2020)
+        """
+        return (self.A3-self.A1)/self.a_term(spin, theta_rad)
+
+    def a21(self, spin: float, theta_rad: float) -> float:
+        """
+        - returns a sub-term from omega containing the delta(A2,A1)
+        """
+        j2 = self.j_k(theta_rad)[1]
+        return self.A2-self.A1-(self.A2*j2/spin)
+
+    def omega(self, spin: float) -> float:
+        """
+        - returns the wobbling frequency from 4.4 (New Boson 2020)
+        """
+        spin2p1 = (2.0*spin+1.0)
+        a1j1 = self.A1*self.j_k(self.theta)[0]
+
+        sub_term_1 = spin2p1*self.a21(spin, self.theta)+2.0*a1j1
+        sub_term_2 = spin2p1*(self.A3-self.A1)+2.0*a1j1
+        sub_term_3 = (self.A3-self.A1)*self.a21(spin, self.theta)
+
+        return np.power(sub_term_1*sub_term_2-sub_term_3, 0.5)
