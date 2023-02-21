@@ -29,10 +29,11 @@ def fit_3():
 
 def main():
     """Main function"""
-    data1 = fit_1()
-    exporter.export_to_csv(data1, 'data_fit_1')
+    def header(idx: str) -> tuple: return (
+        'I',
+        f'omega_{idx}', f'omega_{idx}_pi')
+    exporter.export_to_csv(fit_1(), 'data_fit_1', header('1'))
 
 
 if __name__ == "__main__":
-
     main()
