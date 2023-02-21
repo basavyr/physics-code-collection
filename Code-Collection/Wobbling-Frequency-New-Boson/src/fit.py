@@ -21,3 +21,16 @@ class FittingParameters:
     THETA_DEG_2 = 140.0
     THETA_DEG_3 = -71.0
     ODD_SPIN = 5.5
+
+    SET_1 = {
+        'MOIS': MOIS_1,
+        'ODD_SPIN': ODD_SPIN,
+        'THETA_DEG': THETA_DEG_1}
+    SET_2 = {
+        'MOIS': MOIS_2,
+        'ODD_SPIN': ODD_SPIN,
+        'THETA_DEG': THETA_DEG_2}
+    SET_3 = {
+        'MOIS': MOIS_3,
+        'ODD_SPIN': ODD_SPIN,
+        'THETA_DEG': THETA_DEG_3}

@@ -14,13 +14,13 @@ class Wobbling:
     theta_chiral: float
     j: float
 
-    def __init__(self, mois: tuple[float, float, float], odd_spin: float, theta_deg: float) -> None:
-        self.A1 = 1.0/(2.0*mois[0])
-        self.A2 = 1.0/(2.0*mois[1])
-        self.A3 = 1.0/(2.0*mois[2])
-        self.theta = theta_deg*np.pi/180.0
-        self.theta_chiral = (theta_deg+180.0)*np.pi/180.0
-        self.j = odd_spin
+    def __init__(self, params) -> None:
+        self.A1 = 1.0/(2.0*params['MOIS'][0])
+        self.A2 = 1.0/(2.0*params['MOIS'][1])
+        self.A3 = 1.0/(2.0*params['MOIS'][2])
+        self.theta = params['THETA_DEG']*np.pi/180.0
+        self.theta_chiral = (params['THETA_DEG']+180.0)*np.pi/180.0
+        self.j = params['ODD_SPIN']
 
     def j_k(self, theta_rad: float) -> tuple[float, float, float]:
         return (self.j * np.cos(theta_rad), self.j * np.sin(theta_rad), 0.0)
