@@ -2,15 +2,27 @@ import wobbling
 import fit
 
 
+def fit_1():
+    params = fit.FittingParameters()
+    wobb = wobbling.Wobbling(
+        params.MOIS_1, params.ODD_SPIN, params.THETA_DEG_1)
+
+
+def fit_2():
+    params = fit.FittingParameters()
+    wobb = wobbling.Wobbling(
+        params.MOIS_2, params.ODD_SPIN, params.THETA_DEG_2)
+
+
+def fit_3():
+    params = fit.FittingParameters()
+    wobb = wobbling.Wobbling(
+        params.MOIS_3, params.ODD_SPIN, params.THETA_DEG_3)
+
+
 def main():
     """Main function"""
-    params = fit.FittingParameters()
-    fit_1 = wobbling.Wobbling(
-        params.MOIS_1, params.ODD_SPIN, params.THETA_DEG_1)
-    fit_2 = wobbling.Wobbling(
-        params.MOIS_2, params.ODD_SPIN, params.THETA_DEG_2)
-    fit_3 = wobbling.Wobbling(
-        params.MOIS_3, params.ODD_SPIN, params.THETA_DEG_3)
+    fit_1()
 
 
 if __name__ == "__main__":
