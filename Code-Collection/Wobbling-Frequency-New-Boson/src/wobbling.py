@@ -64,3 +64,16 @@ class Wobbling:
         sub_term_3 = (self.A3-self.A1)*self.a21(spin, self.theta)
 
         return np.power(sub_term_1*sub_term_2-sub_term_3, 0.5)
+
+    def omega_chiral(self, spin: float) -> float:
+        """
+        - returns the wobbling frequency from 4.4 (New Boson 2020)
+        """
+        spin2p1 = (2.0*spin+1.0)
+        a1j1 = self.A1*self.j_k(self.theta_chiral)[0]
+
+        sub_term_1 = spin2p1*self.a21(spin, self.theta_chiral)+2.0*a1j1
+        sub_term_2 = spin2p1*(self.A3-self.A1)+2.0*a1j1
+        sub_term_3 = (self.A3-self.A1)*self.a21(spin, self.theta_chiral)
+
+        return np.power(sub_term_1*sub_term_2-sub_term_3, 0.5)
