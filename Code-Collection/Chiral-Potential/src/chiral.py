@@ -49,12 +49,17 @@ class Potential:
         v_theta, v_theta_pi = self.v_q_chiral(q, spin, theta_deg)
         return 0.5*(v_theta-v_theta_pi)
 
-    def plot_potential(self, q_values: list[float], spin_values: list[float], theta_deg: float) -> None:
+    def plot_symm_potential(self, q_values: list[float], spin_values: list[float], theta_deg: float) -> None:
         """
         - create a plot with the chiral symmetric and asymmetric potentials
         """
         os.makedirs('../data', exist_ok=True)
         symmetric_plot = f'../data/symmetric_plot.pdf'
+
+        k_values = [self.elliptic.modulus_k(
+            spin, theta_deg) for spin in spin_values]
+        periods = [self.elliptic.period(k) for k in k_values]
+        print(periods)
 
         plt.xlabel(f"$q\ [rad]$")
         plt.ylabel(f"$V(q)_\text{{symm}}\ [\text{{MeV}}]]$")

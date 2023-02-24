@@ -8,7 +8,7 @@ def fit1() -> None:
     moi_fit1, odd_spin, theta_deg_fit1 = params.fit1()
     potential = chiral.Potential(moi_fit1, odd_spin)
     q_values = np.linspace(-8, 8, 100)
-    potential.plot_potential(q_values, [22.5], theta_deg_fit1)
+    potential.plot_symm_potential(q_values, [22.5], theta_deg_fit1)
 
 
 def main():

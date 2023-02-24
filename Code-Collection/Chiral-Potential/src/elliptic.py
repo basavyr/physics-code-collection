@@ -1,6 +1,7 @@
 from scipy.special import ellipj
 from dataclasses import dataclass
 import numpy as np
+from scipy.integrate import quad
 
 
 @dataclass
@@ -18,6 +19,12 @@ class EllipticFunctions:
         self.A1, self.A2, self.A3 = (
             1.0/(2.0*moi1), 1.0/(2.0*moi2), 1.0/(2.0*moi3))
         self.odd_spin = odd_spin
+
+    def trigonometric_function_t(self, t: float, k: float) -> float:
+        k_squared = np.power(k, 2)
+        sin_t = np.sin(t)
+
+        return 1.0 / np.sqrt(1.0-k_squared*np.power(sin_t, 2))
 
     def j(self, theta_deg: float) -> tuple[float, float, float]:
         """
@@ -83,3 +90,7 @@ class EllipticFunctions:
         - Returns Jacobi elliptic function dn
         """
         return np.sqrt(1-np.power(k, 2)*np.power(self.sn(q, k), 2))
+
+    def period(self, k: float) -> float:
+        # use scipy to integrate a function that depends on two arguments f_t(t, k)
+        return quad(self.trigonometric_function_t, 0.0, np.pi/2.0, args=k)[0]
