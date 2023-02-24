@@ -59,10 +59,11 @@ class Potential:
         k_values = [self.elliptic.modulus_k(
             spin, theta_deg) for spin in spin_values]
         periods = [self.elliptic.period(k) for k in k_values]
-        print(periods)
+        q_range = max(list((4.0*period) for period in periods))
 
         plt.xlabel(f"$q\ [rad]$")
         plt.ylabel(f"$V(q)_\text{{symm}}\ [\text{{MeV}}]]$")
+        plt.xlim(-q_range, q_range)
         for spin in spin_values:
             v_symm_values = list(
                 map(self.v_symm, q_values, repeat(spin), repeat(theta_deg)))
