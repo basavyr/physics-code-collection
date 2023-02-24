@@ -24,6 +24,10 @@ class Potential:
         c = self.elliptic.cn(q, k)
         d = self.elliptic.dn(q, k)
         v0 = self.elliptic.v0_factor(spin, theta_deg)
-        return spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2)+(2.0*spin+1.0)*v0*c*d
+        return (spin*(spin+1.0)*np.power(k, 2)+np.power(v0, 2))*np.power(s, 2)+(2.0*spin+1.0)*v0*c*d
 
-    def v_q_chiral(self, q: float, spin: float, theta_deg: float)
+    def v_q_chiral(self, q: float, spin: float, theta_deg: float) -> tuple[float, float]:
+        """
+        returns a tuple with V(q, theta) and V(q, theta+pi)
+        """
+        return self.v_q(q, spin, theta_deg), self.v_q(q, spin, theta_deg+180.0)
