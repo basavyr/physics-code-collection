@@ -31,3 +31,17 @@ class Potential:
         returns a tuple with V(q, theta) and V(q, theta+pi)
         """
         return self.v_q(q, spin, theta_deg), self.v_q(q, spin, theta_deg+180.0)
+
+    def v_symm(self, q: float, spin: float, theta_deg: float) -> float:
+        """
+        - returns the symmetric potential from Eq. 7.3 (new boson work)
+        """
+        v_theta, v_theta_pi = self.v_q_chiral(q, spin, theta_deg)
+        return 0.5*(v_theta+v_theta_pi)
+
+    def v_asymm(self, q: float, spin: float, theta_deg: float) -> float:
+        """
+        - returns the asymmetric potential from Eq. 7.3 (new boson work)
+        """
+        v_theta, v_theta_pi = self.v_q_chiral(q, spin, theta_deg)
+        return 0.5*(v_theta-v_theta_pi)
