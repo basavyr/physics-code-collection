@@ -1,6 +1,9 @@
 import elliptic as elliptic_functions
 from dataclasses import dataclass
 import numpy as np
+import os
+from matplotlib import pyplot as plt
+from itertools import repeat
 
 
 @dataclass
@@ -45,3 +48,20 @@ class Potential:
         """
         v_theta, v_theta_pi = self.v_q_chiral(q, spin, theta_deg)
         return 0.5*(v_theta-v_theta_pi)
+
+    def plot_potential(self, q_values: list[float], spin_values: list[float], theta_deg: float) -> None:
+        """
+        - create a plot with the chiral symmetric and asymmetric potentials
+        """
+        os.makedirs('../data', exist_ok=True)
+        symmetric_plot = f'../data/symmetric_plot.pdf'
+
+        plt.xlabel(f"$q\ [rad]$")
+        plt.ylabel(f"$V(q)_\text{{symm}}\ [\text{{MeV}}]]$")
+        for spin in spin_values:
+            v_symm_values = list(
+                map(self.v_symm, q_values, repeat(spin), repeat(theta_deg)))
+            plt.plot(q_values, v_symm_values, label=f'{int(2*spin)}/2')
+            plt.legend(loc='best')
+        plt.savefig(symmetric_plot, dpi=450, bbox_inches='tight')
+        plt.close()
