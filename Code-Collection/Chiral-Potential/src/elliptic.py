@@ -60,7 +60,7 @@ class EllipticFunctions:
         """
         - Returns the modulus "k" that is used within Jacobi functions
         """
-        return np.sqrt(self.u_factor(spin, theta_deg))
+        return np.sqrt(np.abs(self.u_factor(spin, theta_deg)))
 
     def amu(self, q: float, k: float) -> float:
         """
@@ -68,7 +68,8 @@ class EllipticFunctions:
         - The amplitude is used to determine sn,cn,dn functions
         - If amu=phi, then sn=sin(phi), cn=cos(phi),...
         """
-        *_, phi = ellipj(q, np.power(k, 2))
+        magic_power = 2
+        *_, phi = ellipj(q, np.power(k, magic_power))
         return phi
 
     def sn(self, q: float, k: float) -> float:

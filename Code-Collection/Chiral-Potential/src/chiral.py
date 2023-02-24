@@ -14,6 +14,7 @@ class Potential:
     elliptic: elliptic_functions.EllipticFunctions
 
     def __init__(self, moi: tuple[float, float, float], odd_spin: float) -> None:
+        os.makedirs('../data', exist_ok=True)
         moi1, moi2, moi3 = moi
         self.elliptic = elliptic_functions.EllipticFunctions(
             moi1, moi2, moi3, odd_spin)
@@ -53,7 +54,6 @@ class Potential:
         """
         - create a plot with the chiral symmetric and asymmetric potentials
         """
-        os.makedirs('../data', exist_ok=True)
         symmetric_plot = f'../data/symmetric_plot.pdf'
 
         k_values = [self.elliptic.modulus_k(
@@ -61,8 +61,8 @@ class Potential:
         periods = [self.elliptic.period(k) for k in k_values]
         q_range = max(list((4.0*period) for period in periods))
 
-        plt.xlabel(f"$q\ [rad]$")
-        plt.ylabel(f"$V(q)_\text{{symm}}\ [\text{{MeV}}]]$")
+        plt.xlabel(r"$q\ [rad]$")
+        plt.ylabel(r"$V_{symm}(q)$ [MeV]")
         plt.xlim(-q_range, q_range)
         for spin in spin_values:
             v_symm_values = list(
@@ -70,4 +70,26 @@ class Potential:
             plt.plot(q_values, v_symm_values, label=f'{int(2*spin)}/2')
             plt.legend(loc='best')
         plt.savefig(symmetric_plot, dpi=450, bbox_inches='tight')
+        plt.close()
+
+    def plot_asymm_potential(self, q_values: list[float], spin_values: list[float], theta_deg: float) -> None:
+        """
+        - create a plot with the chiral asymmetric and asymmetric potentials
+        """
+        asymmetric_plot = f'../data/asymmetric_plot.pdf'
+
+        k_values = [self.elliptic.modulus_k(
+            spin, theta_deg) for spin in spin_values]
+        periods = [self.elliptic.period(k) for k in k_values]
+        q_range = max(list((4.0*period) for period in periods))
+
+        plt.xlabel(r"$q\ [rad]$")
+        plt.ylabel(r"$V_{asymm}(q)$ [$\hbar^2$]")
+        plt.xlim(-q_range, q_range)
+        for spin in spin_values:
+            v_symm_values = list(
+                map(self.v_asymm, q_values, repeat(spin), repeat(theta_deg)))
+            plt.plot(q_values, v_symm_values, label=f'{int(2*spin)}/2')
+            plt.legend(loc='best')
+        plt.savefig(asymmetric_plot, dpi=450, bbox_inches='tight')
         plt.close()
