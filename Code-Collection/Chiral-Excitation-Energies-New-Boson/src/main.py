@@ -1,12 +1,25 @@
 import energies
 import config
+from itertools import repeat
+
+
+def excitation_energies():
+    params = config.FitParameters()
+    moi, odd_spin, _ = params.get_params()
+    energy = energies.Energies(moi, odd_spin)
+    x_data = params.SPINS_BAND1
+    symm_data = list(
+        map(energy.symmetric_excitation_energy,
+            x_data, repeat(params.THETA_DEG)))
+    asymm_data = list(
+        map(energy.asymmetric_excitation_energy,
+            x_data, repeat(params.THETA_DEG)))
+    for p in zip(x_data, asymm_data, symm_data):
+        print(p)
 
 
 def main():
-    params = config.FitParameters()
-    moi, odd_spin, theta_deg = params.get_params()
-    energy = energies.Energies(moi, odd_spin, theta_deg)
-    energy.show()
+    excitation_energies()
 
 
 if __name__ == '__main__':
