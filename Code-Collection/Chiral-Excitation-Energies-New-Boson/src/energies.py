@@ -38,3 +38,13 @@ class Energies:
         sub_term2 = (2.0*spin+1.0)*(self.A3-self.A1)-2.0*a1j1
         sub_term3 = (self.A3-self.A1)*self.a21(spin, theta_deg)
         return np.sqrt(sub_term1 * sub_term2 - sub_term3)
+
+    def symmetric_excitation_energy(self, spin: float, theta_deg: float):
+        symmetric_omega = (
+            self.omega(spin, theta_deg) + self.omega(spin, theta_deg+180.0))
+        return self.A1*np.power(spin, 2)+0.5*symmetric_omega
+
+    def asymmetric_excitation_energy(self, spin: float, theta_deg: float):
+        asymmetric_omega = (
+            self.omega(spin, theta_deg) - self.omega(spin, theta_deg+180.0))
+        return self.A1*np.power(spin, 2)+0.5*asymmetric_omega
