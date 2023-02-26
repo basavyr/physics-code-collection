@@ -55,4 +55,4 @@ class Energies:
         asymmetric_omega = (
             self.omega(spin, theta_deg) - self.omega(spin, theta_deg+180.0))
 
-        return (2.0*spin+1.0)*a1j1-spin*a2j2*0.5*asymmetric_omega
+        return (2.0*spin+1.0)*a1j1-spin*a2j2+0.5*asymmetric_omega

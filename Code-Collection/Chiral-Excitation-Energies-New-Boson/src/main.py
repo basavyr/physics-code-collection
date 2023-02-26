@@ -14,7 +14,7 @@ def excitation_energies():
     asymm_data = list(
         map(energy.asymmetric_excitation_energy,
             x_data, repeat(params.THETA_DEG)))
-    for p in zip(x_data, asymm_data, symm_data):
+    for p in zip(x_data, symm_data, asymm_data):
         print(p)
 
 
