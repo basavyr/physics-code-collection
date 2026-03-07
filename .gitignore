@@ -12,11 +12,9 @@ Code-Collection/Moments-Of-Inertia/.DS_Store
 Code-Collection/Quadrupole-Deformed-MeanField/.DS_Store
 Code-Collection/Quadrupole-Moments/.DS_Store
 .DS_Store
-
 *.pyc
-
 *.lock
-
 Code-Collection/Elliptic-Potential/data/
-
 Code-Collection/Wobbling-Frequency-New-Boson/data/
+.python-version
+__pycache__
