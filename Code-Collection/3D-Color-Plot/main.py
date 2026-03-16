@@ -93,6 +93,17 @@ def mexican_hat_potential(r, theta, lambda_=1.0, v=1.0, epsilon=0.3, n=3):
     return lambda_ * (r**2 - v**2)**2 + epsilon * r**2 * np.cos(n * theta)
 
 
+def gaussian_3d(x, y, z):
+    r"""
+    Spherically symmetric 3D Gaussian:
+
+        f(x, y, z) = e^{-(x^2 + y^2 + z^2)}
+
+    Equivalently, f(r) = e^{-r^2} where r = \sqrt{x^2 + y^2 + z^2}.
+    """
+    return np.exp(-(x**2 + y**2 + z**2))
+
+
 # =====================================================================
 # Color utilities
 # =====================================================================
@@ -389,6 +400,99 @@ def run_scatter(resolution=None, output=None):
 
 
 # =====================================================================
+# Mode 4: Gaussian — 3D Gaussian scatter cloud with gray gradient
+# =====================================================================
+
+def run_gaussian(resolution=None, output=None):
+    r"""
+    Plot f(x,y,z) = e^{-(x^2+y^2+z^2)} as a spherical scatter cloud.
+
+    Only points inside the sphere r <= r_max are plotted so the cloud
+    has a spherical shape.  A continuous grayscale colormap (dark at the
+    center, light at the edges) is used instead of discrete color bins.
+    Per-point alpha makes the outer shell semi-transparent so the dense
+    dark core is visible from outside.
+    """
+    _range = resolution or 40
+    r_max = 2.0
+
+    vals = np.linspace(-r_max, r_max, _range)
+    X, Y, Z = np.meshgrid(vals, vals, vals, indexing='ij')
+
+    x_flat = X.ravel()
+    y_flat = Y.ravel()
+    z_flat = Z.ravel()
+
+    # Spherical filter: keep only points inside the sphere
+    r = np.sqrt(x_flat**2 + y_flat**2 + z_flat**2)
+    mask = r <= r_max
+
+    x_s = x_flat[mask]
+    y_s = y_flat[mask]
+    z_s = z_flat[mask]
+
+    F = gaussian_3d(x_s, y_s, z_s)
+
+    print(f"  f(x,y,z) range: min = {F.min():.6f}, max = {F.max():.6f}")
+    print(f"  Points plotted: {len(F)} / {len(x_flat)} "
+          f"(spherical filter r <= {r_max})")
+
+    # Per-point alpha: use a steep power law so the outer shell is
+    # very transparent (letting you see the dark core) while the
+    # center stays opaque.   f^5 drops off extremely fast:
+    #   f=1.0 (center)  -> alpha = 1.0
+    #   f=0.78 (r=0.5)  -> alpha = 0.31
+    #   f=0.37 (r=1.0)  -> alpha = 0.02
+    #   f=0.11 (r=1.5)  -> alpha = 0.02
+    alpha_min = 0.02
+    alphas = alpha_min + (1.0 - alpha_min) * F**5
+
+    # Build RGBA array using the 'copper' colormap.
+    # copper: black (high f, center) -> warm bronze/tan (low f, edges).
+    # All tones are clearly visible — no white that vanishes into the
+    # background.  The colormap is reversed so that the dense core is
+    # the darkest.
+    cmap = plt.get_cmap('copper_r')
+    norm = mcolors.Normalize(vmin=0.0, vmax=1.0)
+    rgba = cmap(norm(F))       # (N, 4) array with default alpha = 1
+    rgba[:, 3] = alphas        # override alpha channel
+
+    # Scale marker size inversely with resolution so that at higher
+    # density the points overlap and form a continuous-looking sphere.
+    marker_size = max(1, int(800 / _range))
+
+    # --- Plot ---
+    fig = plt.figure(figsize=(10, 9))
+    ax = fig.add_subplot(111, projection='3d')
+
+    sc = ax.scatter(x_s, y_s, z_s,
+                    c=F, cmap='copper_r',
+                    vmin=0.0, vmax=1.0,
+                    s=marker_size, edgecolors='none')
+
+    # Overwrite the rendered colors with our per-point alpha version
+    sc.set_facecolors(rgba)
+
+    ax.set_xlabel(r'$x$')
+    ax.set_ylabel(r'$y$')
+    ax.set_zlabel(r'$z$')
+    ax.set_title(r'$f(x,\,y,\,z) = e^{-(x^2 + y^2 + z^2)}$')
+
+    # Equal aspect ratio so the sphere isn't squashed
+    ax.set_box_aspect([1, 1, 1])
+
+    # Colorbar showing the grayscale mapping
+    cbar = fig.colorbar(sc, ax=ax, shrink=0.6, pad=0.08)
+    cbar.set_label(r'$f(x,y,z)$')
+
+    plt.tight_layout()
+    if output:
+        fig.savefig(output, bbox_inches='tight', dpi=150)
+        print(f"  Saved: {output}")
+    plt.show()
+
+
+# =====================================================================
 # Entry point
 # =====================================================================
 
@@ -407,6 +511,11 @@ def main():
         '--scatter', action='store_true',
         help='3D scatter plot of V(beta, gamma, spin) where each '
              'point is colored by the function value.'
+    )
+    mode.add_argument(
+        '--gaussian', action='store_true',
+        help='3D Gaussian scatter cloud f(x,y,z) = exp(-(x^2+y^2+z^2)) '
+             'with a continuous grayscale gradient.'
     )
     parser.add_argument(
         '-n', '--resolution', type=int, default=None,
@@ -428,6 +537,8 @@ def main():
         run_spherical(n, o)
     elif args.scatter:
         run_scatter(n, o)
+    elif args.gaussian:
+        run_gaussian(n, o)
     else:
         run_default(n, o)
 
