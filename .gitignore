@@ -18,3 +18,9 @@ Code-Collection/Elliptic-Potential/data/
 Code-Collection/Wobbling-Frequency-New-Boson/data/
 .python-version
 __pycache__
+Code-Collection/Heat-Radiation/*.log
+Code-Collection/Heat-Radiation/*.out
+Code-Collection/Heat-Radiation/*.aux
+Code-Collection/Heat-Radiation/*.fls
+Code-Collection/Heat-Radiation/*.fdb_latexmk
+Code-Collection/Heat-Radiation/outputs

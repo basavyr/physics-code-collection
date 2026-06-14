@@ -1,0 +1,377 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title{Transient Heat Exchange of a Cold Water Glass and a Hot Espresso Cup Under Room Conditions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Conditions, Objects, and Assumptions}
+
+The system is considered under ordinary Earth-surface conditions: atmospheric pressure, still indoor air, and room temperature in the range
+\begin{equation}
+    T_{\infty} \simeq T_{\mathrm{sur}} = \SIrange{296.15}{299.15}{K},
+\end{equation}
+corresponding to \SIrange{23}{26}{\degreeCelsius}. Here $T_{\infty}$ denotes the bulk air temperature and $T_{\mathrm{sur}}$ denotes the effective temperature of the surrounding radiating surfaces. The two objects are treated independently:
+\begin{align}
+    &\text{cold water glass:} & V_w &= \SIrange{250}{300}{mL}, & T_w(0) &= \SI{277.15}{K}, \\
+    &\text{espresso cup:} & V_c &= \SIrange{80}{100}{mL}, & T_c(0) &\simeq \SIrange{333.15}{343.15}{K}.
+\end{align}
+
+The water and coffee are approximated as well-mixed thermal masses, so that each object is assigned a single time-dependent temperature $T(t)$. This is the \textbf{\textit{lumped-capacitance approximation}}. It is a first-order model, not a detailed computational-fluid-dynamics description of internal circulation, evaporation, cup-wall gradients, or desk conduction.
+
+For liquid water and coffee, the specific heat capacity is taken to be approximately
+\begin{equation}
+    c_p \simeq \SI{4184}{J.kg^{-1}.K^{-1}}.
+\end{equation}
+Thus the dominant thermal capacitance of the liquid is
+\begin{equation}
+    C = mc_p,
+\end{equation}
+with $m \simeq \rho V$ and $\rho \simeq \SI{1000}{kg.m^{-3}}$.
+
+For radiation, the relevant material parameter is the \textbf{\textit{hemispherical emissivity}} $\varepsilon$. In the present temperature range, smooth glass, glazed porcelain or ceramic, and liquid water are all \textbf{\textit{high-emissivity surfaces}}, typically of order
+\begin{equation}
+    \varepsilon \simeq 0.85-0.96.
+\end{equation}
+Consequently, the radiation term should not be neglected merely because the objects are not ideal black bodies. A reasonable first numerical model may use
+\begin{equation}
+    \varepsilon_g \simeq 0.93, \qquad
+    \varepsilon_c \simeq 0.92, \qquad
+    \varepsilon_w \simeq 0.96,
+\end{equation}
+where the subscripts denote glass, ceramic, and exposed water-like liquid, respectively. If the surface seen by the room is mostly glass or ceramic wall, use the \textbf{\textit{container emissivity}}; if the exposed liquid surface is important, use the \textbf{\textit{water-like emissivity}} for that area.
+
+\section{Governing Heat-Balance Model}
+
+For an object at temperature $T(t)$, the thermal energy balance is written as
+\begin{equation}
+    C\frac{dT}{dt}=\dot Q_{\mathrm{in}},
+\end{equation}
+where $\dot Q_{\mathrm{in}}$ is \textbf{\textit{positive when heat enters the object}}. The two dominant mechanisms in still indoor air are \textbf{\textit{convection}} and \textbf{\textit{thermal radiation}}:
+\begin{equation}
+    \dot Q_{\mathrm{in}}
+    = A h\left(T_{\infty}-T\right)
+    + \varepsilon\sigma A\left(T_{\mathrm{sur}}^4-T^4\right).
+    \label{eq:balance}
+\end{equation}
+Here $A$ is the effective exchange area, $h$ is the \textbf{\textit{convective heat-transfer coefficient}}, $\varepsilon$ is the \textbf{\textit{surface emissivity}}, and
+\begin{equation}
+    \sigma = \SI{5.670374419e-8}{W.m^{-2}.K^{-4}}
+\end{equation}
+is the Stefan--Boltzmann constant.
+
+The coefficient $h$ is \textbf{\textit{not a universal material constant}}. It is an empirical coefficient describing how effectively the surrounding air \textbf{\textit{removes heat from}} or \textbf{\textit{supplies heat to}} the object by convection. It depends on geometry, orientation, air speed, and the temperature difference. For a small cup or glass in still indoor air, a first estimate is commonly taken in the range
+\begin{equation}
+    h \simeq \SIrange{5}{10}{W.m^{-2}.K^{-1}}.
+\end{equation}
+Larger values represent \textbf{\textit{stronger air motion}}; smaller values represent quieter air and \textbf{\textit{weaker natural convection}}.
+
+For moderate temperature differences around room temperature, the radiative term may be linearized:
+\begin{equation}
+    \varepsilon\sigma\left(T_{\mathrm{sur}}^4-T^4\right)
+    \simeq h_{\mathrm{rad}}\left(T_{\mathrm{sur}}-T\right),
+\end{equation}
+where
+\begin{equation}
+    h_{\mathrm{rad}}
+    = \varepsilon\sigma\left(T_{\mathrm{sur}}+T\right)
+    \left(T_{\mathrm{sur}}^2+T^2\right).
+\end{equation}
+If $T_{\infty}\simeq T_{\mathrm{sur}}$, Eq.~\eqref{eq:balance} reduces approximately to \textbf{\textit{Newtonian thermal relaxation}}:
+\begin{equation}
+    C\frac{dT}{dt}
+    \simeq A\left(h+h_{\mathrm{rad}}\right)\left(T_{\infty}-T\right),
+\end{equation}
+with solution
+\begin{equation}
+    T(t) = T_{\infty} + \left[T(0)-T_{\infty}\right]e^{-t/\tau},
+    \qquad
+    \tau = \frac{C}{A\left(h+h_{\mathrm{rad}}\right)}.
+    \label{eq:exponential}
+\end{equation}
+
+Equation~\eqref{eq:exponential} states that both objects tend asymptotically toward room temperature. The \textbf{\textit{sign of $T(0)-T_{\infty}$}} determines whether the object \textbf{\textit{warms}} or \textbf{\textit{cools}}.
+
+For the cold water glass,
+\begin{equation}
+    T_w(0)<T_{\infty},
+\end{equation}
+and therefore Eq.~\eqref{eq:balance} gives
+\begin{equation}
+    \dot Q_{\mathrm{in}}>0,
+    \qquad
+    \frac{dT_w}{dt}>0.
+\end{equation}
+The water \textbf{\textit{absorbs net heat from the room}} and \textbf{\textit{warms toward ambient temperature}}. Although the cold glass still emits thermal radiation because $T_w>0$, the warmer surroundings emit more radiation toward it than it emits outward, so the \textbf{\textit{net radiative contribution is inward}}.
+
+For the espresso cup,
+\begin{equation}
+    T_c(0)>T_{\infty},
+\end{equation}
+and therefore
+\begin{equation}
+    \dot Q_{\mathrm{in}}<0,
+    \qquad
+    \frac{dT_c}{dt}<0.
+\end{equation}
+The coffee \textbf{\textit{loses net heat to the room}} and \textbf{\textit{cools toward ambient temperature}}. In this case both convection and radiation initially \textbf{\textit{remove heat from the cup-coffee system}}.
+
+\section{Interpretation}
+
+The cold water and the hot coffee obey the same formal law. Their difference is only the \textbf{\textit{sign of the initial temperature difference}} relative to the room. The cold water is \textbf{\textit{not radiating ``cold''}}; rather, it is a colder body that receives a larger \textbf{\textit{incoming radiative and convective heat flux}} from its warmer surroundings than it sends back. The hot coffee is a warmer body that sends a larger \textbf{\textit{outgoing heat flux}} than it receives. In both cases the thermal evolution is \textbf{\textit{toward equilibrium with the room}}.
+
+The model predicts an \textbf{\textit{exponential approach to room temperature}} when the heat-transfer coefficients and effective areas are treated as approximately constant. The exact time scale depends on geometry, liquid volume, cup or glass thickness, surface emissivity, airflow, and conductive contact with the desk. Additional mechanisms, such as evaporation, can exist, but they should not be introduced as fitted terms unless there is independent evidence that they are needed.
+
+\section{Numerical Recipe}
+
+For a direct numerical calculation over a two-hour interval, use Eq.~\eqref{eq:balance} \textbf{\textit{without linearizing the radiative term}}. Choose a timestep such as
+\begin{equation}
+    \Delta t = \SI{60}{s}
+\end{equation}
+or smaller. For each object independently, specify
+\begin{equation}
+    T_0,\quad T_{\infty},\quad T_{\mathrm{sur}},\quad V,\quad A,\quad h,\quad \varepsilon,\quad \rho,\quad c_p.
+\end{equation}
+Then compute
+\begin{equation}
+    m = \rho V, \qquad C = mc_p.
+\end{equation}
+At each timestep $n$, evaluate the \textbf{\textit{convective heat input}}
+\begin{equation}
+    \dot Q_{\mathrm{conv},n}=Ah\left(T_{\infty}-T_n\right),
+\end{equation}
+the \textbf{\textit{radiative heat input}}
+\begin{equation}
+    \dot Q_{\mathrm{rad},n}=\varepsilon\sigma A\left(T_{\mathrm{sur}}^4-T_n^4\right),
+\end{equation}
+and
+\begin{equation}
+    \dot Q_{\mathrm{in},n}
+    =\dot Q_{\mathrm{conv},n}+\dot Q_{\mathrm{rad},n}.
+\end{equation}
+Advance the temperature by the \textbf{\textit{explicit time update}}
+\begin{equation}
+    T_{n+1}=T_n+\frac{\Delta t}{C}\dot Q_{\mathrm{in},n}.
+\end{equation}
+Record $T_n-273.15$ at
+\begin{equation}
+    t=\SI{10}{min},\ \SI{15}{min},\ \SI{30}{min},\ \SI{60}{min},\ \SI{120}{min}.
+\end{equation}
+
+A compact starting set of parameters is
+\begin{align}
+    &\text{water glass:} & T_0 &= \SI{277.15}{K}, & V &= \SIrange{2.5e-4}{3.0e-4}{m^3}, & \varepsilon &= 0.93, \\
+    &\text{espresso cup:} & T_0 &= \SIrange{333.15}{343.15}{K}, & V &= \SIrange{8.0e-5}{1.0e-4}{m^3}, & \varepsilon &= 0.92.
+\end{align}
+For both cases one may begin with
+\begin{equation}
+    T_{\infty}=T_{\mathrm{sur}}=\SI{298.15}{K},
+    \qquad
+    c_p=\SI{4184}{J.kg^{-1}.K^{-1}}.
+\end{equation}
+The nominal values used for the numerical results below are
+\begin{align}
+    &\text{water glass:} & A &= \SI{0.032}{m^2}, & h &= \SI{7}{W.m^{-2}.K^{-1}}, \\
+    &\text{espresso cup:} & A &= \SI{0.018}{m^2}, & h &= \SI{7}{W.m^{-2}.K^{-1}}.
+\end{align}
+The effective area $A$ should be measured or estimated from the actual cup or glass geometry. If no measurement is available, treat $A$ as an \textbf{\textit{uncertain model parameter}} and perform the calculation for a plausible range. The \textbf{\textit{time constant}} is then not an independent input, but a derived quantity:
+\begin{equation}
+    \tau \simeq \frac{C}{A\left(h+h_{\mathrm{rad}}\right)}.
+\end{equation}
+Thus \textbf{\textit{larger liquid mass increases $\tau$}} and slows the temperature change, while \textbf{\textit{larger exposed area}}, \textbf{\textit{stronger convection}}, or \textbf{\textit{larger emissivity decreases $\tau$}} and accelerates the approach to room temperature.
+
+\section{Numerical Results}
+
+The numerical experiment was performed with the Python script \texttt{simulate\_heat\_exchange.py}. The nominal room temperature was fixed at
+\begin{equation}
+    T_{\infty}=T_{\mathrm{sur}}=\SI{298.15}{K}=\SI{25}{\degreeCelsius},
+\end{equation}
+and the criterion for practical arrival at room temperature was defined as the first time at which
+\begin{equation}
+    |T(t)-T_{\infty}|\leq \SI{0.5}{K}.
+\end{equation}
+This is necessary because an exponential relaxation approaches room temperature asymptotically and therefore does not reach it exactly in finite time.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\linewidth]{outputs/temperature_evolution.pdf}
+    \caption{Simulated temperature evolution of the cold water glass and hot espresso cup. The dashed horizontal line is the room temperature, and the shaded band denotes $\pm\SI{0.5}{\degreeCelsius}$ around the room temperature. Markers indicate \SI{10}{min} increments.}
+    \label{fig:temperature-evolution}
+\end{figure}
+
+Figure~\ref{fig:temperature-evolution} shows the expected opposite behavior. The water glass exhibits \textbf{\textit{inward heat transfer}} and therefore warms monotonically. The espresso cup exhibits \textbf{\textit{outward heat transfer}} and therefore cools monotonically. With the nominal geometry and heat-transfer parameters used here, the espresso reaches the room-temperature band earlier because its liquid thermal mass is smaller.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Nominal simulated temperatures and time to reach the room-temperature band.}
+    \label{tab:numerical-results}
+    \begin{tabular}{lcccccc}
+        \toprule
+        Object & Direction & $t_{\pm0.5^\circ\mathrm{C}}$ & \SI{10}{min} & \SI{15}{min} & \SI{60}{min} & \SI{120}{min} \\
+        & & (min) & ($^\circ$C) & ($^\circ$C) & ($^\circ$C) & ($^\circ$C) \\
+        \midrule
+        Cold water glass & absorbs heat inward & 183.2 & 7.78 & 9.41 & 18.72 & 23.17 \\
+        Hot espresso cup & loses heat outward & 119.2 & 52.10 & 47.40 & 29.25 & 25.48 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The numerical values in Table~\ref{tab:numerical-results} should be interpreted as \textbf{\textit{model estimates}}, not universal constants. Changing the effective area $A$, airflow coefficient $h$, liquid mass, or cup/glass geometry changes the time scale. The robust qualitative result is that the cold water \textbf{\textit{absorbs net heat}} until it approaches the room temperature, whereas the hot coffee \textbf{\textit{loses net heat}} until it approaches the same room temperature.
+
+\section{Influence of a Nearby Cold Water Glass}
+
+The previous calculations treated the two drinks independently. If the cold water glass and espresso cup are placed close to each other, an additional direct heat-transfer path exists between them. The coffee can then lose heat not only to the room, but also directly to the colder glass-water system. This effect is governed by the same energy-balance principle, but the two temperatures are now coupled.
+
+Let $T_c(t)$ denote the coffee temperature and $T_w(t)$ denote the cold-water temperature. A compact two-body model is
+\begin{align}
+    C_c\frac{dT_c}{dt}
+    &= \dot Q_{c,\mathrm{room}} + \dot Q_{c\leftarrow w}, \\
+    C_w\frac{dT_w}{dt}
+    &= \dot Q_{w,\mathrm{room}} - \dot Q_{c\leftarrow w}.
+\end{align}
+The term $\dot Q_{c\leftarrow w}$ is positive when heat flows from the water glass into the coffee and negative when heat flows from the coffee into the water glass. Since initially
+\begin{equation}
+    T_c(0)>T_{\infty}>T_w(0),
+\end{equation}
+the initial direct exchange satisfies
+\begin{equation}
+    \dot Q_{c\leftarrow w}<0.
+\end{equation}
+Thus the nearby cold water is a \textbf{\textit{direct additional heat sink for the coffee}}.
+
+The direct exchange can be approximated as the sum of radiative exchange and conductive heat transfer through the narrow air gap:
+\begin{equation}
+    \dot Q_{c\leftarrow w}
+    = \dot Q_{c\leftarrow w}^{\mathrm{rad}}
+    + \dot Q_{c\leftarrow w}^{\mathrm{gap}}.
+\end{equation}
+For the radiative part,
+\begin{equation}
+    \dot Q_{c\leftarrow w}^{\mathrm{rad}}
+    = \varepsilon_{\mathrm{eff}}\sigma A_f F_{cw}
+    \left(T_w^4-T_c^4\right),
+\end{equation}
+where $A_f$ is the facing area, $F_{cw}$ is an effective view factor, and
+\begin{equation}
+    \varepsilon_{\mathrm{eff}}
+    = \left(\frac{1}{\varepsilon_c}+\frac{1}{\varepsilon_w}-1\right)^{-1}
+\end{equation}
+is the effective emissivity for two diffuse gray surfaces facing one another. For the air-gap contribution,
+\begin{equation}
+    \dot Q_{c\leftarrow w}^{\mathrm{gap}}
+    \simeq \frac{k_{\mathrm{air}}A_f}{d}\left(T_w-T_c\right),
+\end{equation}
+where $d$ is the separation distance and $k_{\mathrm{air}}$ is the thermal conductivity of air. In the numerical sweep below the view factor is modeled as a decreasing geometric coupling,
+\begin{equation}
+    F_{cw}(d)=F_{cw}(\SI{1}{cm})\left(\frac{\SI{1}{cm}}{d}\right)^2,
+    \qquad F_{cw}(\SI{1}{cm})=0.55,
+\end{equation}
+with an upper bound below unity. This is a simplified geometric model, not a substitute for an exact view-factor calculation for the actual cup and glass shapes.
+
+This formulation explains the observation. The water glass does not cool the coffee because it has a mysterious ``cold field.'' Rather, because $T_w<T_c$, the direct exchange term is negative for the coffee. The larger water volume matters because it gives the water glass a larger thermal capacitance $C_w$, so it remains a colder sink for longer. Therefore, the coffee can cool faster than it would if it were isolated from the cold glass.
+
+The coupled numerical experiment used $A_f=\SI{0.006}{m^2}$ and varied the separation distance according to
+\begin{equation}
+    d=\SI{1}{cm},\ \SI{5}{cm},\ \SI{10}{cm},\ \SI{15}{cm},\ \SI{20}{cm},\ \SI{30}{cm}.
+\end{equation}
+These are geometric estimates rather than universal constants.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\linewidth]{outputs/coupled_temperature_evolution.pdf}
+    \caption{Distance sweep for the influence of a nearby cold water glass on espresso cooling. The dashed coffee curve is the independent coffee case; the remaining curves show direct exchange with the nearby cold water glass at different separations.}
+    \label{fig:coupled-temperature-evolution}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Distance dependence of the coffee temperature evolution. The final column gives the initial direct heat flow into the coffee due to the water glass; negative values mean heat initially leaves the coffee and enters the colder water-glass system.}
+    \label{tab:coupled-results}
+    \begin{tabular}{lcccccc}
+        \toprule
+        $d$ & $t_{\pm0.5^\circ\mathrm{C}}$ & \SI{10}{min} & \SI{30}{min} & \SI{60}{min} & \SI{120}{min} & $\dot Q_{c\leftarrow w}(0)$ \\
+        (cm) & (min) & ($^\circ$C) & ($^\circ$C) & ($^\circ$C) & ($^\circ$C) & (W) \\
+        \midrule
+        alone & 119.2 & 52.10 & 37.77 & 29.25 & 25.48 & 0.000 \\
+        1 & 84.3 & 49.88 & 34.70 & 27.17 & 24.93 & -2.107 \\
+        5 & 114.0 & 51.84 & 37.38 & 28.96 & 25.39 & -0.237 \\
+        10 & 116.8 & 51.99 & 37.59 & 29.12 & 25.44 & -0.107 \\
+        15 & 117.7 & 52.03 & 37.65 & 29.16 & 25.46 & -0.069 \\
+        20 & 118.0 & 52.05 & 37.68 & 29.18 & 25.46 & -0.050 \\
+        30 & 118.5 & 52.07 & 37.71 & 29.21 & 25.47 & -0.033 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+In this representative model, the coffee reaches the room-temperature band earlier when the cold water glass is very close. At $d=\SI{1}{cm}$, the predicted time changes from \SI{119.2}{min} to \SI{84.3}{min}. At $d=\SI{30}{cm}$, the result is nearly indistinguishable from the independent coffee case. The magnitude is sensitive to the facing area, separation distance, and actual geometry, but the sign of the effect is robust: a nearby colder object provides an \textbf{\textit{additional heat-loss path}} for the hotter coffee.
+
+\noindent\textbf{\textit{Main conclusion.}} The cold water glass can measurably accelerate espresso cooling only when it is placed sufficiently close; in this simplified model the effect is strong at \SI{1}{cm}, modest by \SI{5}{cm}, and nearly negligible beyond approximately \SIrange{20}{30}{cm}.
+
+\begin{thebibliography}{9}
+
+\bibitem{nist-sigma}
+National Institute of Standards and Technology,
+``CODATA Value: Stefan--Boltzmann constant.''
+\url{https://physics.nist.gov/cgi-bin/cuu/Value?sigma}
+
+\bibitem{lienhard}
+J. H. Lienhard V and J. H. Lienhard IV,
+\textit{A Heat Transfer Textbook}, 6th ed., 2024.
+\url{https://ahtt.mit.edu/}
+
+\bibitem{stefan-boltzmann}
+``Stefan--Boltzmann law,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law}
+
+\bibitem{newton-cooling}
+``Newton's law of cooling,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Newton%27s_law_of_cooling}
+
+\bibitem{lumped}
+``Lumped-element model,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Lumped-element_model}
+
+\bibitem{convection}
+``Convection (heat transfer),'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Convection_(heat_transfer)}
+
+\bibitem{specific-heat}
+``Specific heat capacity,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Specific_heat_capacity}
+
+\bibitem{thermal-radiation}
+``Thermal radiation,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Thermal_radiation}
+
+\bibitem{emissivity-toolbox}
+The Engineering ToolBox,
+``Emissivity Coefficients of Common Materials: Data \& Reference Guide.''
+\url{https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html}
+
+\bibitem{convection-toolbox}
+The Engineering ToolBox,
+``Understanding Convective Heat Transfer: Coefficients, Formulas \& Examples.''
+\url{https://www.engineeringtoolbox.com/convective-heat-transfer-d_430.html}
+
+\bibitem{heat-transfer-coefficient}
+``Heat transfer coefficient,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Heat_transfer_coefficient}
+
+\bibitem{emissivity}
+``Emissivity,'' Wikipedia.
+\url{https://en.wikipedia.org/wiki/Emissivity}
+
+\end{thebibliography}
+
+\end{document}
